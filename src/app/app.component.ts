@@ -1,10 +1,13 @@
 import {Component, EventEmitter, Output} from '@angular/core';
 
-import {HttpModule, Http, Response, Headers, RequestOptions} from '@angular/http';
+import {HttpModule, Http, Response, Headers, RequestOptions, JSONPBackend} from '@angular/http';
 import {HttpClient, HttpClientModule, HttpHeaders, HttpParams} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {post} from 'selenium-webdriver/http';
 import {forEach} from '@angular/router/src/utils/collection';
+import {stringify} from 'querystring';
+import {decoratorArgument} from 'codelyzer/util/astQuery';
+import {jsonpFactory} from '@angular/http/src/http_module';
 
 @Component({
   selector: 'app-root',
@@ -18,7 +21,9 @@ export class AppComponent {
 
   public constructor(private http: HttpClient) {
   }
-
+  word = null;
+  definitions = null;
+  jsonString = null;
   tmpWordTranslation = null;
   tableOfWords: String[] = [];
   tmpWord: String = '';
@@ -66,13 +71,22 @@ export class AppComponent {
     const password = 'password1';
     const auth = btoa(username + ':' + password);
     const params = new HttpParams().set('word', word);
-    this.http.get('http://localhost:8080/', {params}).subscribe(json => {
+    const headers = {'FOO': 'foo', 'Content-Type': 'application/json', 'Accept': 'application/json', 'Cache-Control': 'no-cache'};
+    this.http.get('http://localhost:8080/', {params, headers}).subscribe(json => {
       console.log(json);
-     // this.tmpWordTranslation = JSON.parse(json);
-      console.log('this should come from tmpWord: ' + this.tmpWordTranslation);
+      this.word = json.word;
+      this.definitions = json.definitions;
+      // this.tmpWordTranslation = JSON.parse(json);
+      console.log('this should come from word: ' + this.word);
+      for (let i = 0 ; i < this.definitions.length ; i++){
+        console.log(i + ': ' + this.definitions[i]);
+      }
     });
   }
 
+  writeContent() {
+    document.write(this.jsonString[0]);
+  }
 }
 
 

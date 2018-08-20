@@ -5,9 +5,7 @@
   <div>
     <button type="submit" (click)="getResponse(tmpWord)">translate</button>
   </div>
-<div>
-  <p> {{ tmpWordTranslation }}</p>
-</div>
+
 
 
 
@@ -46,5 +44,13 @@
   </p>
 
 
-
+  <div>
+    <p strong>{{tmpWord}}</p>
+  </div>
+  <div>
+    <ol>
+      <li *ngFor="let d of definitions">{{d}}</li>
+    </ol>
+    </div>
 </div>
+
