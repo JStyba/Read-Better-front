@@ -1,10 +1,12 @@
-import {Component} from '@angular/core';
+
 import {Http} from '@angular/http';
 
-@Component({
-  selector: 'app-dict',
-  templateUrl: 'app.component.html'
-})
+
+export interface JsonEntry {
+  word: String;
+  definitions: any;
+}
+
 class DictComponent {
     constructor(http: Http) {
     }

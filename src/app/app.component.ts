@@ -2,18 +2,22 @@ import {Component, EventEmitter, Output} from '@angular/core';
 
 import {HttpModule, Http, Response, Headers, RequestOptions, JSONPBackend} from '@angular/http';
 import {HttpClient, HttpClientModule, HttpHeaders, HttpParams} from '@angular/common/http';
-import {Observable} from 'rxjs';
+import {observable, Observable} from 'rxjs';
 import {post} from 'selenium-webdriver/http';
 import {forEach} from '@angular/router/src/utils/collection';
 import {stringify} from 'querystring';
 import {decoratorArgument} from 'codelyzer/util/astQuery';
 import {jsonpFactory} from '@angular/http/src/http_module';
+import {catchError} from 'rxjs/operators';
+import {tryCatch} from 'rxjs/internal-compatibility';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  styleUrls: ['./app.component.css'],
+
 })
+
 
 
 export class AppComponent {
@@ -21,6 +25,7 @@ export class AppComponent {
 
   public constructor(private http: HttpClient) {
   }
+    parser = new DOMParser();
   word = null;
   definitions = null;
   jsonString = null;
@@ -28,12 +33,7 @@ export class AppComponent {
   tableOfWords: String[] = [];
   tmpWord: String = '';
   httpOptions = {
-    headers: new HttpHeaders({
-      'Accept': 'application/json',
-      'app_id': '3c699787',
-      'app_key': '4a30da605e25de91cf692d808bdb069d'
-    })
-  };
+
 
   selectWord() {
     const s = window.getSelection();
@@ -82,12 +82,7 @@ export class AppComponent {
         console.log(i + ': ' + this.definitions[i]);
       }
     });
-  }
-
-  writeContent() {
-    document.write(this.jsonString[0]);
-  }
+    }
 }
-
 
 // && range.endOffset < node.length - might need it later
