@@ -1,44 +1,55 @@
-<div >
-
+<div>
 
 
   <div>
-    <button type="submit" (click)="getResponse(tmpWord)">translate</button>
+    <button type="submit" (click)="getJsonResponse(tmpWord)">translate</button>
   </div>
-
-
 
 
 </div>
 <div class="top">
   TOP
 
-    <h1> {{ tmpWord }}  </h1>
+  <h1> {{ tmpWord }} </h1>
 
 
 </div>
-<div class="left" >
+<div class="left">
   LEFT
- <ol>
-   <li *ngFor="let word of tableOfWords">
+  <ol>
+    <li *ngFor="let word of tableOfWords">
 
-     {{ word }}
+      {{ word }}
       <button mat-raised-button type="submit" (click)="removeWord(word, tableOfWords)">remove</button>
 
 
-
-
-   </li>
- </ol>
+    </li>
+  </ol>
 
 </div>
 <div class="main" (click)="selectWord()">
   MAIN
-  <p >
+  <p>
     Hey readers Quick note before we jump in:
-    This is a post about something I’ve been wanting to write about forever: careers Society tells us a lot of things about what we should want in a career and what the possibilities are—which is weird because I’m pretty sure society knows very little about any of this When it comes to careers society is like your great uncle who traps you at holidays and goes on a 15-minute mostly incoherent unsolicited advice monologue and you tune out almost the whole time because it’s super clear he has very little idea what he’s talking about and that everything he says is like 45 years outdated Society is like that great uncle and conventional wisdom is like his rant Except in this case instead of tuning it out we pay rapt attention to every word and then we make major career decisions based on what he says Kind of a weird thing for us to do
-    This post isn’t me giving you career advice really—it’s a framework that I think can help you make career decisions that actually reflect who you are what you want and what our rapidly changing career landscape looks like today You’re not a pro at this but you’re certainly more qualified to figure out what’s best for you than our collective un-self-aware great uncle For those of you yet to start your career who aren’t sure what you want to do with their lives or those of you currently in the middle of your career who aren’t sure you’re on the right path I hope this post can help you press the reset button on your thought process and get some clarity
-    Finally it feels very good to put this post up It’s been way way too long The last year has been pretty frustrating for me and anyone who likes Wait But Why—a lot of build-up of ideas with none of the satisfying release of those ideas on the blog (most of my last year has been spent working on another way longer post) I’m hoping this WBW Dark Ages era is nearing its end because I miss hanging out here Thanks as always to the small group of ridiculously generous ridiculously patient patrons who have stuck with us through such a slow period
+    This is a post about something I’ve been wanting to write about forever: careers Society tells us a lot of things
+    about what we should want in a career and what the possibilities are—which is weird because I’m pretty sure society
+    knows very little about any of this When it comes to careers society is like your great uncle who traps you at
+    holidays and goes on a 15-minute mostly incoherent unsolicited advice monologue and you tune out almost the whole
+    time because it’s super clear he has very little idea what he’s talking about and that everything he says is like 45
+    years outdated Society is like that great uncle and conventional wisdom is like his rant Except in this case instead
+    of tuning it out we pay rapt attention to every word and then we make major career decisions based on what he says
+    Kind of a weird thing for us to do
+    This post isn’t me giving you career advice really—it’s a framework that I think can help you make career decisions
+    that actually reflect who you are what you want and what our rapidly changing career landscape looks like today
+    You’re not a pro at this but you’re certainly more qualified to figure out what’s best for you than our collective
+    un-self-aware great uncle For those of you yet to start your career who aren’t sure what you want to do with their
+    lives or those of you currently in the middle of your career who aren’t sure you’re on the right path I hope this
+    post can help you press the reset button on your thought process and get some clarity
+    Finally it feels very good to put this post up It’s been way way too long The last year has been pretty frustrating
+    for me and anyone who likes Wait But Why—a lot of build-up of ideas with none of the satisfying release of those
+    ideas on the blog (most of my last year has been spent working on another way longer post) I’m hoping this WBW Dark
+    Ages era is nearing its end because I miss hanging out here Thanks as always to the small group of ridiculously
+    generous ridiculously patient patrons who have stuck with us through such a slow period
     – Tim
     PDF: If you want to print this post or read it offline the PDF is probably the way to go You can buy it here
   </p>
@@ -51,6 +62,8 @@
     <ol>
       <li *ngFor="let d of definitions">{{d}}</li>
     </ol>
-    </div>
-</div>
+  </div>
+  </div>
+<div>
 
+</div>
