@@ -72,10 +72,10 @@ export class AppComponent {
     const auth = btoa(username + ':' + password);
     const params = new HttpParams().set('word', word);
     const headers = {'FOO': 'foo', 'Content-Type': 'application/json', 'Accept': 'application/json', 'Cache-Control': 'no-cache'};
-    this.http.get('http://localhost:8080/', {params, headers}).subscribe(json => {
+    this.http.get('http://192.168.0.106:8080/', {params, headers}).subscribe(json => {
       console.log(json);
-      this.word = json.word;
-      this.definitions = json.definitions;
+      // this.word = json.word;
+      // this.definitions = json.definitions;
       // this.tmpWordTranslation = JSON.parse(json);
       console.log('this should come from word: ' + this.word);
       for (let i = 0 ; i < this.definitions.length ; i++){

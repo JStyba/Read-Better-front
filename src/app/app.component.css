@@ -1,15 +1,175 @@
-.top {
+* {
+  margin: 0;
+  padding: 0;
+  font-family: Roboto, arial;
+  box-sizing: border-box;
+}
+
+/*#wrapper {*/
+/*max-width: 1200px;*/
+/*margin: 0 auto 0 auto;*/
+/*background-color: red;*/
+/*height:auto;*/
+/*}*/
+#wrapper {
+  max-width: 1000px;
+  margin: 0 auto 0 auto;
+  background-color: white;
+}
+
+nav {
+  overflow: hidden;
+}
+
+nav a {
+  display: block;
+  width: 25%;
+  float: left;
+  padding: 10px 30px 10px 30px;
+  color: rgba(0, 0, 0, 0.78);
+  text-decoration: none;
   text-align: center;
-  position:absolute;
-  left:0; right:0;
-  height: 92px;
+  font-weight: bolder;
+  background-color: rgba(39, 201, 105, 0.12);
+  cursor: pointer;
+  font-size: 20px;
+  transition: all 1s ease;
+
 }
-.left {
-  position:absolute;
-  left:0; top:92px; bottom: 0;
-  width: 178px;
+
+.control {
+  padding-top: 30px;
+  padding-bottom: 30px;
+  display: block;
+  text-align: center;
+  font-size: 25px;
+  color: rgba(0, 0, 0, 0.78);
+
 }
+
+#url {
+  width: 250px;
+  height: 33px;
+  padding-left: 10px;
+  border-radius: 25px;
+  border: 3px solid rgba(39, 201, 105, 0.12);
+}
+
+.right {
+  display: inline-block;
+  width: 20%;
+  padding: 10px;
+  min-height: 500px;
+  border: 2px solid rgba(39, 201, 105, 0.12);
+  border-radius: 25px;
+  float: right;
+  color: rgba(0, 0, 0, 0.78);
+}
+
+span {
+  text-align: center;
+}
+
+.right li {
+  font-size: 15px;
+  line-height: 25px;
+  color: rgba(255, 24, 112, 0.84);
+}
+
+button {
+  padding: 5px;
+}
+
+.removeWord {
+  border-top: 1px solid #edf2f7;
+  background: rgba(201, 28, 73, 0.12);
+  padding: 6px 12px;
+  -webkit-border-radius: 8px;
+  -moz-border-radius: 8px;
+  border-radius: 8px;
+  -webkit-box-shadow: rgba(0, 0, 0, 1) 0 1px 0;
+  -moz-box-shadow: rgba(0, 0, 0, 1) 0 1px 0;
+  box-shadow: rgba(0, 0, 0, 1) 0 1px 0;
+  text-shadow: rgba(0, 0, 0, .4) 0 1px 0;
+  color: rgba(0, 0, 0, 0.78);
+  font-size: 11px;
+  font-family: Georgia, serif;
+  text-decoration: none;
+  vertical-align: middle;
+
+}
+
+.removeWord:hover {
+  border-top-color: #28597a;
+  background: #28597a;
+  color: #ccc;
+}
+
+.removeWord:active {
+  border-top-color: #1b435e;
+  background: #1b435e;
+}
+
+.translateWord {
+  border-top: 1px solid #97d2f7;
+  background: rgba(39, 201, 105, 0.12);
+  padding: 6px 12px;
+  -webkit-border-radius: 8px;
+  -moz-border-radius: 8px;
+  border-radius: 8px;
+  -webkit-box-shadow: rgba(0, 0, 0, 1) 0 1px 0;
+  -moz-box-shadow: rgba(0, 0, 0, 1) 0 1px 0;
+  box-shadow: rgba(0, 0, 0, 1) 0 1px 0;
+  text-shadow: rgba(0, 0, 0, .4) 0 1px 0;
+  color: rgba(0, 0, 0, 0.78);
+  font-size: 11px;
+  font-family: Georgia, serif;
+  text-decoration: none;
+  vertical-align: middle;
+}
+
+.translateWord:hover {
+  border-top-color: #28597a;
+  background: #28597a;
+  color: #ccc;
+}
+
+.translateWord:active {
+  border-top-color: #1b435e;
+  background: #1b435e;
+}
+
 .main {
-  position: absolute;
-  left:178px; top:92px; right:0; bottom:0;
+  display: inline-block;
+  width: 75%;
+  padding: 10px;
+  min-height: 500px;
+  border: 2px solid rgba(39, 201, 105, 0.12);
+  border-radius: 25px;
+  justify-content: right;
+  color: rgba(0, 0, 0, 0.78);
+  text-align: justify;
+
 }
+
+/*.top {*/
+/*text-align: center;*/
+/*position:absolute;*/
+/*left:0; right:0;*/
+/*height: 92px;*/
+/*}*/
+/*.left {*/
+/*!*position:absolute;*!*/
+/*!*left:1%; top:10%; bottom: 1%;*!*/
+/*width: 30%;*/
+/*height: 100%;*/
+/*float: left;*/
+/*}*/
+/*.main {*/
+/*!*position: absolute;*!*/
+/*!*left:178px; top:92px; right:0; bottom:0;*!*/
+/*width: 75%;*/
+/*height: 100%;*/
+/*border: 1px solid black;*/
+/*}*/
+
