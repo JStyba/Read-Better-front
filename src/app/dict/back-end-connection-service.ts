@@ -10,6 +10,7 @@ export class BackEndConnectionService {
   newArray = [];
 
   getResponse(word) {
+    this.newArray = [];
     const username = 'user';
     const password = 'password1';
     const auth = btoa(username + ':' + password);
