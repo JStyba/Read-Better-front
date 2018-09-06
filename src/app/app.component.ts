@@ -56,6 +56,9 @@ export class AppComponent {
       alert('no word to add');
     }
   }
+  fireEvent(e) {
+    e.preventDefault();
+  }
 }
 
 // && range.endOffset < node.length - might need it later
