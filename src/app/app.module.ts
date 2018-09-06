@@ -5,16 +5,11 @@ import {AppComponent} from './app.component';
 import {HttpModule} from '@angular/http';
 
 import {HttpClientModule} from '@angular/common/http';
-import { DefinitionsPipePipe } from './dict/definitions-pipe.pipe';
-
 
 @NgModule({
   declarations: [
     AppComponent,
-    DefinitionsPipePipe
-
-
-  ],
+      ],
   imports: [
     BrowserModule,
     FormsModule,
