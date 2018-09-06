@@ -35,13 +35,8 @@ export class AppComponent {
 
     } while (range.toString().indexOf(' ') === -1 && range.toString().trim() !== '');
     const str = range.toString().trim();
-    console.log('this word was clicked: ' + str.trim().toString() + 'the type of str is: ' + typeof str);
-    this.tableOfWords.push(str);
-    for (let i = 0; i < this.tableOfWords.length; i++) {
-      console.log(this.tableOfWords[i]);
-      this.tmpWord = str;
+    this.tmpWord = str;
     }
-  }
 
   removeWord(element, array) {
     const index = array.indexOf(element);
@@ -53,6 +48,13 @@ export class AppComponent {
 
   getJsonResponse(word): void {
     this.definitions = this.backendConnectionService.getResponse(word);
+  }
+  addWordToDatabase () {
+    if (this.tmpWord !== '') {
+      this.tableOfWords.push(this.tmpWord);
+    } else {
+      alert('no word to add');
+    }
   }
 }
 
