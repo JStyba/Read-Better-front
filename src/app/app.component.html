@@ -79,7 +79,7 @@
       <li *ngFor="let word of tableOfWords">
 
         {{ word }}
-        <button class="translateWord" type="submit" (click)="getResponse(tmpWord)">translate</button>
+        <button class="translateWord" type="submit" (click)="getJsonResponse(tmpWord)">translate</button>
         <button class="removeWord" mat-raised-button type="submit" (click)="removeWord(word, tableOfWords)">remove
         </button>
 
