@@ -19,11 +19,12 @@
     <nav>
       <a class="menu" href="#">About</a>
       <a class="menu" href="#">FAQ</a>
-      <a class="menu" href="#">Kontakt</a>
+      <a class="menu" href="#">Contact</a>
       <a class="menu" href="#">My Read Better</a>
 
     </nav>
-    <img src="images/design-expression-learn-247819crop.jpg">
+    <div class="line"></div>
+    <img src="images/logo.jpeg">
   </header>
 
   <div class="control">
@@ -79,9 +80,11 @@
       <li *ngFor="let word of tableOfWords">
 
         {{ word }}
+        <div class="buttons">
         <button class="translateWord" type="submit" (click)="getJsonResponse(tmpWord)">translate</button>
         <button class="removeWord" mat-raised-button type="submit" (click)="removeWord(word, tableOfWords)">remove
         </button>
+        </div>
 
 
       </li>
