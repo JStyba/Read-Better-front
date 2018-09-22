@@ -5,15 +5,14 @@ import {AppComponent} from './app.component';
 import {HttpModule} from '@angular/http';
 
 import {HttpClientModule} from '@angular/common/http';
-import { TargetPageComponent } from './dict/target-page/target-page.component';
+
 
 import {RouterModule} from '@angular/router';
 
 @NgModule({
   declarations: [
     AppComponent,
-    TargetPageComponent,
-         ],
+             ],
   imports: [
     BrowserModule,
     FormsModule,
@@ -25,11 +24,7 @@ import {RouterModule} from '@angular/router';
         path: '',
         component: AppComponent
       },
-      {
-        path: 'test',
-        component: TargetPageComponent
-      }
-    ])
+          ])
   ],
   providers: [],
   bootstrap: [AppComponent],

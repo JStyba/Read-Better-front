@@ -1,7 +1,7 @@
 import {ChangeDetectorRef, Component, ElementRef, EventEmitter, OnInit, Output} from '@angular/core';
 import {BackEndConnectionService} from './dict/back-end-connection-service';
 import {HttpClient, HttpClientModule, HttpHeaders, HttpParams} from '@angular/common/http';
-import {TargetPageComponent} from './dict/target-page/target-page.component';
+
 
 export interface TextSelectEvent {
   text: string;
