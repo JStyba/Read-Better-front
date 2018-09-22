@@ -1,6 +1,6 @@
 import {HttpClient, HttpParams, HttpRequest} from '@angular/common/http';
 import {Injectable} from '@angular/core';
-
+import {map, subscribeOn} from 'rxjs/operators';
 
 @Injectable()
 export class BackEndConnectionService {
@@ -8,7 +8,7 @@ export class BackEndConnectionService {
   }
 
   newArray = [];
-
+  scraped;
   getResponse(word) {
     this.newArray = [];
     const username = 'user';
@@ -28,4 +28,15 @@ export class BackEndConnectionService {
     return (this.newArray);
   }
 
+  getStringedWeb(url) {
+    this.scraped = '';
+    const username = 'user';
+    const password = 'password1';
+    const auth = btoa(username + ':' + password);
+    const params = new HttpParams().set('url', url);
+    const headers = {responseType: 'json'};
+    return this.http.get('http://localhost:8080/scrape', {params: params, headers})
+      .pipe(map(res => res['scrapedWebString']));
+  }
 }
+
