@@ -1,6 +1,6 @@
-import {HttpClient, HttpParams, HttpRequest} from '@angular/common/http';
+import {HttpClient, HttpParams} from '@angular/common/http';
 import {Injectable} from '@angular/core';
-import {map, subscribeOn} from 'rxjs/operators';
+import {map} from 'rxjs/operators';
 
 @Injectable()
 export class BackEndConnectionService {

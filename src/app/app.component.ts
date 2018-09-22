@@ -11,7 +11,7 @@ export interface TextSelectEvent {
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
-  providers: [BackEndConnectionService, TargetPageComponent]
+  providers: [BackEndConnectionService]
 })
 
 export class AppComponent {
@@ -73,6 +73,7 @@ export class AppComponent {
       const shadow = one.attachShadow({mode: 'closed'});
       shadow.innerHTML = '<p>' + data + '</p>';
     });
+    document.getElementById('test').innerHTML = '';
   }
 }
 
