@@ -1,6 +1,7 @@
 import {map} from 'rxjs/operators';
 import {HttpClient, HttpParams} from '@angular/common/http';
 import {Injectable} from '@angular/core';
+
 @Injectable()
 export class WebScrapeService {
   constructor(private http: HttpClient) {
@@ -10,6 +11,7 @@ export class WebScrapeService {
 
   getStringedWeb(url) {
     this.scraped = '';
+
     const username = 'user';
     const password = 'password1';
     const auth = btoa(username + ':' + password);
@@ -19,3 +21,4 @@ export class WebScrapeService {
       .pipe(map(res => res['scrapedWebString']));
   }
 }
+

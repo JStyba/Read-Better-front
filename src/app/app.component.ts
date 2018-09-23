@@ -18,13 +18,15 @@ export class AppComponent {
     , private sws: SelectWordService) {
   }
 
+  urlRegEx = new RegExp('^((https?|ftp|smtp):\\/\\/)?(www.)?[a-z0-9]+\\.[a-z]+(\\/[a-zA-Z0-9#]+\\/?)*$');
   url = '';
   word = null;
   definitions;
   tableOfWords: String[] = [];
   tmpWord: String = '';
+
   wordSelection() {
-   this.tmpWord = this.sws.selectWord(this.tmpWord);
+    this.tmpWord = this.sws.selectWord(this.tmpWord);
   }
 
   removeWord(element, array) {
@@ -52,12 +54,16 @@ export class AppComponent {
   }
 
   getDom() {
-    const one = document.getElementById('test');
-    this.wss.getStringedWeb(this.url).subscribe(data => {
-      const shadow = one.attachShadow({mode: 'closed'});
-      shadow.innerHTML = '<p>' + data + '</p>';
-    });
-    document.getElementById('test').innerHTML = '';
+    if (this.urlRegEx.test(this.url)) {
+      const one = document.getElementById('test');
+      this.wss.getStringedWeb(this.url).subscribe(data => {
+        const shadow = one.attachShadow({mode: 'closed'});
+        shadow.innerHTML = '<p>' + data + '</p>';
+      });
+      document.getElementById('test').innerHTML = '';
+    } else {
+      alert('Put the correct URL');
+    }
   }
 }
 
