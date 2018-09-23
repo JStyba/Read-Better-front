@@ -3,12 +3,12 @@ import {Injectable} from '@angular/core';
 import {map} from 'rxjs/operators';
 
 @Injectable()
-export class BackEndConnectionService {
+export class WordTranslationService {
   constructor(private http: HttpClient) {
   }
 
   newArray = [];
-  scraped;
+
   getResponse(word) {
     this.newArray = [];
     const username = 'user';
@@ -20,7 +20,6 @@ export class BackEndConnectionService {
       const evilResp = Object.values(res['definitions']);
       for (const prop in evilResp) {
         if (evilResp !== null) {
-
           this.newArray.push(evilResp[prop]);
         }
       }
@@ -28,15 +27,6 @@ export class BackEndConnectionService {
     return (this.newArray);
   }
 
-  getStringedWeb(url) {
-    this.scraped = '';
-    const username = 'user';
-    const password = 'password1';
-    const auth = btoa(username + ':' + password);
-    const params = new HttpParams().set('url', url);
-    const headers = {responseType: 'json'};
-    return this.http.get('http://localhost:8080/scrape', {params: params, headers})
-      .pipe(map(res => res['scrapedWebString']));
-  }
+
 }
 

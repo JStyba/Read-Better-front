@@ -1,29 +1,27 @@
 import {ChangeDetectorRef, Component, ElementRef, EventEmitter, OnInit, Output} from '@angular/core';
-import {BackEndConnectionService} from './dict/back-end-connection-service';
+import {WordTranslationService} from './dict/word-translation-service';
 import {HttpClient, HttpClientModule, HttpHeaders, HttpParams} from '@angular/common/http';
-
-
-export interface TextSelectEvent {
-  text: string;
-}
+import {WebScrapeService} from './dict/web-scrape-service';
+import {SelectWordService} from './dict/select-word-service';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
-  providers: [BackEndConnectionService]
+  providers: [WordTranslationService, WebScrapeService]
 })
 
 export class AppComponent {
-  public constructor(private http: HttpClient, private backendConnectionService: BackEndConnectionService) {
-    }
+  public constructor(private http: HttpClient
+                     , private wts: WordTranslationService
+                     , private wss: WebScrapeService
+                     , private sws: SelectWordService) {}
   url = '';
-  parser = new DOMParser();
   word = null;
   definitions;
   tableOfWords: String[] = [];
   tmpWord: String = '';
-  private getRangeContainer(range: Range): Node {
+  getRangeContainer(range: Range): Node {
     let container = range.commonAncestorContainer;
     while (container.nodeType !== Node.ELEMENT_NODE) {
       container = container.parentNode;
@@ -51,7 +49,7 @@ export class AppComponent {
   }
 
   getJsonResponse(word): void {
-    this.definitions = this.backendConnectionService.getResponse(word);
+    this.definitions = this.wts.getResponse(word);
   }
 
   addWordToDatabase() {
@@ -69,7 +67,7 @@ export class AppComponent {
   getDom() {
     console.log(this.url);
     const one = document.getElementById('test');
-    this.backendConnectionService.getStringedWeb(this.url).subscribe(data => {
+    this.wss.getStringedWeb(this.url).subscribe(data => {
       const shadow = one.attachShadow({mode: 'closed'});
       shadow.innerHTML = '<p>' + data + '</p>';
     });
