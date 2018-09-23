@@ -8,36 +8,23 @@ import {SelectWordService} from './dict/select-word-service';
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
-  providers: [WordTranslationService, WebScrapeService]
+  providers: [WordTranslationService, WebScrapeService, SelectWordService]
 })
 
 export class AppComponent {
   public constructor(private http: HttpClient
-                     , private wts: WordTranslationService
-                     , private wss: WebScrapeService
-                     , private sws: SelectWordService) {}
+    , private wts: WordTranslationService
+    , private wss: WebScrapeService
+    , private sws: SelectWordService) {
+  }
+
   url = '';
   word = null;
   definitions;
   tableOfWords: String[] = [];
   tmpWord: String = '';
-  getRangeContainer(range: Range): Node {
-    let container = range.commonAncestorContainer;
-    while (container.nodeType !== Node.ELEMENT_NODE) {
-      container = container.parentNode;
-    }
-    return (container);
-  }
-
-  selectWord() {
-    const selection = document.getSelection();
-    if (!selection.rangeCount || !selection.toString()) {
-      return;
-    }
-    const range = selection.getRangeAt(0);
-    const rangeContainer = this.getRangeContainer(range);
-    this.tmpWord = selection.toString().trim();
-    console.log(this.tmpWord);
+  wordSelection() {
+   this.tmpWord = this.sws.selectWord(this.tmpWord);
   }
 
   removeWord(element, array) {
