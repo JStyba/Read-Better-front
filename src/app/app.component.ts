@@ -1,6 +1,6 @@
-import {ChangeDetectorRef, Component, ElementRef, EventEmitter, OnInit, Output} from '@angular/core';
+import {Component} from '@angular/core';
 import {WordTranslationService} from './dict/word-translation-service';
-import {HttpClient, HttpClientModule, HttpHeaders, HttpParams} from '@angular/common/http';
+import {HttpClient} from '@angular/common/http';
 import {WebScrapeService} from './dict/web-scrape-service';
 import {SelectWordService} from './dict/select-word-service';
 
@@ -52,7 +52,6 @@ export class AppComponent {
   }
 
   getDom() {
-    console.log(this.url);
     const one = document.getElementById('test');
     this.wss.getStringedWeb(this.url).subscribe(data => {
       const shadow = one.attachShadow({mode: 'closed'});
