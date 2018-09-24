@@ -1,8 +1,9 @@
-import {Component} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {WordTranslationService} from './dict/word-translation-service';
 import {HttpClient} from '@angular/common/http';
 import {WebScrapeService} from './dict/web-scrape-service';
 import {SelectWordService} from './dict/select-word-service';
+import {root} from 'rxjs/internal-compatibility';
 
 @Component({
   selector: 'app-root',
@@ -11,20 +12,24 @@ import {SelectWordService} from './dict/select-word-service';
   providers: [WordTranslationService, WebScrapeService, SelectWordService]
 })
 
-export class AppComponent {
+export class AppComponent implements OnInit{
   public constructor(private http: HttpClient
     , private wts: WordTranslationService
     , private wss: WebScrapeService
     , private sws: SelectWordService) {
   }
-
+  one;
   urlRegEx = new RegExp('^((https?|ftp|smtp):\\/\\/)?(www.)?[a-z0-9]+\\.[a-z]+(\\/[a-zA-Z0-9#]+\\/?)*$');
   url = '';
   word = null;
   definitions;
   tableOfWords: String[] = [];
   tmpWord: String = '';
-
+  shadow;
+  ngOnInit () {
+    this.one = document.getElementById('test');
+    this.shadow = this.one.attachShadow({mode: 'closed'});
+  }
   wordSelection() {
     this.tmpWord = this.sws.selectWord(this.tmpWord);
   }
@@ -45,7 +50,7 @@ export class AppComponent {
     if (this.tmpWord !== '') {
       this.tableOfWords.push(this.tmpWord);
     } else {
-      alert('no word to add');
+      alert('No word to add');
     }
   }
 
@@ -55,13 +60,10 @@ export class AppComponent {
 
   getDom() {
     if (this.urlRegEx.test(this.url)) {
-      const one = document.getElementById('test');
-      this.wss.getStringedWeb(this.url).subscribe(data => {
-        const shadow = one.attachShadow({mode: 'closed'});
-        shadow.innerHTML = '<p>' + data + '</p>';
-      });
-      document.getElementById('test').innerHTML = '';
-    } else {
+          this.wss.getStringedWeb(this.url).subscribe(data => {
+          this.shadow.innerHTML = '<p>' + data + '</p>';
+        });
+      } else {
       alert('Put the correct URL');
     }
   }
