@@ -16,68 +16,75 @@
 
   <!--</div>-->
   <header>
-    <nav>
-      <a class="menu" href="#">About</a>
-      <a class="menu" href="#">FAQ</a>
-      <a class="menu" href="#">Contact</a>
-      <a class="menu" href="#">My Read Better</a>
-
-    </nav>
-    <div class="line"></div>
-    <img src="images/logo.jpeg">
+    <h1>
+      Read Better
+    </h1>
   </header>
-<form>
-  <div class="control">
-    <label for="url">Enter URL: </label>
-    <input type="url" id="url"
-           [(ngModel)]="url"
-           [ngModelOptions]="{standalone: true}"
-           placeholder="https://example.com"
-           pattern="https://.*" size="20" required/>
-    <input type="button" value="Submit" (click)="getDom(url)">
-  </div>
-</form>
-  <div>
-    <p >{{tmpWord}}</p>
-    <button class="addWord" type="submit" (click)="addWordToDatabase()">Add to Database</button>
-  </div>
-  <div class="main" >
+  <nav id="topNav">
+    <ul>
+      <li><a href="#">About</a></li>
+      <li><a href="#">Contact</a></li>
+      <li><a href="#">FAQ</a></li>
+      <li><a href="#">My read Better</a></li>
 
-    <div id="test" (dblclick)="wordSelection()" (mousemove)="fireEvent($event)">
+    </ul>
+  </nav>
+  <main>
+    <form>
+      <div class="control">
+        <!--<label for="url">ENTER URL: </label>-->
+        <input type="url" id="url"
+               [(ngModel)]="url"
+               [ngModelOptions]="{standalone: true}"
+               placeholder="ENTER URL"
+               pattern="https://.*" size="20" required/>
+        <input class="url" type="button" value="SUBMIT" (click)="getDom(url)">
 
-    </div>
-
-<div></div>
-<div></div>
-<p> DEFINITIONS </p>
-    <div></div>
-    <div></div>
+      </div>
+    </form>
     <div>
-      <ol>
-        <li *ngFor="let d of definitions">{{d}}</li>
-      </ol>
+      <p>{{tmpWord}}</p>
+      <button class="addWord" type="submit" (click)="addWordToDatabase()">ADD TO DATABASE</button>
     </div>
-  </div>
-  <div class="right">
+    <div class="main">
+
+      <div id="test" (dblclick)="wordSelection()" (mousemove)="fireEvent($event)">
+
+      </div>
+
+      <div></div>
+      <div></div>
+      <p> DEFINITIONS </p>
+      <div></div>
+      <div></div>
+      <div>
+        <ol>
+          <li *ngFor="let d of definitions">{{d}}</li>
+        </ol>
+      </div>
+    </div>
+    <div class="right">
     <span>
     YOUR WORDS
       </span>
-    <ol>
-      <li *ngFor="let word of tableOfWords">
+      <ol>
+        <li *ngFor="let word of tableOfWords">
 
-        {{ word }}
-        <div class="buttons">
-        <button class="translateWord" type="submit" (click)="getJsonResponse(tmpWord)">translate</button>
-        <button class="removeWord" mat-raised-button type="submit" (click)="removeWord(word, tableOfWords)">remove
-        </button>
-        </div>
+          {{ word }}
+          <div class="buttons">
+            <button class="translateWord" type="submit" (click)="getJsonResponse(tmpWord)">translate</button>
+            <button class="removeWord" mat-raised-button type="submit" (click)="removeWord(word, tableOfWords)">remove
+            </button>
+          </div>
 
 
-      </li>
-    </ol>
+        </li>
+      </ol>
 
-  </div>
-<div>
+    </div>
+    <div>
 
-</div>
+    </div>
+
+  </main>
 </div>
