@@ -12,12 +12,13 @@ import {root} from 'rxjs/internal-compatibility';
   providers: [WordTranslationService, WebScrapeService, SelectWordService]
 })
 
-export class AppComponent implements OnInit{
+export class AppComponent implements OnInit {
   public constructor(private http: HttpClient
     , private wts: WordTranslationService
     , private wss: WebScrapeService
     , private sws: SelectWordService) {
   }
+  hover;
   one;
   urlRegEx = new RegExp('^((https?|ftp|smtp):\\/\\/)?(www.)?[a-z0-9]+\\.[a-z]+(\\/[a-zA-Z0-9#]+\\/?)*$');
   url = '';
@@ -67,6 +68,7 @@ export class AppComponent implements OnInit{
       alert('Put the correct URL');
     }
   }
+    /* STYLING */
 }
 
 
