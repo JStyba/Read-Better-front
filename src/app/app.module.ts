@@ -8,10 +8,12 @@ import {HttpClientModule} from '@angular/common/http';
 
 
 import {RouterModule} from '@angular/router';
+import { HeaderComponent } from './core/components/header/header.component';
 
 @NgModule({
   declarations: [
     AppComponent,
+    HeaderComponent,
              ],
   imports: [
     BrowserModule,
