@@ -1,0 +1,232 @@
+/* Global Styling */
+body, header, nav, main {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: #3e606f;
+  font-family: 'Roboto', sans-sarif;
+  font-size: 20px;
+  color: #fcfff5;
+}
+
+
+
+main {
+  position: relative;
+  height: 1500px;
+  text-align: center;
+  margin-top: 150px;
+}
+
+.control {
+  padding-top: 30px;
+  padding-bottom: 30px;
+  display: block;
+  text-align: center;
+  font-size: 25px;
+  color: rgba(0, 0, 0, 0.78);
+
+}
+
+#url {
+  text-align: center;
+  font-size: 16px;
+  line-height: 33px;
+  opacity: 0.5;
+  width: 320px;
+  height: 33px;
+  padding-left: 7px;
+  border-radius: 5px;
+  border: 3px solid #B4DCE8;
+}
+/*input.url {*/
+/*height: 40px;*/
+/*width: 90px;*/
+/*background-color: #609DC9;*/
+/*border-radius: 5px;*/
+/*border: 3px solid #B4DCE8;*/
+/*margin-left: 10px;*/
+/*color: #F9F9F9;*/
+/*font-size: 18px;*/
+/*line-height: 40px;*/
+/*font-family: Roboto;*/
+
+/*}*/
+/*input.url :hover {*/
+/*background: #193449;*/
+/*}*/
+.url {
+  /*  -moz-box-shadow: 1px 1px 1px 0px #3076b3;
+    -webkit-box-shadow: 1px 1px 1px 0px #3076b3;
+    box-shadow: 1px 1px 1px 0px #3076b3;*/
+  background-color:#609DC9;
+  -moz-border-radius:5px;
+  -webkit-border-radius:5px;
+  border-radius:5px;
+  border:1px solid #609DC9;
+  display:inline-block;
+  cursor:pointer;
+  color:#ffffff;
+  font-family:Roboto;
+  font-size:16px;
+  padding:7px 48px;
+  text-decoration:none;
+  text-shadow:0px 0px 0px #5a84ad;
+  margin-left: 10px;
+  fill-opacity: 0.5;
+
+}
+input.url:hover {
+  background: #193449;
+}
+input .url:active {
+  position:relative;
+  top:1px;
+}
+
+.addWord {
+  /*  -moz-box-shadow: 1px 1px 1px 0px #3076b3;
+    -webkit-box-shadow: 1px 1px 1px 0px #3076b3;
+    box-shadow: 1px 1px 1px 0px #3076b3;*/
+  background-color:#609DC9;
+  -moz-border-radius:5px;
+  -webkit-border-radius:5px;
+  border-radius:5px;
+  border:1px solid #609DC9;
+  display:inline-block;
+  cursor:pointer;
+  color:#ffffff;
+  font-family:Roboto;
+  font-size:16px;
+  padding:7px 48px;
+  text-decoration:none;
+  text-shadow:0px 0px 0px #5a84ad;
+  fill-opacity: 0.5;
+  margin-bottom: 10px;
+  width: auto;
+}
+.addWord:hover {
+  background: #193449;
+}
+.addWord:active {
+  position:relative;
+  top:1px;
+}
+.right {
+  display: inline-block;
+  width: 20%;
+  padding: 10px;
+  min-height: 500px;
+  border: 2px solid #B4DCE8;
+  border-radius: 5px;
+  float: right;
+  color: rgba(0, 0, 0, 0.78);
+  margin-left: 10px;
+
+}
+
+span {
+  text-align: center;
+}
+
+.right li {
+  margin-left: 10px;
+  font-size: 15px;
+  line-height: 30px;
+  color: rgba(255, 24, 112, 0.84);
+}
+
+button {
+  padding: 5px;
+}
+
+.removeWord {
+  border-top: 1px solid #edf2f7;
+  background: rgba(201, 28, 73, 0.12);
+  padding: 6px 12px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+  -webkit-box-shadow: rgba(0, 0, 0, 1) 0 1px 0;
+  -moz-box-shadow: rgba(0, 0, 0, 1) 0 1px 0;
+  box-shadow: rgba(0, 0, 0, 1) 0 1px 0;
+  text-shadow: rgba(0, 0, 0, .4) 0 1px 0;
+  color: rgba(0, 0, 0, 0.78);
+  font-size: 11px;
+  font-family: Roboto, serif;
+  text-decoration: none;
+  vertical-align: middle;
+
+}
+
+.removeWord:hover {
+  border-top-color: #28597a;
+  background: #28597a;
+  color: #ccc;
+}
+
+.removeWord:active {
+  border-top-color: #1b435e;
+  background: #1b435e;
+
+}
+
+.buttons {
+  float: right;
+}
+
+.translateWord {
+  border-top: 1px solid #97d2f7;
+  background: rgba(39, 201, 105, 0.12);
+  padding: 6px 12px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+  -webkit-box-shadow: rgba(0, 0, 0, 1) 0 1px 0;
+  -moz-box-shadow: rgba(0, 0, 0, 1) 0 1px 0;
+  box-shadow: rgba(0, 0, 0, 1) 0 1px 0;
+  text-shadow: rgba(0, 0, 0, .4) 0 1px 0;
+  color: rgba(0, 0, 0, 0.78);
+  font-size: 11px;
+  font-family: Roboto, serif;
+  text-decoration: none;
+  vertical-align: middle;
+
+}
+.testing {
+  background-color: red;
+}
+.testing2 {
+  font-style: italic;
+  color: blue;
+}
+.translateWord:hover {
+  border-top-color: #28597a;
+  background: #28597a;
+  color: #ccc;
+}
+
+.translateWord:active {
+  border-top-color: #1b435e;
+  background: #1b435e;
+}
+
+.main {
+  display: inline-block;
+  width: 70%;
+  padding: 10px;
+  min-height: 500px;
+  border: 2px solid #B4DCE8;
+  border-radius: 5px;
+  justify-content: right;
+  color: rgba(0, 0, 0, 0.78);
+  text-align: justify;
+
+  /*-webkit-user-select: auto;*/
+  /*-moz-user-select: none;*/
+  /*user-select: none;*/
+
+}
+

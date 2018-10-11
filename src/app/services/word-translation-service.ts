@@ -11,19 +11,18 @@ export class WordTranslationService {
 
   getResponse(word) {
     this.newArray = [];
-    const username = 'user';
-    const password = 'password1';
-    const auth = btoa(username + ':' + password);
     const params = new HttpParams().set('word', word);
     const headers = {'FOO': 'foo', 'Content-Type': 'application/json', 'Accept': 'application/json', 'Cache-Control': 'no-cache'};
-    this.http.get('http://localhost:8080/', {params, headers}).subscribe(res => {
+    this.http.get('http://localhost:8080/entry/translate/?access_token=' + localStorage.getItem('token')
+      , {params, headers}).subscribe(res => {
+        console.log(res);
       const evilResp = Object.values(res['definitions']);
       for (const prop in evilResp) {
         if (evilResp !== null) {
-          this.newArray.push(evilResp[prop]);
+          this.newArray.push(Object.values(evilResp[prop]));
         }
       }
-    });
+          });
     return (this.newArray);
   }
 

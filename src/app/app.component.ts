@@ -1,9 +1,8 @@
-import {Component, OnInit} from '@angular/core';
-import {WordTranslationService} from './dict/word-translation-service';
-import {HttpClient} from '@angular/common/http';
-import {WebScrapeService} from './dict/web-scrape-service';
-import {SelectWordService} from './dict/select-word-service';
-import {root} from 'rxjs/internal-compatibility';
+import {Component} from '@angular/core';
+import {WordTranslationService} from './services/word-translation-service';
+import {WebScrapeService} from './services/web-scrape-service';
+import {SelectWordService} from './services/select-word-service';
+
 
 @Component({
   selector: 'app-root',
@@ -12,63 +11,10 @@ import {root} from 'rxjs/internal-compatibility';
   providers: [WordTranslationService, WebScrapeService, SelectWordService]
 })
 
-export class AppComponent implements OnInit {
-  public constructor(private http: HttpClient
-    , private wts: WordTranslationService
-    , private wss: WebScrapeService
-    , private sws: SelectWordService) {
-  }
-  hover;
-  one;
-  urlRegEx = new RegExp('^((https?|ftp|smtp):\\/\\/)?(www.)?[a-z0-9]+\\.[a-z]+(\\/[a-zA-Z0-9#]+\\/?)*$');
-  url = '';
-  word = null;
-  definitions;
-  tableOfWords: String[] = [];
-  tmpWord: String = '';
-  shadow;
-  ngOnInit () {
-    this.one = document.getElementById('test');
-    this.shadow = this.one.attachShadow({mode: 'closed'});
-  }
-  wordSelection() {
-    this.tmpWord = this.sws.selectWord(this.tmpWord);
-  }
+export class AppComponent {
+    public constructor(
+  ) {}
 
-  removeWord(element, array) {
-    const index = array.indexOf(element);
-
-    if (index !== -1) {
-      array.splice(index, 1);
-    }
   }
-
-  getJsonResponse(word): void {
-    this.definitions = this.wts.getResponse(word);
-  }
-
-  addWordToDatabase() {
-    if (this.tmpWord !== '') {
-      this.tableOfWords.push(this.tmpWord);
-    } else {
-      alert('No word to add');
-    }
-  }
-
-  fireEvent(e) {
-    e.preventDefault();
-  }
-
-  getDom() {
-    if (this.urlRegEx.test(this.url)) {
-          this.wss.getStringedWeb(this.url).subscribe(data => {
-          this.shadow.innerHTML = '<p>' + data + '</p>';
-        });
-      } else {
-      alert('Put the correct URL');
-    }
-  }
-    /* STYLING */
-}
 
 

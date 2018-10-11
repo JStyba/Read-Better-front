@@ -16,7 +16,6 @@ export class HeaderComponent implements AfterViewInit {
   @HostListener('window:scroll', [ '$event'])
     handleScroll() {
     const windowScroll = window.pageYOffset;
-    console.log( 'test' + this.elementPosition);
     if (windowScroll >= this.elementPosition) {
       this.topNav = true;
     } else {

@@ -11,14 +11,10 @@ export class WebScrapeService {
 
   getStringedWeb(url) {
     this.scraped = '';
-
-    const username = 'user';
-    const password = 'password1';
-    const auth = btoa(username + ':' + password);
     const params = new HttpParams().set('url', url);
     const headers = {responseType: 'json'};
-    return this.http.get('http://localhost:8080/scrape', {params: params, headers})
+    return this.http.get('http://localhost:8080/scrape?access_token=' + localStorage.getItem('token'), {headers, params: params})
       .pipe(map(res => res['scrapedWebString']));
-  }
+    }
 }
 
