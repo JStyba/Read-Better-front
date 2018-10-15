@@ -11,17 +11,17 @@ export class AuthenticationService {
     const bodySerialized = 'grant_type=password&password=' + password + '&username=' + username;
     const headers = new HttpHeaders()
       .set('Content-Type', 'application/x-www-form-urlencoded')
-      .set('Authorization', 'Basic ' + btoa(''));
-    return this.http.post('http://localhost:8080/oauth/token', bodySerialized, {headers: headers});
+      .set('Authorization', 'Basic ' + btoa('jerry:jerry-secret'));
+    return this.http.post('https://secret-dawn-55833.herokuapp.com/oauth/token', bodySerialized, {headers: headers});
   }
 getToken() {
-    const password = 'admin';
-    const username = 'admin';
+    const password = 'magus';
+    const username = 'magus';
   const bodySerialized = 'grant_type=password&password=' + password + '&username=' + username;
   const headers = new HttpHeaders()
     .set('Content-Type', 'application/x-www-form-urlencoded')
     .set('Authorization', 'Basic ' + btoa('jerry:jerry-secret'));
-   return this.http.post('http://localhost:8080/oauth/token', bodySerialized, {headers: headers});
+   return this.http.post('https://secret-dawn-55833.herokuapp.com/oauth/token', bodySerialized, {headers: headers});
 }
   logout() {
     localStorage.clear();

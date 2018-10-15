@@ -4,7 +4,6 @@ import {UserService} from '../../../services/user-service';
 import {AlertService} from '../../../services/alert-service';
 import {first} from 'rxjs/operators';
 import {User} from '../../../model/user';
-import {stringify} from 'querystring';
 import {AuthenticationService} from '../../../services/authentication-service';
 
 @Component({
@@ -20,7 +19,7 @@ constructor (private userService: UserService
   this.auth.getToken().subscribe( res => {
     localStorage.setItem('token', res['access_token']);
   });
-}
+  }
   loading = false;
   submitted = false;
 
@@ -32,12 +31,9 @@ constructor (private userService: UserService
   }
 
   onSubmit() {
-
-    alert(localStorage.getItem('token'));
-    this.submitted = true;
+   this.submitted = true;
     this.loading = true;
     const user = new User (this.username, this.password, this.email);
-    alert(stringify(user));
     this.userService.register(user)
       .pipe(first())
       .subscribe(
@@ -47,8 +43,6 @@ constructor (private userService: UserService
           localStorage.clear();
         },
         error => {
-          this.alertService.error(error);
-          this.loading = false;
           localStorage.clear();
         });
   }
