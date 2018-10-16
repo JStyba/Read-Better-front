@@ -2,6 +2,8 @@ import {Component} from '@angular/core';
 import {WordTranslationService} from './services/word-translation-service';
 import {WebScrapeService} from './services/web-scrape-service';
 import {SelectWordService} from './services/select-word-service';
+import {Router} from '@angular/router';
+import {StartComponent} from './core/components/start/start.component';
 
 
 @Component({
@@ -12,8 +14,9 @@ import {SelectWordService} from './services/select-word-service';
 })
 
 export class AppComponent {
-    public constructor(
-  ) {}
+  showNav = false;
+    public constructor(private router: Router) {
+    }
 
   }
 

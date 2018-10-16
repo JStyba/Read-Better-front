@@ -1,0 +1,73 @@
+body {
+  margin: 0 auto;
+  padding: 0 auto;
+  width: 100%;
+  height: 100vh;
+  background: url("/images/adult-attractive-beautiful-935743.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  font-family: 'Exo 2', sans-serif;
+  -webkit-box-shadow: inset 0px 50px 100px 0px rgba(1, 0, 0, 1);
+  -moz-box-shadow: inset 0px 50px 100px 0px rgba(1, 0, 0, 1);
+  box-shadow: inset 0px 50px 100px 0px rgba(1, 0, 0, 1);
+}
+
+header {
+  text-align: center;
+  font-size: 100px;
+  opacity: 0.8;
+  font-weight: bolder;
+  color: white;
+  line-height: 40px;
+}
+
+span {
+  float: left;
+  font-family: 'Caveat', cursive;
+  font-size: 40px;
+  margin-left: 50px;
+  margin-top: 30px;
+  opacity: 0.95;
+}
+
+.buttons {
+  text-align: center;
+  padding-top: 210px;
+}
+button {
+  display: inline-block;
+  float: none;
+  width: 200px;
+  height: 40px;
+  font-family: 'Exo 2', sans-serif;
+  opacity: 0.8;
+  font-size: 20px;
+  background-color: white;
+  line-height: 10px;
+  border: 1px solid white;
+  border-radius: 3px;
+  color: darkslategray;
+
+}
+button:hover {
+  opacity: 1;
+  font-weight: bolder;
+
+}
+@media screen and (max-width: 660px) {
+  header {
+    font-size:70px;
+  }
+  span {
+    font-size: 30px;
+  }
+}
+@media screen and (max-width: 470px) {
+  header {
+    font-size:45px;
+  }
+  span {
+    font-size: 20px;
+  }
+}
