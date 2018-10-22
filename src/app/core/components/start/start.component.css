@@ -1,6 +1,18 @@
+html {
+  width: 100%;
+  height: 100%;
+}
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+
+
+}
 body {
-  margin: 0 auto;
-  padding: 0 auto;
+  overflow-y: hidden;
+  margin: 0;
+  padding: 0;
   width: 100%;
   height: 100vh;
   background: url("/images/adult-attractive-beautiful-935743.jpg");
@@ -12,6 +24,9 @@ body {
   -moz-box-shadow: inset 0px 50px 100px 0px rgba(1, 0, 0, 1);
   box-shadow: inset 0px 50px 100px 0px rgba(1, 0, 0, 1);
 }
+/*.overlay {*/
+/*background-color: rgba(0, 0, 0, 0.7)*/
+/*}*/
 
 header {
   text-align: center;

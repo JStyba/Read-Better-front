@@ -1,0 +1,128 @@
+html {
+  width: 100%;
+  height: 100%;
+}
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  overflow-y: hidden;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100vh;
+  background: url("/images/adult-attractive-beautiful-935743.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  font-family: 'Exo 2', sans-serif;
+  -webkit-box-shadow: inset 0px 50px 100px 0px rgba(1, 0, 0, 1);
+  -moz-box-shadow: inset 0px 50px 100px 0px rgba(1, 0, 0, 1);
+  box-shadow: inset 0px 50px 100px 0px rgba(1, 0, 0, 1);
+}
+.overlay {
+  background-color:rgba(0, 0, 0, 0.5) ;
+  width: 100%;
+  height: 100%;
+}
+header {
+  text-align: center;
+  font-size: 100px;
+  opacity: 0.8;
+  font-weight: bolder;
+  color: white;
+  line-height: 40px;
+  padding-top: 80px;
+}
+.loginEntry {
+  padding-top: 210px;
+  text-align: center;
+  color: white;
+  font-size: 20px;
+}
+
+.loginInput{
+  border: none;
+  border-bottom: 3px solid white;
+  background: transparent;
+  outline: none;
+  font-size: 30px;
+  margin-left: 15px;
+
+  /*width: 300px;*/
+
+}
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus
+textarea:-webkit-autofill,
+textarea:-webkit-autofill:hover
+textarea:-webkit-autofill:focus,
+select:-webkit-autofill,
+select:-webkit-autofill:hover,
+select:-webkit-autofill:focus {
+  -webkit-text-fill-color: white;
+  /*-webkit-box-shadow: 0 0 0px 1000px #000 inset;*/
+  transition: background-color 5000s ease-in-out 0s;
+  border: none;
+  border-bottom: 1px solid white;
+  background: transparent;
+  outline: none;
+  width: 300px;
+}
+.form-group {
+  font-size: 35px;
+  font-weight: bolder;
+}
+
+button {
+  display: inline-block;
+  float: none;
+  width: 200px;
+  height: 40px;
+  font-family: 'Exo 2', sans-serif;
+  opacity: 0.8;
+  font-size: 20px;
+  background-color: white;
+  line-height: 10px;
+  border: 1px solid white;
+  border-radius: 3px;
+  color: darkslategray;
+  margin-top: 25px;
+
+}
+button:hover {
+  opacity: 1;
+  font-weight: bolder;
+
+}
+@media screen and (max-width: 660px) {
+  header {
+    font-size:70px;
+  }
+  .form-group {
+    font-size: 30px;
+  }
+  .loginInput {
+    font-size: 25px;
+  }
+}
+@media screen and (max-width: 470px) {
+  header {
+    font-size:45px;
+  }
+  .form-group {
+    font-size: 25px;
+  }
+  .loginInput {
+    font-size: 20px;
+  }
+  button {
+    width: 150px;
+    height: 30px;
+    font-size: 15px;
+  }
+}
+
