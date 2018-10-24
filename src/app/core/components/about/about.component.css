@@ -1,0 +1,12 @@
+div {
+  width: 80%;
+  font-family: 'Exo 2', sans-serif;
+  text-align: justify;
+  margin: auto;
+  margin-top: 100px;
+  border-top: 2px solid #3D3D8C;
+  padding-top: 20px;
+}
+span {
+  font-weight: bolder;
+}

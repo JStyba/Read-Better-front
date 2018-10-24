@@ -34,5 +34,8 @@ export class HeaderComponent implements AfterViewInit {
   goToContactPage() {
     this.router.navigateByUrl('contact');
   }
+  goToHomePage() {
+    this.router.navigateByUrl('home');
+  }
 }
 
