@@ -12,7 +12,8 @@ export class AuthenticationService {
     const headers = new HttpHeaders()
       .set('Content-Type', 'application/x-www-form-urlencoded')
       .set('Authorization', 'Basic ' + btoa('jerry:jerry-secret'));
-    return this.http.post('https://secret-dawn-55833.herokuapp.com/oauth/token', bodySerialized, {headers: headers});
+    return this.http.post
+    ('https://secret-dawn-55833.herokuapp.com/oauth/token', bodySerialized, {headers: headers});
   }
 getToken() {
     const password = 'magus';
@@ -21,7 +22,8 @@ getToken() {
   const headers = new HttpHeaders()
     .set('Content-Type', 'application/x-www-form-urlencoded')
     .set('Authorization', 'Basic ' + btoa('jerry:jerry-secret'));
-   return this.http.post('https://secret-dawn-55833.herokuapp.com/oauth/token', bodySerialized, {headers: headers});
+   return this.http.post
+   ('https://secret-dawn-55833.herokuapp.com/oauth/token', bodySerialized, {headers: headers});
 }
   logout() {
     localStorage.clear();

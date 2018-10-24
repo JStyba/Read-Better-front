@@ -1,0 +1,15 @@
+
+  <h1 mat-dialog-title>Word Box</h1>
+  <mat-dialog-content>
+{{word}}
+    <div>
+      <ol>
+        <li *ngFor="let d of definitions">{{d}}</li>
+      </ol>
+    </div>
+  </mat-dialog-content>
+  <mat-dialog-actions>
+    <button mat-button type="submit" (click)="translate()">Translate</button>
+    <button mat-button type="button" mat-dialog-close>Cancel</button>
+  </mat-dialog-actions>
+

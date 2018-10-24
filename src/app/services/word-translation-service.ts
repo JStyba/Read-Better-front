@@ -13,7 +13,8 @@ export class WordTranslationService {
     this.newArray = [];
     const params = new HttpParams().set('word', word);
     const headers = {'FOO': 'foo', 'Content-Type': 'application/json', 'Accept': 'application/json', 'Cache-Control': 'no-cache'};
-    this.http.get('https://secret-dawn-55833.herokuapp.com/entry/translate/?access_token=' + localStorage.getItem('token')
+    this.http.get('https://secret-dawn-55833.herokuapp.com/entry/translate/?access_token='
+      + localStorage.getItem('token')
       , {params, headers}).subscribe(res => {
         console.log(res);
       const evilResp = Object.values(res['definitions']);

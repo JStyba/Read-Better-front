@@ -7,14 +7,13 @@ export class WebScrapeService {
   constructor(private http: HttpClient) {
   }
 
-  private scraped;
 
   getStringedWeb(url) {
-    this.scraped = '';
     const params = new HttpParams().set('url', url);
     const headers = {responseType: 'json'};
-    return this.http.get('https://secret-dawn-55833.herokuapp.com/scrape?access_token=' + localStorage.getItem('token'), {headers, params: params})
+    return this.http.get('https://secret-dawn-55833.herokuapp.com/scrape?access_token='
+      + localStorage.getItem('token'), {headers, params: params})
       .pipe(map(res => res['scrapedWebString']));
-    }
+  }
 }
 

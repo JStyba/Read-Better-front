@@ -4,6 +4,10 @@ import {UserService} from '../../../services/user-service';
 import {SelectWordService} from '../../../services/select-word-service';
 import {WordTranslationService} from '../../../services/word-translation-service';
 import {WebScrapeService} from '../../../services/web-scrape-service';
+import {MatDialog, MatDialogRef} from '@angular/material';
+import {PopOverComponent} from './pop-over/pop-over.component';
+import {Observable} from 'rxjs';
+import 'rxjs/add/observable/interval';
 
 
 @Component({
@@ -15,25 +19,30 @@ export class HomeComponent implements OnInit {
     , private userService: UserService
     , private sws: SelectWordService
     , private wts: WordTranslationService
-    , private wss: WebScrapeService) {
+    , private wss: WebScrapeService
+              , private dialog: MatDialog) {
   }
-
+popOverDialogRef: MatDialogRef<PopOverComponent>;
   tmpWord: String = '';
   // www.waitbutwhy.com/2018/04/picking-career.html
-  urlRegEx = new RegExp('^((https?|ftp|smtp):\\/\\/)?(www.)?[a-z0-9]+\\.[a-z]+(\\/[-a-zA-Z0-9#]+\\/?)+\\.([a-z])*$');
+  urlRegEx = new RegExp('^((https?|ftp|smtp):\\/\\/)?(www.)?');
   one;
   shadow;
   definitions;
   tableOfWords: String[] = [];
   url = '';
   word = null;
-
+message = 'some text';
   ngOnInit() {
     this.one = document.getElementById('test');
     this.shadow = this.one.attachShadow({mode: 'closed'});
   }
-
-  showMeTheToken() {
+  openTranslateFileDialog() {
+    this.popOverDialogRef = this.dialog.open(PopOverComponent, {
+      hasBackdrop: false
+    });
+  }
+   showMeTheToken() {
     alert(localStorage.getItem('token'));
   }
 
@@ -43,7 +52,13 @@ export class HomeComponent implements OnInit {
 
   wordSelection() {
     this.tmpWord = this.sws.selectWord(this.tmpWord);
-  }
+    this.popOverDialogRef = this.dialog.open(PopOverComponent, {
+      data: {
+       word: this.tmpWord
+      }
+    });
+
+      }
 
   getDom() {
     if (this.urlRegEx.test(this.url)) {

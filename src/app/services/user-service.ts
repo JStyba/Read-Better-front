@@ -21,6 +21,7 @@ export class UserService {
     return localStorage.getItem(TOKEN) !== null;
   }
   register(user: User) {
-   return this.http.post(`https://secret-dawn-55833.herokuapp.com/users/register?access_token=` + localStorage.getItem('token'), user);
+   return this.http.post(`https://secret-dawn-55833.herokuapp.com/users/register?access_token=`
+     + localStorage.getItem('token'), user);
      }
 }

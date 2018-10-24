@@ -16,8 +16,19 @@ import {ErrorInterceptor} from './services/error-interceptor';
 import {AlertService} from './services/alert-service';
 import { UsersComponent } from './core/components/users/users.component';
 import { StartComponent } from './core/components/start/start.component';
-
-
+import {
+  MatButtonModule,
+  MatCardModule,
+  MatDialogModule,
+  MatIconModule,
+  MatInputModule,
+  MatTabsModule,
+  MatToolbarModule
+} from '@angular/material';
+import { MdePopoverModule } from '@material-extended/mde';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {PopOverComponent} from './core/components/home/pop-over/pop-over.component';
+import {WordTranslationService} from './services/word-translation-service';
 const appRoutes: Routes = [
    {
     path: 'home',
@@ -37,7 +48,14 @@ const appRoutes: Routes = [
     component: StartComponent
   }
   ];
-
+export const MaterialModules = [
+  MatToolbarModule,
+  MatCardModule,
+  MatTabsModule,
+  MatButtonModule,
+  MatIconModule,
+  MatInputModule,
+];
 @NgModule({
   declarations: [
     AppComponent,
@@ -47,15 +65,23 @@ const appRoutes: Routes = [
     RegisterComponent,
     UsersComponent,
     StartComponent,
-                 ],
+    PopOverComponent,
+                    ],
   imports: [
     BrowserModule,
     ReactiveFormsModule,
     FormsModule,
     HttpClientModule,
+    BrowserAnimationsModule,
+    MaterialModules,
+    MdePopoverModule,
+    MatDialogModule,
     RouterModule.forRoot(appRoutes)
      ],
-  providers: [AuthenticationService, AuthGuard, UserService, AlertService,
+  entryComponents: [
+    PopOverComponent
+  ],
+  providers: [AuthenticationService, AuthGuard, UserService, AlertService, PopOverComponent, WordTranslationService,
     { provide: HTTP_INTERCEPTORS, multi: true, useClass: TokenInterceptor},
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true}
     ],
