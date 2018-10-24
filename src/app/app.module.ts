@@ -29,6 +29,8 @@ import { MdePopoverModule } from '@material-extended/mde';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {PopOverComponent} from './core/components/home/pop-over/pop-over.component';
 import {WordTranslationService} from './services/word-translation-service';
+import { AboutComponent } from './core/components/about/about.component';
+import { ContactComponent } from './core/components/contact/contact.component';
 const appRoutes: Routes = [
    {
     path: 'home',
@@ -46,6 +48,14 @@ const appRoutes: Routes = [
   {
     path: '',
     component: StartComponent
+  },
+  {
+    path: 'about',
+    component: AboutComponent
+  },
+  {
+    path: 'contact',
+    component: ContactComponent
   }
   ];
 export const MaterialModules = [
@@ -66,6 +76,8 @@ export const MaterialModules = [
     UsersComponent,
     StartComponent,
     PopOverComponent,
+    AboutComponent,
+    ContactComponent,
                     ],
   imports: [
     BrowserModule,

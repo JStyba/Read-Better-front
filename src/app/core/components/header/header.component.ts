@@ -1,4 +1,5 @@
 import {Component, ElementRef, HostListener, OnInit, ViewChild, AfterViewInit} from '@angular/core';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -9,18 +10,29 @@ export class HeaderComponent implements AfterViewInit {
   @ViewChild('StickyTopNav') menuElement: ElementRef;
   topNav = false;
   elementPosition: any;
-  constructor() { }
+
+  constructor(private router: Router) {
+  }
+
   ngAfterViewInit() {
     this.elementPosition = this.menuElement.nativeElement.offsetTop;
   }
-  @HostListener('window:scroll', [ '$event'])
-    handleScroll() {
+
+  @HostListener('window:scroll', ['$event'])
+  handleScroll() {
     const windowScroll = window.pageYOffset;
     if (windowScroll >= this.elementPosition) {
       this.topNav = true;
     } else {
       this.topNav = false;
     }
+  }
+
+  goToAboutPage() {
+    this.router.navigateByUrl('about');
+  }
+  goToContactPage() {
+    this.router.navigateByUrl('contact');
   }
 }
 
