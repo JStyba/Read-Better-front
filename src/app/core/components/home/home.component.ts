@@ -12,6 +12,8 @@ import 'rxjs/add/observable/interval';
 
 @Component({
   templateUrl: 'home.component.html',
+  styleUrls: ['home.component.css'],
+
   selector: 'app-home'
 })
 export class HomeComponent implements OnInit {

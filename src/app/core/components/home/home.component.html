@@ -1,20 +1,6 @@
+<app-header ></app-header>
+
 <div id="wrapper">
-  <!--<div>-->
-
-
-  <!--<div>-->
-  <!--<button type="submit" (click)="getResponse(tmpWord)">translate</button>-->
-  <!--</div>-->
-
-
-  <!--</div>-->
-  <!--<div class="top"> // pokazuje słowo-->
-  <!--TOP-->
-
-  <!--<h1> {{ tmpWord }} </h1>-->
-
-
-  <!--</div>-->
 
 
   <div style="padding: 20px;">
@@ -32,15 +18,15 @@
         <input type="url" id="url"
                [(ngModel)]="url"
                [ngModelOptions]="{standalone: true}"
-               placeholder="ENTER URL"
+               placeholder="ENTER WEBPAGE ADRESS"
                pattern="https://.*" size="20" required/>
-        <input class="url" type="button" value="SUBMIT" (click)="getDom(url)">
+        <input class="url" type="button" value="GO!" (click)="getDom(url)">
 
       </div>
     </form>
     <div>
       <p>{{tmpWord}}</p>
-      <button class="addWord" type="submit" (click)="addWordToDatabase()">ADD TO DATABASE</button>
+      <button class="addWord" type="submit" (click)="addWordToDatabase()">ADD TO MY READ BETTER </button>
     </div>
     <div class="main">
 

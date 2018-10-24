@@ -1,7 +1,7 @@
 header {
   margin: 0;
   padding: 0;
-  background: url(/images/apple-bed-bedroom-5329resized.jpg);
+  background: url("/images/apple-bed-bedroom-5329resized dark.jpg");
   background-position: bottom;
   background-repeat: no-repeat;
   background-size: cover;
@@ -9,21 +9,24 @@ header {
   width: 100%;
   height: 250px;
   padding-top: 50px;
-  line-height: 250px;
+  font-family: 'Exo 2', sans-serif;
+  font-size: 100px;
+
 }
 
 h1 {
+  padding: 0px;
+  margin: 0px;
   color: #F9F9F9;
-  font-size: 85px;
-  font-weight: bold;
-  line-height: 135px;
+  font-size: 100px;
+  line-height: 250px;
   opacity: 0.8;
 }
-
 /* Navbar Styling */
 nav {
+  font-family: 'Exo 2', sans-serif;
   font-weight: bold;
-  background: #B4DCE8;
+  background: #4d4d4d;
   position: relative;
   width: 100%;
   height: 50px;
@@ -43,10 +46,13 @@ nav a {
   text-decoration: none;
   color: #fcfff5;
   padding: 22px;
+  font-size: 20px;
+  transition: all 1s ease;
+
 }
 
 nav a:hover {
-  background: #193449;
+  background: #a9a9a9;
 }
 
 /* Sticky Navigation */
@@ -57,5 +63,24 @@ nav a:hover {
   overflow: hidden;
 
 
-  /*box-shadow: 0px 1px 5px #000;*/
+}
+
+@media screen and (max-width: 660px) {
+  h1 {
+    font-size: 70px;
+  }
+  nav a{
+    font-size: 12px;
+  }
+
+
+}
+
+@media screen and (max-width: 470px) {
+  h1 {
+    font-size: 45px;
+  }
+  nav a {
+    font-size: 8px;
+  }
 }

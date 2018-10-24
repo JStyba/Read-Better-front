@@ -14,7 +14,6 @@ import {StartComponent} from './core/components/start/start.component';
 })
 
 export class AppComponent {
-  showNav = false;
     public constructor(private router: Router) {
     }
 
