@@ -1,0 +1,23 @@
+/*.example-container {*/
+  /*width: 400px;*/
+  /*height: 200px;*/
+  /*margin: 10px;*/
+  /*border: 1px solid #555;*/
+/*}*/
+
+.drawer {
+  position: absolute;
+  padding-top: 450px;
+  overflow: auto;
+
+}
+
+.sideDrawer {
+  position: fixed;
+  top: 0;
+  z-index: 1;
+  overflow: hidden;
+}
+/*.example-container {*/
+  /*overflow: auto;*/
+/*}*/

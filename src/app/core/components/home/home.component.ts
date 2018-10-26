@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {AfterViewInit, Component, ElementRef, HostListener, OnInit, ViewChild} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {UserService} from '../../../services/user-service';
 import {SelectWordService} from '../../../services/select-word-service';
@@ -8,12 +8,14 @@ import {MatDialog, MatDialogRef} from '@angular/material';
 import {PopOverComponent} from './pop-over/pop-over.component';
 import {Observable} from 'rxjs';
 import 'rxjs/add/observable/interval';
+import {SideDrawerComponent} from './side-drawer/side-drawer.component';
+import {UserWordDatabaseService} from '../../../services/user-word-database-service';
+import {Entry} from '../../../model/entry';
 
 
 @Component({
   templateUrl: 'home.component.html',
   styleUrls: ['home.component.css'],
-
   selector: 'app-home'
 })
 export class HomeComponent implements OnInit {
@@ -22,29 +24,36 @@ export class HomeComponent implements OnInit {
     , private sws: SelectWordService
     , private wts: WordTranslationService
     , private wss: WebScrapeService
-              , private dialog: MatDialog) {
+    , private dialog: MatDialog
+    , private uwds: UserWordDatabaseService) {
   }
-popOverDialogRef: MatDialogRef<PopOverComponent>;
+  popOverDialogRef: MatDialogRef<PopOverComponent>;
+  sideDrawerDialogRef: MatDialogRef<SideDrawerComponent>;
   tmpWord: String = '';
-  // www.waitbutwhy.com/2018/04/picking-career.html
   urlRegEx = new RegExp('^((https?|ftp|smtp):\\/\\/)?(www.)?');
   one;
   shadow;
   definitions;
-  tableOfWords: String[] = [];
+  tableOfWords: Entry[] = this.uwds.tableOfWords;
   url = '';
   word = null;
-message = 'some text';
-  ngOnInit() {
+    ngOnInit() {
     this.one = document.getElementById('test');
     this.shadow = this.one.attachShadow({mode: 'closed'});
-  }
-  openTranslateFileDialog() {
-    this.popOverDialogRef = this.dialog.open(PopOverComponent, {
-      hasBackdrop: false
+    if (localStorage.getItem('url')) {
+      this.wss.getStringedWeb(localStorage.getItem('url')).subscribe(data => {
+        this.shadow.innerHTML = '<p>' + data + '</p>';
+      });
+    }
+      }
+
+  openSideDrawerDialog() {
+    this.sideDrawerDialogRef = this.dialog.open(SideDrawerComponent, {
+      hasBackdrop: true
     });
   }
-   showMeTheToken() {
+
+  showMeTheToken() {
     alert(localStorage.getItem('token'));
   }
 
@@ -56,14 +65,16 @@ message = 'some text';
     this.tmpWord = this.sws.selectWord(this.tmpWord);
     this.popOverDialogRef = this.dialog.open(PopOverComponent, {
       data: {
-       word: this.tmpWord
+        word: this.tmpWord,
+        url: this.url
       }
     });
 
-      }
+  }
 
   getDom() {
     if (this.urlRegEx.test(this.url)) {
+      localStorage.setItem('url', this.url);
       this.wss.getStringedWeb(this.url).subscribe(data => {
         this.shadow.innerHTML = '<p>' + data + '</p>';
       });
@@ -80,13 +91,7 @@ message = 'some text';
     this.definitions = this.wts.getResponse(word);
   }
 
-  addWordToDatabase() {
-    if (this.tmpWord !== '') {
-      this.tableOfWords.push(this.tmpWord);
-    } else {
-      alert('No word to add');
-    }
-  }
+
 
   removeWord(element, array) {
     const index = array.indexOf(element);

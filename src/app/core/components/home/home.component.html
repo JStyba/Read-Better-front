@@ -1,16 +1,12 @@
-<app-header ></app-header>
+<app-header></app-header>
 
 <div id="wrapper">
 
 
   <div style="padding: 20px;">
-
-
-
-
-
-
   </div>
+
+
   <main>
     <form>
       <div class="control">
@@ -21,16 +17,16 @@
                placeholder="ENTER WEBPAGE ADRESS"
                pattern="https://.*" size="20" required/>
         <input class="url" type="button" value="GO!" (click)="getDom(url)">
-
       </div>
     </form>
-    <div>
-      <p>{{tmpWord}}</p>
-      <button class="addWord" type="submit" (click)="addWordToDatabase()">ADD TO MY READ BETTER </button>
+    <div class="container">
+          <app-side-drawer></app-side-drawer>
     </div>
+
+
     <div class="main">
 
-      <div id="test" (dblclick)="wordSelection()" (mousemove)="fireEvent($event)" >
+      <div id="test" (dblclick)="wordSelection()" (mousemove)="fireEvent($event)">
 
       </div>
 
@@ -49,19 +45,19 @@
 <span>
 YOUR WORDS
 </span>
-      <ol>
-        <li *ngFor="let word of tableOfWords">
+      <!--<ol>-->
+      <!--<li *ngFor="let word of tableOfWords">-->
 
-          {{ word }}
-          <div class="buttons">
-            <button class="translateWord" type="submit" (click)="getJsonResponse(tmpWord)">translate</button>
-            <button class="removeWord" mat-raised-button type="submit" (click)="removeWord(word, tableOfWords)">remove
-            </button>
-          </div>
+      <!--{{ word }}-->
+      <!--<div class="buttons">-->
+      <!--<button class="translateWord" type="submit" (click)="getJsonResponse(tmpWord)">translate</button>-->
+      <!--<button class="removeWord" mat-raised-button type="submit" (click)="removeWord(word, tableOfWords)">remove-->
+      <!--</button>-->
+      <!--</div>-->
 
 
-        </li>
-      </ol>
+      <!--</li>-->
+      <!--</ol>-->
 
     </div>
     <div>

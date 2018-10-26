@@ -61,8 +61,6 @@ nav a:hover {
   top: 0;
   z-index: 1;
   overflow: hidden;
-
-
 }
 
 @media screen and (max-width: 660px) {

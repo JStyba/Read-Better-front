@@ -5,6 +5,7 @@ import {AlertService} from '../../../services/alert-service';
 import {first} from 'rxjs/operators';
 import {User} from '../../../model/user';
 import {AuthenticationService} from '../../../services/authentication-service';
+import {getToken} from 'codelyzer/angular/styles/cssLexer';
 
 @Component({
   selector: 'app-register',
@@ -15,11 +16,9 @@ export class RegisterComponent implements OnInit {
 constructor (private userService: UserService
              , private alertService: AlertService
              , private router: Router
-             , private auth: AuthenticationService) {
-  this.auth.getToken().subscribe( res => {
-    localStorage.setItem('token', res['access_token']);
-  });
-  }
+             , private auth: AuthenticationService
+, private us: UserService) {
+    }
   loading = false;
   submitted = false;
 
@@ -28,10 +27,10 @@ constructor (private userService: UserService
   email: string;
 
   ngOnInit() {
-  }
-
+        this.us.getToken();
+          }
   onSubmit() {
-   this.submitted = true;
+    this.submitted = true;
     this.loading = true;
     const user = new User (this.username, this.password, this.email);
     this.userService.register(user)

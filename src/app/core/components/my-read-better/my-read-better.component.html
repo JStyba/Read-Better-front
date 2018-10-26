@@ -1,0 +1,26 @@
+<app-header></app-header>
+<br>
+<br>
+<br>
+<br>
+
+<div>
+  <ol>
+    <li *ngFor="let entry of myListOfWords">
+      <ul>
+        <li>{{entry.entryId }}</li>
+      </ul>
+      <ol>
+        <li *ngFor="let def of entry.definition">{{def}}</li>
+      </ol>
+      <ul>
+        <li>{{timestampToDate(entry.timestamp)}}</li>
+      </ul>
+      <ul>
+        <li>
+          {{entry.urlEntry}}
+        </li>
+      </ul>
+    </li>
+  </ol>
+</div>

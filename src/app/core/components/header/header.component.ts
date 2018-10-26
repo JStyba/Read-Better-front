@@ -37,5 +37,13 @@ export class HeaderComponent implements AfterViewInit {
   goToHomePage() {
     this.router.navigateByUrl('home');
   }
+
+  goToMyReadBetter() {
+    this.router.navigateByUrl('myreadbetter');
+  }
+  logout() {
+    localStorage.clear();
+    this.router.navigateByUrl('start');
+  }
 }
 
