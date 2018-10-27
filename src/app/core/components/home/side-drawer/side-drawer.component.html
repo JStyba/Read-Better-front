@@ -1,20 +1,21 @@
 <div class="drawer" #StickySideDrawer
      [class.sideDrawer]="sideDrawer">
-  <mat-drawer-container class="example-container" hasBackdrop=false>
-    <mat-drawer #drawer mode="push">
-      <ol>
+  <div id="panel">
+    <div id="title">
+      My words
+    </div>
+  <div id="content">
+       <ol>
         <li *ngFor="let n of tableOfWords">
           {{ n.entryId }}
           <div class="buttons">
             <button class="translateWord" type="submit" (click)="translate(word)">translate</button>
-            <button class="removeWord" mat-raised-button type="submit" (click)="remove(word, tableOfWords)">remove
+            <button class="removeWord" type="submit" (click)="remove(word, tableOfWords)">remove
             </button>
           </div>
         </li>
       </ol>
-    </mat-drawer>
-    <mat-drawer-content>
-      <button mat-raised-button (click)="drawer.toggle()">MW</button>
-    </mat-drawer-content>
-  </mat-drawer-container>
+  </div>
+  </div>
 </div>
+
