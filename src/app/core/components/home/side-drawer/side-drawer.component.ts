@@ -17,6 +17,7 @@ export class SideDrawerComponent implements AfterViewInit {
   @ViewChild('StickySideDrawer') menuElement: ElementRef;
   sideDrawer = false;
   elementPosition: any;
+  definitions;
   ngAfterViewInit() {
     this.elementPosition = this.menuElement.nativeElement.offsetTop;
   }
@@ -29,9 +30,9 @@ export class SideDrawerComponent implements AfterViewInit {
       this.sideDrawer = false;
     }
   }
-translate (word) {
-    this.wts.getResponse(word);
-}
+  translate (word) {
+    this.definitions = this.wts.getResponse(word);
+  }
 remove (element, array) {
     this.uwds.removeWord(element, array);
 }

@@ -106,7 +106,7 @@ li {
 button {
   display: inline-block;
   float: none;
-  width: 80px;
+  width: 100px;
   height: 30px;
   font-family: 'Exo 2', sans-serif;
   font-size: 15px;
@@ -121,6 +121,6 @@ button {
   background: #A0A0F0;
 }
 .removeWord {
-  background: #BE77A2;
+  background: #F96982;
 
 }

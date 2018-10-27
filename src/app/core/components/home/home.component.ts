@@ -66,8 +66,10 @@ export class HomeComponent implements OnInit {
     this.popOverDialogRef = this.dialog.open(PopOverComponent, {
       data: {
         word: this.tmpWord,
-        url: this.url
-      }
+        url: this.url,
+      },
+      panelClass: 'wordBox'
+
     });
 
   }

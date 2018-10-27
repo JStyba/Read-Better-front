@@ -25,8 +25,7 @@ word;
     }
 translate () {
   this.definitions = this.wts.getResponse(this.word);
-  console.log(this.definitions);
-}
+  }
 
   AddToDb() {
     // this.uwds.addWordToDatabase(this.data['word']);

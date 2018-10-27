@@ -8,9 +8,12 @@
        <ol>
         <li *ngFor="let n of tableOfWords">
           {{ n.entryId }}
+          <ol>
+            <li *ngFor="let d of definitions">{{d}}</li>
+          </ol>
           <div class="buttons">
-            <button class="translateWord" type="submit" (click)="translate(word)">translate</button>
-            <button class="removeWord" type="submit" (click)="remove(word, tableOfWords)">remove
+            <button class="translateWord" type="submit" (click)="translate(n.entryId)">translate</button>
+            <button class="removeWord" type="submit" (click)="remove(n, tableOfWords)">remove
             </button>
           </div>
         </li>

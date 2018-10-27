@@ -16,3 +16,75 @@ body {
   font-size: 8pt;
   float: right;
 }
+.wordBox
+.mat-dialog-container {
+  min-width: 400px;
+  min-height: 200px;
+  border-top: 2px solid #990E63;
+  border-right: 2px solid #990E63;
+  border-bottom: 2px solid #990E63;
+  border-left: 2px solid #990E63;
+  z-index: 20;
+  background: #FFFFFF;
+  position: relative;
+  border-radius: 10px 10px 10px 10px;
+  overflow: hidden;
+  opacity: 0.95;
+  background: #FBF4F8;
+  color: #4d4d4d;
+  font-weight: bold;
+  text-align: left;
+  font-size: 20px;
+}
+.wordBox
+.mat-dialog-container li{
+  font-weight: lighter;
+}
+.translateWordBox {
+  display: inline-block;
+  float: none;
+  width: 100px;
+  height: 30px;
+  font-family: 'Exo 2', sans-serif;
+  font-size: 15px;
+  line-height: 10px;
+  border: 1px solid white;
+  border-radius: 3px;
+  color: white;
+  font-weight: bold;
+  margin: 5px;
+  background: #A0A0F0;
+
+}
+.addWordBox{
+  display: inline-block;
+  float: none;
+  width: 120px;
+  height: 30px;
+  font-family: 'Exo 2', sans-serif;
+  font-size: 15px;
+  line-height: 10px;
+  border: 1px solid white;
+  border-radius: 3px;
+  color: white;
+  font-weight: bold;
+  margin: 5px;
+  background: #BE77A2;
+  background: #78D5B0;
+}
+.cancelWordBox {
+  display: inline-block;
+  float: none;
+  width: 100px;
+  height: 30px;
+  font-family: 'Exo 2', sans-serif;
+  font-size: 15px;
+  line-height: 10px;
+  border: 1px solid white;
+  border-radius: 3px;
+  color: white;
+  font-weight: bold;
+  margin: 5px;
+  background: #F96982;
+}
+
