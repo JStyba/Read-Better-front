@@ -115,7 +115,8 @@ export const MaterialModules = [
     , PopOverComponent
     , WordTranslationService
     , UserWordDatabaseService
-    , SideDrawerComponent,
+    , SideDrawerComponent
+    , UserService,
     { provide: HTTP_INTERCEPTORS, multi: true, useClass: TokenInterceptor},
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true}
     ],

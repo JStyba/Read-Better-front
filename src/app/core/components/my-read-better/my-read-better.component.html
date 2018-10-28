@@ -8,19 +8,21 @@
   <ol>
     <li *ngFor="let entry of myListOfWords">
       <ul>
-        <li>{{entry.entryId }}</li>
+        <li>{{entry.word }}</li>
       </ul>
       <ol>
-        <li *ngFor="let def of entry.definition">{{def}}</li>
+        <li *ngFor="let def of entry.definitions">{{def}}</li>
       </ol>
       <ul>
-        <li>{{timestampToDate(entry.timestamp)}}</li>
+        <li>{{entry.timestamp}}</li>
       </ul>
       <ul>
         <li>
-          {{entry.urlEntry}}
+          {{entry.entryUrl}}
         </li>
       </ul>
     </li>
   </ol>
 </div>
+<button type="button" (click)="sendAllToBackend()">send all</button>
+<button type="button" (click)="showthearray()">show me the array</button>

@@ -1,24 +1,24 @@
 
 interface EntryInterface {
-  entryId: string;
-  definition: string[];
+  word: string;
+  definitions: string[];
   timestamp: any;
-  urlEntry: string;
+  entryUrl: string;
 }
 
 
 export class Entry implements EntryInterface {
 
-  entryId: string;
-  definition: string [];
+  word: string;
+  definitions: string [];
   timestamp: any;
-  urlEntry: string;
+  entryUrl: string;
 
 
-  constructor(entryId: string, definition: string[], timestamp: any, urlEntry: string) {
-    this.entryId = entryId;
-    this.definition = definition;
+  constructor(word: string, definitions: string[], timestamp: any, entryUrl: string) {
+    this.word = word;
+    this.definitions = definitions;
     this.timestamp = timestamp;
-    this.urlEntry = urlEntry;
+    this.entryUrl = entryUrl;
   }
 }

@@ -26,7 +26,6 @@ export class LoginComponent  implements OnInit {
     this.auth.login(this.username, this.password).subscribe( r => {
           if (r !== undefined) {
             this.userService.setToken(r['access_token']);
-            console.log(this.userService.isLogged());
             this.router.navigateByUrl('home');
           }
         }, r => {

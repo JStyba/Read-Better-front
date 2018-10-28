@@ -4,21 +4,19 @@
     <div id="title">
       My words
     </div>
-  <div id="content">
-       <ol>
+    <div id="content">
+      <div id="def"></div>
+      <ol>
         <li *ngFor="let n of tableOfWords">
-          {{ n.entryId }}
-          <ol>
-            <li *ngFor="let d of definitions">{{d}}</li>
-          </ol>
+          {{ n.word }}
           <div class="buttons">
-            <button class="translateWord" type="submit" (click)="translate(n.entryId)">translate</button>
+            <button class="translateWord" type="submit" (click)="translate(n.word)">translate</button>
             <button class="removeWord" type="submit" (click)="remove(n, tableOfWords)">remove
             </button>
           </div>
         </li>
       </ol>
-  </div>
+    </div>
   </div>
 </div>
 

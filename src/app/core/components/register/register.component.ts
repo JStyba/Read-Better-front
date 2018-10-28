@@ -13,33 +13,43 @@ import {getToken} from 'codelyzer/angular/styles/cssLexer';
   styleUrls: ['./register.component.css']
 })
 export class RegisterComponent implements OnInit {
-constructor (private userService: UserService
-             , private alertService: AlertService
-             , private router: Router
-             , private auth: AuthenticationService
-, private us: UserService) {
-    }
+  constructor(private userService: UserService
+    , private alertService: AlertService
+    , private router: Router
+    , private auth: AuthenticationService
+    , private us: UserService) {
+  }
+
   loading = false;
   submitted = false;
-
   username: string;
   password: string;
   email: string;
 
   ngOnInit() {
-        this.us.getToken();
-          }
+    this.getToken();
+  }
+
+  getToken() {
+    this.auth.login('admin', 'magus').subscribe( r => {
+      if (r !== undefined) {
+        this.userService.setToken(r['access_token']);
+        }
+    }, r => {
+      alert(r.error.error);
+    });
+    }
+
   onSubmit() {
     this.submitted = true;
     this.loading = true;
-    const user = new User (this.username, this.password, this.email);
+    const user = new User(this.username, this.password, this.email);
     this.userService.register(user)
-      .pipe(first())
       .subscribe(
         data => {
           this.alertService.success('Registration successful', true);
-          this.router.navigate(['login']);
           localStorage.clear();
+          this.router.navigateByUrl('login');
         },
         error => {
           localStorage.clear();

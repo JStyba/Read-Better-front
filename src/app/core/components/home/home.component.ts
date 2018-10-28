@@ -6,7 +6,6 @@ import {WordTranslationService} from '../../../services/word-translation-service
 import {WebScrapeService} from '../../../services/web-scrape-service';
 import {MatDialog, MatDialogRef} from '@angular/material';
 import {PopOverComponent} from './pop-over/pop-over.component';
-import {Observable} from 'rxjs';
 import 'rxjs/add/observable/interval';
 import {SideDrawerComponent} from './side-drawer/side-drawer.component';
 import {UserWordDatabaseService} from '../../../services/user-word-database-service';
@@ -16,8 +15,8 @@ import {Entry} from '../../../model/entry';
 @Component({
   templateUrl: 'home.component.html',
   styleUrls: ['home.component.css'],
-  selector: 'app-home'
-})
+  selector: 'app-home',
+ })
 export class HomeComponent implements OnInit {
   constructor(private http: HttpClient
     , private userService: UserService
@@ -26,7 +25,7 @@ export class HomeComponent implements OnInit {
     , private wss: WebScrapeService
     , private dialog: MatDialog
     , private uwds: UserWordDatabaseService) {
-  }
+   }
   popOverDialogRef: MatDialogRef<PopOverComponent>;
   sideDrawerDialogRef: MatDialogRef<SideDrawerComponent>;
   tmpWord: String = '';

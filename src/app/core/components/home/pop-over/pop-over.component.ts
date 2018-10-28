@@ -4,6 +4,9 @@ import {FormBuilder, FormGroup} from '@angular/forms';
 import {WordTranslationService} from '../../../../services/word-translation-service';
 import {UserWordDatabaseService} from '../../../../services/user-word-database-service';
 import {Entry} from '../../../../model/entry';
+import {serialize} from '@angular/compiler/src/i18n/serializers/xml_helper';
+import {UserService} from '../../../../services/user-service';
+import {stringify} from 'querystring';
 
 @Component({
   selector: 'app-pop-over',
@@ -17,25 +20,30 @@ export class PopOverComponent implements OnInit {
     private dialogRef: MatDialogRef<PopOverComponent>, @Inject(MAT_DIALOG_DATA) public data: any
     , private wts: WordTranslationService
     , private uwds: UserWordDatabaseService
-  ) {}
-word;
+    , private us: UserService
+  ) {
+  }
+
+  word;
   definitions;
+
   ngOnInit() {
     this.word = this.data['word'];
-    }
-translate () {
-  this.definitions = this.wts.getResponse(this.word);
+  }
+
+  translate() {
+    this.definitions = this.wts.getResponse(this.word);
   }
 
   AddToDb() {
-    // this.uwds.addWordToDatabase(this.data['word']);
-    const newEntry = <Entry>({
-      entryId: this.word,
-      definition: this.wts.getResponse(this.word),
+    const def = this.wts.getResponse(this.word);
+      const newEntry = <Entry>({
+      word: this.word,
+      definitions: def,
       // timestamp: Math.floor((new Date).getTime() / 1000),
-      timestamp: new Date(),
-      urlEntry: this.data['url']
+      timestamp: this.us.timestampToDate(new Date()),
+      entryUrl: localStorage.getItem('url')
     });
     this.uwds.addWordToDatabase(newEntry);
-  }
+   }
 }
