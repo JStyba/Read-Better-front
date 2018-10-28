@@ -1,0 +1,71 @@
+
+div {
+  width: 80%;
+  font-family: 'Exo 2', sans-serif;
+  text-align: justify;
+  margin: auto;
+  margin-top: 30px;
+  border-top: 2px solid #3D3D8C;
+  padding-top: 20px;
+}
+.word {
+  width: 200px;
+  }
+
+button {
+  display: inline-block;
+  float: none;
+  width: 85px;
+  height: 30px;
+  font-family: 'Exo 2', sans-serif;
+  font-size: 15px;
+  line-height: 10px;
+  border: 1px solid white;
+  border-radius: 3px;
+  color: white;
+  font-weight: bold;
+  margin: 3px;
+  float: right;
+}
+.translateWord {
+  background: #33336D;
+}
+.removeWord {
+  background: #e6b8c2;
+
+}
+.sendAll {
+
+  display: inline-block;
+  float: none;
+  width: 150px;
+  height: 40px;
+  font-family: 'Exo 2', sans-serif;
+  opacity: 0.8;
+  font-size: 20px;
+  background-color: #33336D;
+  line-height: 10px;
+  border: 1px solid white;
+  border-radius: 3px;
+  color: white;
+  margin-top: 25px;
+  margin-left: 15px;
+  transition: all 0.5s ease;
+
+}
+input.sendAll:hover {
+  background: #a9a9a9;
+}
+input .sendAll:active {
+  position:relative;
+  top:1px;
+}
+li {
+  color: #4d4d4d;
+  font-size: 20px;
+  font-weight: bolder;
+}
+.urlAdress li {
+  color: #919191;
+  font-size: 18px;
+}
