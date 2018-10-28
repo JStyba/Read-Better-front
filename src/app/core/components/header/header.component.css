@@ -33,6 +33,7 @@ nav {
   text-align: center;
   margin-bottom: -50px;
   padding: 5px 0;
+  overflow: hidden;
   /*transition: box-shadow 0.5s ease;*/
 }
 
@@ -41,8 +42,13 @@ nav li {
   list-style: none;
   text-transform: uppercase;
 }
+nav li:nth-child(5) {
+  text-decoration: underline;
+
+        }
 
 nav a {
+  width: 20%;
   text-decoration: none;
   color: #fcfff5;
   padding: 22px;
@@ -63,7 +69,7 @@ nav a:hover {
   overflow: hidden;
 }
 
-@media screen and (max-width: 660px) {
+@media screen and (max-width: 710px) {
   h1 {
     font-size: 70px;
   }
@@ -74,11 +80,21 @@ nav a:hover {
 
 }
 
-@media screen and (max-width: 470px) {
+@media screen and (max-width: 540px) {
   h1 {
     font-size: 45px;
   }
   nav a {
+    width: 100%;
     font-size: 8px;
+  }
+}
+@media screen and (max-width: 460px) {
+  h1 {
+    font-size: 45px;
+  }
+  nav a {
+    font-size: 6px;
+    margin: auto;
   }
 }
