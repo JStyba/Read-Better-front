@@ -34,6 +34,8 @@ import { ContactComponent } from './core/components/contact/contact.component';
 import { SideDrawerComponent } from './core/components/home/side-drawer/side-drawer.component';
 import {UserWordDatabaseService} from './services/user-word-database-service';
 import { MyReadBetterComponent } from './core/components/my-read-better/my-read-better.component';
+import {DataService} from './services/data-service';
+import {CanDeactivateGuard} from './services/can-deactivate-guard';
 const appRoutes: Routes = [
    {
     path: 'home',
@@ -116,7 +118,9 @@ export const MaterialModules = [
     , WordTranslationService
     , UserWordDatabaseService
     , SideDrawerComponent
-    , UserService,
+    , UserService
+    , DataService
+    , CanDeactivateGuard,
     { provide: HTTP_INTERCEPTORS, multi: true, useClass: TokenInterceptor},
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true}
     ],

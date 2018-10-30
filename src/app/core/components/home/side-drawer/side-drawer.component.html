@@ -5,6 +5,13 @@
       My words
     </div>
     <div id="content">
+      <div>
+        <p>{{translatedWord}}</p>
+        <ol>
+          <li *ngFor="let d of definitions">{{d}}</li>
+        </ol>
+        <button *ngIf="definitions.length > 0" type="button" (click)="hideDef()">hide</button>
+      </div>
       <div id="def"></div>
       <ol>
         <li *ngFor="let n of tableOfWords">

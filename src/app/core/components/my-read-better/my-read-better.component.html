@@ -8,8 +8,8 @@
   <ol>
     <li *ngFor="let entry of myListOfWords">
       <ul>
-        <li><span class="word">{{entry.word }} </span><button class="translateWord" type="submit" (click)="translate(n.word)">translate</button>
-          <button class="removeWord" type="submit" (click)="remove(n, tableOfWords)">remove
+        <li><span class="word">{{entry.word }} </span><button class="translateWord" type="submit" (click)="translate(entry.word)">translate</button>
+          <button class="removeWord" type="submit" (click)="remove(entry.word, tableOfWords)">remove
           </button></li>
       </ul>
       <!--<ol>-->
@@ -28,4 +28,27 @@
   </ol>
 </div>
 <button class="sendAll" type="button" (click)="sendAllToBackend()">send all</button>
-<!--<button type="button" (click)="showthearray()">show me the array</button>-->
+<button type="button" (click)="getAllEntries()">Get entries</button>
+<div>
+  <ol>
+    <li *ngFor="let e of tableOfDatabaseWords">
+      <ul>
+        <li><span class="word">{{e[0] }} </span><button class="translateWord" type="submit" (click)="translate(entry.word)">translate</button>
+          <button class="removeWord" type="submit" (click)="remove(entry.word, tableOfWords)">remove
+          </button></li>
+      </ul>
+      <!--<ol>-->
+      <!--<li *ngFor="let def of entry.definitions">{{def}}</li>-->
+      <!--</ol>-->
+      <!--<ul>-->
+      <!--<li>{{entry.timestamp}}</li>-->
+      <!--</ul>-->
+      <ul class="urlAdress">
+        <li>
+          {{e[2]}}
+        </li>
+      </ul>
+
+    </li>
+  </ol>
+</div>

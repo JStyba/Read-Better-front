@@ -10,14 +10,16 @@ import 'rxjs/add/observable/interval';
 import {SideDrawerComponent} from './side-drawer/side-drawer.component';
 import {UserWordDatabaseService} from '../../../services/user-word-database-service';
 import {Entry} from '../../../model/entry';
+import {Observable} from 'rxjs';
+import {ComponentCanDeactivate} from '../../../services/can-deactivate-guard';
 
 
 @Component({
   templateUrl: 'home.component.html',
   styleUrls: ['home.component.css'],
   selector: 'app-home',
- })
-export class HomeComponent implements OnInit {
+})
+export class HomeComponent implements OnInit, ComponentCanDeactivate {
   constructor(private http: HttpClient
     , private userService: UserService
     , private sws: SelectWordService
@@ -25,7 +27,8 @@ export class HomeComponent implements OnInit {
     , private wss: WebScrapeService
     , private dialog: MatDialog
     , private uwds: UserWordDatabaseService) {
-   }
+  }
+
   popOverDialogRef: MatDialogRef<PopOverComponent>;
   sideDrawerDialogRef: MatDialogRef<SideDrawerComponent>;
   tmpWord: String = '';
@@ -36,7 +39,8 @@ export class HomeComponent implements OnInit {
   tableOfWords: Entry[] = this.uwds.tableOfWords;
   url = '';
   word = null;
-    ngOnInit() {
+
+  ngOnInit() {
     this.one = document.getElementById('test');
     this.shadow = this.one.attachShadow({mode: 'closed'});
     if (localStorage.getItem('url')) {
@@ -44,13 +48,13 @@ export class HomeComponent implements OnInit {
         this.shadow.innerHTML = '<p>' + data + '</p>';
       });
     }
-      }
-
-  openSideDrawerDialog() {
-    this.sideDrawerDialogRef = this.dialog.open(SideDrawerComponent, {
-      hasBackdrop: true
-    });
   }
+
+  @HostListener('window:beforeunload')
+  canDeactivate(): Observable<boolean> | boolean {
+     return false;
+  }
+
 
   showMeTheToken() {
     alert(localStorage.getItem('token'));
@@ -91,7 +95,6 @@ export class HomeComponent implements OnInit {
   getJsonResponse(word): void {
     this.definitions = this.wts.getResponse(word);
   }
-
 
 
   removeWord(element, array) {

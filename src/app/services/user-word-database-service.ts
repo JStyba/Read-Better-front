@@ -7,6 +7,7 @@ import {HttpParams} from '@angular/common/http';
 export class UserWordDatabaseService {
 private _tableOfWords: Entry[] = [];
 private _modified = false;
+
   get tableOfWords(): Entry[] {
     return this._tableOfWords;
   }
@@ -30,6 +31,4 @@ private _modified = false;
       array.splice(index, 1);
     }
   }
-
-
 }

@@ -18,6 +18,7 @@ export class SideDrawerComponent implements AfterViewInit {
   sideDrawer = false;
   elementPosition: any;
   definitions = [];
+  translatedWord = '';
   ngAfterViewInit() {
     this.elementPosition = this.menuElement.nativeElement.offsetTop;
   }
@@ -31,13 +32,15 @@ export class SideDrawerComponent implements AfterViewInit {
     }
   }
   translate (word) {
+    this.translatedWord = word;
     this.definitions = this.wts.getResponse(word);
       }
 remove (element, array) {
     this.uwds.removeWord(element, array);
 }
 
-  clearDef() {
+  hideDef() {
     this.definitions = [];
+    this.translatedWord = '';
   }
 }
