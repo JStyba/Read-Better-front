@@ -36,6 +36,7 @@ import {UserWordDatabaseService} from './services/user-word-database-service';
 import { MyReadBetterComponent } from './core/components/my-read-better/my-read-better.component';
 import {DataService} from './services/data-service';
 import {CanDeactivateGuard} from './services/can-deactivate-guard';
+import { PopOverRBComponent } from './core/components/my-read-better/pop-over-rb/pop-over-rb.component';
 const appRoutes: Routes = [
    {
     path: 'home',
@@ -96,6 +97,7 @@ export const MaterialModules = [
     ContactComponent,
     SideDrawerComponent,
     MyReadBetterComponent,
+    PopOverRBComponent,
                     ],
   imports: [
     BrowserModule,
@@ -109,7 +111,7 @@ export const MaterialModules = [
     RouterModule.forRoot(appRoutes)
      ],
   entryComponents: [
-    PopOverComponent, SideDrawerComponent
+    PopOverComponent, SideDrawerComponent, PopOverRBComponent
   ],
   providers: [AuthenticationService
     , AuthGuard, UserService

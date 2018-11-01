@@ -6,6 +6,7 @@ import {AuthenticationService} from './authentication-service';
 import {DataService} from './data-service';
 import {split} from 'ts-node';
 import {stringify} from 'querystring';
+import {map} from 'rxjs/operators';
 
 const TOKEN = 'token';
 const USERNAME = 'username';
@@ -55,7 +56,7 @@ export class UserService {
     const params = new HttpParams().set('username', localStorage.getItem('username'));
     this.http.get(this.ds.urlToBackend + '/entry/get-entries/?access_token='
       + localStorage.getItem('token'), {params: params}).subscribe(res => {
-        let tempArray = [];
+        const tempArray = [];
       for (const prop in res) {
         if (res !== null) {
           this.newEntryArray.push(Object.values(res[prop]));
@@ -68,5 +69,10 @@ export class UserService {
       this.newEntryArray = tempArray;
     });
     return (this.newEntryArray);
+  }
+  removeEntryFromBackend (word) {
+    const params = new HttpParams().set('username', localStorage.getItem('username'));
+    return this.http.delete(this.ds.urlToBackend + '/entry/remove-entry?access_token='
+      + localStorage.getItem('token') + '&word=' + word, {params: params});
   }
 }

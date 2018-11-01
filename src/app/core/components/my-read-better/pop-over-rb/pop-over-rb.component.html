@@ -1,0 +1,12 @@
+<h1 mat-dialog-title></h1>
+<mat-dialog-content>
+  {{word}}
+  <div>
+    <ol>
+      <li *ngFor="let d of definitions">{{d}}</li>
+    </ol>
+  </div>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button class="cancelWordBox" type="button" mat-dialog-close>Cancel</button>
+</mat-dialog-actions>

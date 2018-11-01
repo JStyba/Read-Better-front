@@ -6,10 +6,10 @@
 
 <div>
   <ol>
-    <li *ngFor="let entry of myListOfWords">
+    <li *ngFor="let e of tableOfCurrentWords">
       <ul>
-        <li><span class="word">{{entry.word }} </span><button class="translateWord" type="submit" (click)="translate(entry.word)">translate</button>
-          <button class="removeWord" type="submit" (click)="remove(entry.word, tableOfWords)">remove
+        <li><span class="word">{{e.word }} </span><button class="translateWord" type="submit" (click)="translate(e.word)">translate</button>
+          <button class="removeWord" type="submit" (click)="removeWordFromLocalDatabase(e, tableOfCurrentWords)">remove
           </button></li>
       </ul>
       <!--<ol>-->
@@ -20,21 +20,21 @@
       <!--</ul>-->
       <ul class="urlAdress">
         <li>
-          {{entry.entryUrl}}
+          {{e.entryUrl}}
         </li>
       </ul>
 
     </li>
   </ol>
 </div>
-<button class="sendAll" type="button" (click)="sendAllToBackend()">send all</button>
+<button class="sendAll" type="button" (click)="sendAllToBackend()">Save all words</button>
 <button type="button" (click)="getAllEntries()">Get entries</button>
 <div>
   <ol>
     <li *ngFor="let e of tableOfDatabaseWords">
       <ul>
-        <li><span class="word">{{e[0] }} </span><button class="translateWord" type="submit" (click)="translate(entry.word)">translate</button>
-          <button class="removeWord" type="submit" (click)="remove(entry.word, tableOfWords)">remove
+        <li><span class="word">{{e[0] }} </span><button class="translateWord" type="submit" (click)="translate(e[0])">translate</button>
+          <button class="removeWord" type="submit" (click)="removeWordFromBackendDatabase(e[0], e)">remove
           </button></li>
       </ul>
       <!--<ol>-->
