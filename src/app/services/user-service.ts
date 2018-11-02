@@ -32,7 +32,6 @@ export class UserService {
     return this.http.post(this.ds.urlToBackend + `/users/register?access_token=`
       + localStorage.getItem('token'), user);
   }
-
   sendToBackend(table) {
     const params = new HttpParams();
    const username = localStorage.getItem('username');
@@ -53,6 +52,7 @@ export class UserService {
     return  day + '-' + month + '-' + year  + ' at ' + hours + ':' + minutes.substr(-2) + ':' + seconds.substr(-2);
   }
   getEntriesFromDatabase () {
+    this.newEntryArray = [];
     const params = new HttpParams().set('username', localStorage.getItem('username'));
     this.http.get(this.ds.urlToBackend + '/entry/get-entries/?access_token='
       + localStorage.getItem('token'), {params: params}).subscribe(res => {
@@ -60,14 +60,10 @@ export class UserService {
       for (const prop in res) {
         if (res !== null) {
           this.newEntryArray.push(Object.values(res[prop]));
+          console.log(Object.values(res[prop]));
         }
       }
-      for (let i = 0 ; i < this.newEntryArray.length ; i++) {
-        const s = stringify(this.newEntryArray[i]);
-          tempArray.push(s.split(','));
-      }
-      this.newEntryArray = tempArray;
-    });
+          });
     return (this.newEntryArray);
   }
   removeEntryFromBackend (word) {

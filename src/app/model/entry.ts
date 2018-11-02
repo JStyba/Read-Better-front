@@ -1,7 +1,7 @@
 
 interface EntryInterface {
   word: string;
-  definitions: string[];
+  definitions?: string[];
   timestamp: any;
   entryUrl: string;
 }
@@ -15,7 +15,7 @@ export class Entry implements EntryInterface {
   entryUrl: string;
 
 
-  constructor(word: string, definitions: string[], timestamp: any, entryUrl: string) {
+  constructor(word: string, timestamp: any, entryUrl: string, definitions?: string[]) {
     this.word = word;
     this.definitions = definitions;
     this.timestamp = timestamp;
