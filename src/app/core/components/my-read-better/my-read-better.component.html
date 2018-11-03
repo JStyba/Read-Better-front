@@ -9,6 +9,7 @@
     <li *ngFor="let e of tableOfCurrentWords">
       <ul>
         <li><span class="word">{{e.word }} </span><button class="translateWord" type="submit" (click)="translate(e.word)">translate</button>
+       <button class="translateWord" type="submit" (click)="translatePl(e.word)">tłumacz</button>
           <button class="removeWord" type="submit" (click)="removeWordFromLocalDatabase(e, tableOfCurrentWords)">remove
           </button></li>
       </ul>
@@ -34,6 +35,7 @@
     <li *ngFor="let e of tableOfDatabaseWords">
       <ul>
         <li><span class="word">{{e[0] }} </span><button class="translateWord" type="submit" (click)="translate(e[0])">translate</button>
+        <button class="translateWord" type="submit" (click)="translatePl(e[0])">tłumacz</button>
           <button class="removeWord" type="submit" (click)="removeWordFromBackendDatabase(e[0], e)">remove
           </button></li>
       </ul>

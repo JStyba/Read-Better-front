@@ -52,9 +52,20 @@ export class MyReadBetterComponent implements OnInit {
     this.popOverDialogRef = this.dialog.open(PopOverRBComponent, {
       data: {
         word: word,
+        language: 'en',
       },
       panelClass: 'wordBox'
 
     });
   }
-}
+  translatePl(word) {
+    this.popOverDialogRef = this.dialog.open(PopOverRBComponent, {
+      data: {
+        word: word,
+        language: 'pl',
+      },
+      panelClass: 'wordBox'
+
+    });
+  }
+  }

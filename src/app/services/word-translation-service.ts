@@ -25,6 +25,22 @@ export class WordTranslationService {
         });
     return (this._newArray);
   }
+  getResponsePl(word) {
+    this._newArray = [];
+    const params = new HttpParams().set('word', word);
+    const headers = {'FOO': 'foo', 'Content-Type': 'application/json', 'Accept': 'application/json', 'Cache-Control': 'no-cache'};
+    this.http.get(this.ds.urlToBackend + '/entry/translate-polish/?access_token='
+      + localStorage.getItem('token')
+      , {params, headers}).subscribe(res => {
+      const evilResp = Object.values(res['definitions']);
+      for (const prop in evilResp) {
+        if (evilResp !== null) {
+          this._newArray.push(Object.values(evilResp[prop]).toString());
+        }
+      }
+    });
+    return (this._newArray);
+  }
   getMyJson(word) {
     const params = new HttpParams().set('word', word);
     const headers = {'FOO': 'foo', 'Content-Type': 'application/json', 'Accept': 'application/json', 'Cache-Control': 'no-cache'};

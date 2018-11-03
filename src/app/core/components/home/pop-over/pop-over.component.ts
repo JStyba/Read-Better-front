@@ -34,6 +34,9 @@ export class PopOverComponent implements OnInit {
   translate() {
     this.definitions = this.wts.getResponse(this.word);
   }
+  translatePl() {
+    this.definitions = this.wts.getResponsePl(this.word);
+  }
 
   AddToDb() {
     const def = this.wts.getResponse(this.word);

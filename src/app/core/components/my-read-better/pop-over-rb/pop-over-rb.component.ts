@@ -29,12 +29,20 @@ export class PopOverRBComponent implements OnInit {
 
   ngOnInit() {
     this.word = this.data['word'];
-    this.translate();
+    if (this.data['language'] === 'en') {
+      this.translate();
+    }
+    if (this.data['language'] === 'pl'){
+      this.translatePl()
+    }
   }
 
   translate() {
     this.definitions = this.wts.getResponse(this.word);
   }
-}
+  translatePl() {
+    this.definitions = this.wts.getResponsePl(this.word);
+  }
+  }
 
 
