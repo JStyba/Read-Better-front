@@ -44,7 +44,9 @@ export class UserService {
     const headers = new HttpHeaders()
       .set('Content-Type', 'application/x-www-form-urlencoded');
     return this.http.post(this.ds.urlToBackend + `/entry/def?access_token=`
-      + localStorage.getItem('token') + '&username=' + username, table).subscribe();
+      + localStorage.getItem('token') + '&username=' + username, table).subscribe( res => {
+        console.log(res);
+    });
   }
 
   timestampToDate(entryDate: Date) {
@@ -63,12 +65,10 @@ export class UserService {
     const params = new HttpParams().set('username', localStorage.getItem('username'));
     this.http.get(this.ds.urlToBackend + '/entry/get-entries/?access_token='
       + localStorage.getItem('token'), {params: params}).subscribe(res => {
-      const tempArray = [];
       for (const prop in res) {
         if (res !== null) {
           this.newEntryArray.push(Object.values(res[prop]));
-          console.log(Object.values(res[prop]));
-        }
+          }
       }
     });
     return (this.newEntryArray);

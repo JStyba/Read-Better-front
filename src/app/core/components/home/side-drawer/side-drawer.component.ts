@@ -13,15 +13,18 @@ export class SideDrawerComponent implements AfterViewInit {
 
   constructor(private wts: WordTranslationService, private uwds: UserWordDatabaseService) {
   }
+
   tableOfWords = this.uwds.tableOfWords;
   @ViewChild('StickySideDrawer') menuElement: ElementRef;
   sideDrawer = false;
   elementPosition: any;
   definitions = [];
   translatedWord = '';
+
   ngAfterViewInit() {
     this.elementPosition = this.menuElement.nativeElement.offsetTop;
   }
+
   @HostListener('window:scroll', ['$event'])
   handleScroll() {
     const windowScroll = window.pageYOffset;
@@ -31,13 +34,15 @@ export class SideDrawerComponent implements AfterViewInit {
       this.sideDrawer = false;
     }
   }
-  translate (word) {
+
+  translate(word) {
     this.translatedWord = word;
     this.definitions = this.wts.getResponse(word);
-      }
-remove (element, array) {
+  }
+
+  remove(element, array) {
     this.uwds.removeWord(element, array);
-}
+  }
 
   hideDef() {
     this.definitions = [];
