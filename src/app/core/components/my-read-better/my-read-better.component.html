@@ -3,54 +3,67 @@
 <br>
 <br>
 <br>
-
-<div>
-  <ol>
-    <li *ngFor="let e of tableOfCurrentWords">
-      <ul>
-        <li><span class="word">{{e.word }} </span><button class="translateWord" type="submit" (click)="translate(e.word)">translate</button>
-       <button class="translateWord" type="submit" (click)="translatePl(e.word)">tłumacz</button>
-          <button class="removeWord" type="submit" (click)="removeWordFromLocalDatabase(e, tableOfCurrentWords)">remove
-          </button></li>
-      </ul>
-      <!--<ol>-->
+<div class="table">
+  <div class="temporaryWords">
+    <p>Temporary Words </p>
+    <ol>
+      <li *ngFor="let e of tableOfCurrentWords">
+        <ul>
+          <li><span class="word">{{e.word }} </span>
+            <button class="removeWord" type="submit" (click)="removeWordFromLocalDatabase(e, tableOfCurrentWords)">
+              remove
+            </button>
+            <button class="translateWord" type="submit" (click)="translatePl(e.word)">tłumacz</button>
+            <button class="translateWord" type="submit" (click)="translate(e.word)">translate</button>
+          </li>
+        </ul>
+        <!--<ol>-->
         <!--<li *ngFor="let def of entry.definitions">{{def}}</li>-->
-      <!--</ol>-->
-      <!--<ul>-->
+        <!--</ol>-->
+        <!--<ul>-->
         <!--<li>{{entry.timestamp}}</li>-->
-      <!--</ul>-->
-      <ul class="urlAdress">
-        <li>
-          {{e.entryUrl}}
-        </li>
-      </ul>
+        <!--</ul>-->
+        <ul class="urlAdress">
+          <li>
+            {{e.entryUrl}}
+          </li>
+        </ul>
 
-    </li>
-  </ol>
-</div>
-<button class="sendAll" type="button" (click)="sendAllToBackend()">Save all words</button>
-<button type="button" (click)="getAllEntries()">Get entries</button>
-<div>
-  <ol>
-    <li *ngFor="let e of tableOfDatabaseWords">
-      <ul>
-        <li><span class="word">{{e[0] }} </span><button class="translateWord" type="submit" (click)="translate(e[0])">translate</button>
-        <button class="translateWord" type="submit" (click)="translatePl(e[0])">tłumacz</button>
-          <button class="removeWord" type="submit" (click)="removeWordFromBackendDatabase(e[0], e)">remove
-          </button></li>
-      </ul>
-      <!--<ol>-->
-      <!--<li *ngFor="let def of entry.definitions">{{def}}</li>-->
-      <!--</ol>-->
-      <!--<ul>-->
-      <!--<li>{{entry.timestamp}}</li>-->
-      <!--</ul>-->
-      <ul class="urlAdress">
-        <li>
-          {{e[2]}}
-        </li>
-      </ul>
+      </li>
+    </ol>
+    <button class="sendAll" type="button" (click)="sendAllToBackend()">Save all words</button>
+    <button class="clearAll">Clear</button>
 
-    </li>
-  </ol>
+
+  </div>
+  <div class="savedWords">
+    <p> Saved Words </p>
+    <button class="getSavedWords" type="button" (click)="getAllEntries()">Get saved words</button>
+
+
+    <ol>
+      <li *ngFor="let e of tableOfDatabaseWords">
+        <ul>
+          <li><span class="word">{{e[0] }} </span>
+            <button class="removeWord" type="submit" (click)="removeWordFromBackendDatabase(e[0], e)">remove
+            </button>
+            <button class="translateWord" type="submit" (click)="translatePl(e[0])">tłumacz</button>
+            <button class="translateWord" type="submit" (click)="translate(e[0])">translate</button>
+          </li>
+        </ul>
+        <!--<ol>-->
+        <!--<li *ngFor="let def of entry.definitions">{{def}}</li>-->
+        <!--</ol>-->
+        <!--<ul>-->
+        <!--<li>{{entry.timestamp}}</li>-->
+        <!--</ul>-->
+        <ul class="urlAdress">
+          <li>
+            {{e[2]}}
+          </li>
+        </ul>
+
+      </li>
+    </ol>
+  </div>
 </div>

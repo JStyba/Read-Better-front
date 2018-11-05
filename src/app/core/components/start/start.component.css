@@ -88,7 +88,6 @@ button:hover {
   }
 }
 
-/*@import url(https://fonts.googleapis.com/css?family=Roboto:400,700);*/
 
 @keyframes checked-anim {
   20% {
@@ -133,30 +132,6 @@ a:focus {
   background-color: rgba(255, 255, 255, 0);
   transition: all .5s;
 }
-/*aside {*/
-  /*position: absolute;*/
-  /*color: white;*/
-  /*top: 35%;*/
-  /*right: 10%;*/
-  /*text-align: right;*/
-/*}*/
-/*h1 {*/
-  /*line-height: 0;*/
-  /*font-size: 4vw;*/
-  /*font-weight: 700;*/
-/*}*/
-/*h3 {*/
-  /*float: right;*/
-  /*line-height: .3;*/
-  /*font-size: 2.5vw;*/
-  /*font-weight: lighter;*/
-/*}*/
-/*h4 {*/
-  /*float: left;*/
-  /*margin-left: -2%;*/
-  /*font-size: 1.5vw;*/
-  /*font-weight: lighter;*/
-/*}*/
 
 #trigger, #burger, #burger:before, #burger:after {
   position: absolute;
@@ -167,7 +142,7 @@ a:focus {
   width: 30px;
   height: 5px;
   transition: .2s ease;
-  /*cursor: pointer;*/
+  cursor: pointer;
   z-index: 1;
 }
 #trigger {

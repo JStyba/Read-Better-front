@@ -1,3 +1,6 @@
+body{
+  /*background-image: linear-gradient(to left bottom, #7e7a7a, #9a9798, #b8b6b7, #d6d6d6, #f6f6f6);*/
+}
 div {
   width: 80%;
   font-family: 'Exo 2', sans-serif;

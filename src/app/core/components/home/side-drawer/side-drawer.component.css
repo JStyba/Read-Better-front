@@ -29,7 +29,6 @@
 #panel #content {
   width: 250px;
   min-height: 300px;
-  max-height: 00px;
   padding: 10px;
   border-top: 2px solid #990E63;
   border-right: none;
@@ -65,51 +64,14 @@ li {
   font-weight: bold;
   color: #4d4d4d;
 }
-/*.translateWord {*/
-/*margin: auto;*/
-/*display: inline-block;*/
-/*/*float: none;*/
-/*text-align: center;*/
-/*width: 60px;*/
-/*height: 30px;*/
-/*font-family: 'Exo 2', sans-serif;*/
-/*opacity: 0.8;*/
-/*font-size: 12px;*/
-/*background-color: #33336D;*/
-/*line-height: 10px;*/
-/*/*border: 1px solid white;*/
-/*border-radius: 3px;*/
-/*color: white;*/
-/*transition: all 0.5s ease;*/
-
-/*}*/
-/*.removeWord {*/
-/*margin:auto;*/
-/*display: inline-block;*/
-/*float: none;*/
-/*text-align: center;*/
-/*width: 60px;*/
-/*height: 30px;*/
-/*font-family: 'Exo 2', sans-serif;*/
-/*opacity: 0.8;*/
-/*font-size: 12px;*/
-/*background-color: #33336D;*/
-/*line-height: 10px;*/
-/*/*border: 1px solid white;*/
-/*border-radius: 3px;*/
-/*color: white;*/
-/*transition: all 0.5s ease;*/
-
-/*}*/
-
 
 button {
   display: inline-block;
   float: none;
-  width: 85px;
-  height: 30px;
+  width:60px;
+  height: 20px;
   font-family: 'Exo 2', sans-serif;
-  font-size: 15px;
+  font-size: 11px;
   line-height: 10px;
   border: 1px solid white;
   border-radius: 3px;
