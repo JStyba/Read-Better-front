@@ -39,7 +39,10 @@ export class SideDrawerComponent implements AfterViewInit {
     this.translatedWord = word;
     this.definitions = this.wts.getResponse(word);
   }
-
+  translatePl(word) {
+    this.translatedWord = word;
+    this.definitions = this.wts.getResponsePl(word);
+  }
   remove(element, array) {
     this.uwds.removeWord(element, array);
   }
