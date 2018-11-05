@@ -37,6 +37,22 @@ import { MyReadBetterComponent } from './core/components/my-read-better/my-read-
 import {DataService} from './services/data-service';
 import {CanDeactivateGuard} from './services/can-deactivate-guard';
 import { PopOverRBComponent } from './core/components/my-read-better/pop-over-rb/pop-over-rb.component';
+import {NgcCookieConsentConfig, NgcCookieConsentModule} from 'ngx-cookieconsent';
+const cookieConfig: NgcCookieConsentConfig = {
+  cookie: {
+    domain: 'localhost:4200'
+  },
+  palette: {
+    popup: {
+      background: '#000'
+    },
+    button: {
+      background: '#f1d600'
+    }
+  },
+  theme: 'edgeless',
+  type: 'opt-out'
+};
 const appRoutes: Routes = [
    {
     path: 'home',
@@ -108,7 +124,8 @@ export const MaterialModules = [
     MaterialModules,
     MdePopoverModule,
     MatDialogModule,
-    RouterModule.forRoot(appRoutes)
+    RouterModule.forRoot(appRoutes),
+    NgcCookieConsentModule.forRoot(cookieConfig)
      ],
   entryComponents: [
     PopOverComponent, SideDrawerComponent, PopOverRBComponent

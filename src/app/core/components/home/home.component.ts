@@ -43,16 +43,15 @@ export class HomeComponent implements OnInit, ComponentCanDeactivate {
   ngOnInit() {
     this.one = document.getElementById('test');
     this.shadow = this.one.attachShadow({mode: 'closed'});
-    if (localStorage.getItem('url')) {
+    if (localStorage.getItem('url') !== '') {
       this.wss.getStringedWeb(localStorage.getItem('url')).subscribe(data => {
         this.shadow.innerHTML = '<p>' + data + '</p>';
       });
     }
   }
-
   @HostListener('window:beforeunload')
   canDeactivate(): Observable<boolean> | boolean {
-     return false;
+    return false;
   }
 
 
@@ -88,10 +87,6 @@ export class HomeComponent implements OnInit, ComponentCanDeactivate {
     }
   }
 
-  fireEvent(e) {
-    e.preventDefault();
-  }
-
   getJsonResponse(word): void {
     this.definitions = this.wts.getResponse(word);
   }
@@ -103,5 +98,8 @@ export class HomeComponent implements OnInit, ComponentCanDeactivate {
     if (index !== -1) {
       array.splice(index, 1);
     }
+  }
+  fireEvent(e) {
+    e.preventDefault();
   }
 }

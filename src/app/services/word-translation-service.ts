@@ -34,7 +34,7 @@ export class WordTranslationService {
       , {params, headers}).subscribe(res => {
       const evilResp = Object.values(res['definitions']);
       for (const prop in evilResp) {
-        if (evilResp !== null) {
+        if (evilResp !== null && this._newArray.length < 10) {
           this._newArray.push(Object.values(evilResp[prop]).toString());
         }
       }
