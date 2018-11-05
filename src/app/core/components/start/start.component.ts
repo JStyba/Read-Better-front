@@ -20,4 +20,11 @@ goToRegisterPage () {
 goToLoginPage () {
     this.router.navigateByUrl('login');
 }
+
+  goToAboutPage() {
+    this.router.navigateByUrl('about');
+  }
+  goToContactPage() {
+    this.router.navigateByUrl('contact');
+  }
 }

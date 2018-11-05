@@ -1,4 +1,11 @@
 <body>
+<input type="checkbox" id="menu-toggle"/>
+<label id="trigger" for="menu-toggle"></label>
+<label id="burger" for="menu-toggle"></label>
+<ul id="menu">
+  <li><a (click)="goToAboutPage()">ABOUT</a></li>
+  <li><a (click)="goToContactPage()">CONTACT</a></li>
+</ul>
 <header>
   <span> Welcome to </span>
   <br><br>
@@ -12,4 +19,5 @@
 
   <button type="button" (click)="goToLoginPage()">Login</button>
 </div>
+
 </body>
