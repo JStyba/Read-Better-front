@@ -10,7 +10,7 @@ export class ErrorInterceptor {
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     return next.handle(request).pipe(catchError(err => {
       if (err.status === 401 || err.status === 400) {
-        this.authenticationService.logout();
+        alert('To jest ERROR - prawdopodobnie wciśnięto jakiś przecisk zbyt wiele razy. \n Teraz strona się przeładuje, spokojnie :)');
         location.reload(true);
       }
 
