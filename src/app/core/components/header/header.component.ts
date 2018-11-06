@@ -7,18 +7,23 @@ import {AuthenticationService} from '../../../services/authentication-service';
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.css']
 })
-export class HeaderComponent implements AfterViewInit {
+export class HeaderComponent implements AfterViewInit, OnInit {
   @ViewChild('StickyTopNav') menuElement: ElementRef;
   topNav = false;
   elementPosition: any;
-
-  constructor(private router: Router, private auth: AuthenticationService) {
+  loggedIn: boolean;
+    constructor(private router: Router, private auth: AuthenticationService) {
   }
-
   ngAfterViewInit() {
     this.elementPosition = this.menuElement.nativeElement.offsetTop;
   }
-
+ngOnInit () {
+    if (localStorage.getItem('loggedIn') === 'true') {
+      this.loggedIn = true;
+    } else {
+      this.loggedIn = false;
+    }
+}
   @HostListener('window:scroll', ['$event'])
   handleScroll() {
     const windowScroll = window.pageYOffset;
@@ -44,7 +49,10 @@ export class HeaderComponent implements AfterViewInit {
   }
   logout() {
     localStorage.clear();
-    this.auth.loggedIn = false;
+    this.router.navigateByUrl('start');
+  }
+
+  goToStartPage() {
     this.router.navigateByUrl('start');
   }
 }

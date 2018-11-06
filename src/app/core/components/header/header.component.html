@@ -7,11 +7,12 @@
 #StickyTopNav
 [class.topNav]="topNav">
   <ul>
-    <li><a (click)="goToHomePage()">HOME</a></li>
+    <li *ngIf="loggedIn"><a (click)="goToHomePage()">HOME</a></li>
+    <li *ngIf="!loggedIn"><a (click)="goToStartPage()">Start</a></li>
     <li><a (click)="goToAboutPage()">About</a></li>
     <li><a (click)="goToContactPage()">Contact</a></li>
-    <li><a (click)="goToMyReadBetter()">My read Better</a></li>
-    <li><a (click)="logout()">Logout</a></li>
+    <li *ngIf="loggedIn"><a (click)="goToMyReadBetter()">My read Better</a></li>
+    <li *ngIf="loggedIn"><a (click)="logout()">Logout</a></li>
 
   </ul>
 </nav>
