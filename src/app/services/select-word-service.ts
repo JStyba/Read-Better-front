@@ -18,7 +18,7 @@ export class SelectWordService {
     }
     const range = selection.getRangeAt(0);
     const rangeContainer = this.getRangeContainer(range);
-    return tmpWord = selection.toString().trim();
+    return tmpWord = selection.toString().trim().toLowerCase();
     }
 
   }
