@@ -5,7 +5,16 @@ import {DataService} from './data-service';
 import {UserService} from './user-service';
 @Injectable()
 export class AuthenticationService {
+  private _loggedIn = false;
   constructor (private http: HttpClient, private router: Router, private ds: DataService) {}
+
+  get loggedIn(): boolean {
+    return this._loggedIn;
+  }
+
+  set loggedIn(value: boolean) {
+    this._loggedIn = value;
+  }
 
   login(username: string, password: string ) {
     const bodySerialized = 'grant_type=password&password=' + password + '&username=' + username;
@@ -25,7 +34,4 @@ getToken() {
    return this.http.post
    (this.ds.urlToBackend + '/oauth/token', bodySerialized, {headers: headers});
    }
-  logout() {
-    localStorage.clear();
-  }
-  }
+   }

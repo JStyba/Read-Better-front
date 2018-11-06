@@ -13,6 +13,7 @@ import {PopOverRBComponent} from './pop-over-rb/pop-over-rb.component';
   styleUrls: ['./my-read-better.component.css']
 })
 export class MyReadBetterComponent implements OnInit {
+  savedLinks = [];
   tableOfCurrentWords = this.uwds.tableOfWords;
   tableOfDatabaseWords = [];
   popOverDialogRef: MatDialogRef<PopOverRBComponent>;
@@ -55,7 +56,6 @@ export class MyReadBetterComponent implements OnInit {
         language: 'en',
       },
       panelClass: 'wordBox'
-
     });
   }
   translatePl(word) {
@@ -67,5 +67,13 @@ export class MyReadBetterComponent implements OnInit {
       panelClass: 'wordBox'
 
     });
+  }
+  showSavedLinks () {
+    this.savedLinks = [];
+    this.savedLinks = this.us.getBrowsingHistoryFromDatabase();
+  }
+  removeLinkFromBackend (link, table: string[]) {
+    this.us.removeUrlFromBackend(link).subscribe();
+    this.savedLinks.splice(this.savedLinks.indexOf(table), 1);
   }
   }

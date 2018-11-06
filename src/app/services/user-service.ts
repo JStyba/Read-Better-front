@@ -20,6 +20,7 @@ export class UserService {
   }
 
   newEntryArray = [];
+  newBrowsingHistoryArray = [];
 
   setToken(token: string): void {
     localStorage.setItem(TOKEN, token);
@@ -73,7 +74,34 @@ export class UserService {
     });
     return (this.newEntryArray);
   }
-
+  getBrowsingHistoryFromDatabase() {
+    this.newBrowsingHistoryArray = [];
+    const params = new HttpParams().set('username', localStorage.getItem('username'));
+    this.http.get(this.ds.urlToBackend + '/users/get-browsing-history/?access_token='
+      + localStorage.getItem('token'), {params: params}).subscribe(res => {
+      for (const prop in res) {
+        if (res !== null) {
+          this.newBrowsingHistoryArray.push(Object.values(res[prop]));
+        }
+      }
+    });
+    return (this.newBrowsingHistoryArray);
+  }
+  sendUrlToBackend(url) {
+    const params = new HttpParams().set('url', url);
+    const username = localStorage.getItem('username');
+    const headers = new HttpHeaders()
+      .set('Content-Type', 'application/x-www-form-urlencoded');
+    return this.http.get(this.ds.urlToBackend + `/users/save-url?access_token=`
+      + localStorage.getItem('token') + '&username=' + username, {params: params}).subscribe( res => {
+      console.log(res);
+    });
+  }
+  removeUrlFromBackend(url) {
+    const params = new HttpParams().set('username', localStorage.getItem('username'));
+    return this.http.delete(this.ds.urlToBackend + '/users/remove-link?access_token='
+      + localStorage.getItem('token') + '&url=' + url, {params: params});
+  }
   removeEntryFromBackend(word) {
     const params = new HttpParams().set('username', localStorage.getItem('username'));
     return this.http.delete(this.ds.urlToBackend + '/entry/remove-entry?access_token='

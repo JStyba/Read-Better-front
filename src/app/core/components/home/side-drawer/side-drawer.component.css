@@ -1,19 +1,4 @@
 
-/*.drawer {*/
-/*position: absolute;*/
-/*padding-top: 450px;*/
-/*overflow: auto;*/
-
-/*}*/
-
-/*.sideDrawer {*/
-
-/*position: fixed;*/
-/*top: 0;*/
-/*z-index: 1;*/
-/*overflow: hidden;*/
-/*width: 300px;*/
-/*}*/
 #panel {
   position: fixed;
   top: 50px;

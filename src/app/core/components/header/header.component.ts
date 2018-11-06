@@ -1,5 +1,6 @@
 import {Component, ElementRef, HostListener, OnInit, ViewChild, AfterViewInit} from '@angular/core';
 import {Router} from '@angular/router';
+import {AuthenticationService} from '../../../services/authentication-service';
 
 @Component({
   selector: 'app-header',
@@ -11,7 +12,7 @@ export class HeaderComponent implements AfterViewInit {
   topNav = false;
   elementPosition: any;
 
-  constructor(private router: Router) {
+  constructor(private router: Router, private auth: AuthenticationService) {
   }
 
   ngAfterViewInit() {
@@ -43,6 +44,7 @@ export class HeaderComponent implements AfterViewInit {
   }
   logout() {
     localStorage.clear();
+    this.auth.loggedIn = false;
     this.router.navigateByUrl('start');
   }
 }

@@ -11,6 +11,9 @@
 .savedWords {
   border-top: 2px solid #3D3D8C;
   background-image: linear-gradient(to left top, #ebebeb, #f0f0f0, #f5f5f5, #fafafa, #ffffff);
+}.savedLinks {
+  border-top: 2px solid #3D3D8C;
+
 }
 .word {
   width: 200px;

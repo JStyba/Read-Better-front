@@ -66,4 +66,33 @@
       </li>
     </ol>
   </div>
+
+  <div class="savedLinks">
+    <p> Saved webpages </p>
+    <button class="getSavedWords" type="button" (click)="showSavedLinks()">Get saved webpages</button>
+
+
+    <ol>
+      <li *ngFor="let l of savedLinks">
+        <ul>
+          <li><span class="word">{{l[0] }} </span>
+            <button class="removeWord" type="submit" (click)="removeLinkFromBackend(l[0], l)">remove
+            </button>
+            </li>
+        </ul>
+        <!--<ol>-->
+        <!--<li *ngFor="let def of entry.definitions">{{def}}</li>-->
+        <!--</ol>-->
+        <!--<ul>-->
+        <!--<li>{{entry.timestamp}}</li>-->
+        <!--</ul>-->
+        <ul class="urlAdress">
+          <li>
+            {{l[1]}}
+          </li>
+        </ul>
+
+      </li>
+    </ol>
+  </div>
 </div>

@@ -102,4 +102,7 @@ export class HomeComponent implements OnInit, ComponentCanDeactivate {
   fireEvent(e) {
     e.preventDefault();
   }
+  saveUrl (url) {
+    this.userService.sendUrlToBackend(url);
+    }
 }
