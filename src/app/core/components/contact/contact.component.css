@@ -21,6 +21,7 @@ body {
 }
 
 .section h1 {
+  color: #4d4d4d;
   position: relative;
   margin-top: -14px;
   display: inline-block;
@@ -51,6 +52,7 @@ span {
 }
 
 .section p {
+  color: #4d4d4d;
   width: 70%;
   margin: 20px auto 40px auto;
   line-height: 30px;
@@ -70,5 +72,6 @@ span {
 
 a {
   text-decoration: none;
-  color: black;
+  color: #4d4d4d;
+
 }
