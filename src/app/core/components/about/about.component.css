@@ -1,15 +1,95 @@
-body{
-  /*background-image: linear-gradient(to left bottom, #7e7a7a, #9a9798, #b8b6b7, #d6d6d6, #f6f6f6);*/
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
-div {
-  width: 80%;
-  font-family: 'Exo 2', sans-serif;
-  text-align: justify;
-  margin: auto;
-  margin-top: 100px;
-  border-top: 2px solid #3D3D8C;
-  padding-top: 20px;
+
+body {
+  font-family: "'Exo 2', sans-serif;";
+  background-color: #ddd;
+  color: #4d4d4d;
+}
+
+.section {
+  position: relative;
+  width: 900px;
+  max-width: 80%;
+  border: 2px solid #333;
+  border-top: none;
+  text-align: center;
+  margin: 60px auto;
+}
+
+.section h1 {
+  color: #4d4d4d;
+  position: relative;
+  margin-top: -14px;
+  display: inline-block;
+  letter-spacing: 4px;
 }
 span {
   font-weight: bolder;
+}
+.top-border{
+  position: absolute;
+  height: 2px;
+  width: 24%;
+  background-color: #333;
+}
+
+.right {
+  right: 0;
+}
+
+.left {
+  left: 0;
+}
+
+@media (max-width: 685px) {
+  .top-border {
+    width: 18%;
+  }
+}
+
+.section p {
+  width: 81%;
+  margin: 20px auto 40px auto;
+  line-height: 30px;
+}
+
+.section a {
+  outline: 0;
+  display: inline-block;
+  padding: 20px;
+  margin-bottom: 40px;
+  width: 440px;
+  max-width: 80%;
+  background-color: #333;
+  color: #fff;
+  font-size: 22px;
+  letter-spacing: 3px;
+  transition: all 0.3s ease 0s;
+  -moz-transition: all 0.3s ease 0s;
+  -webkit-transition: all 0.3s ease 0s;
+}
+
+.section a:hover {
+  background-color: #1D222D;
+}
+
+.section a:link, .section a:visited, .section a:link:hover, .section a:visited:hover {
+  text-decoration: none;
+  color: #fff;
+}
+
+@media (max-width: 500px) {
+  .top-border {
+    display: none;
+  }
+  .section {
+    border-top: 2px solid #333;
+  }
+  .section h1 {
+    margin: 20px 6px;
+  }
 }
