@@ -17,6 +17,9 @@ export class MyReadBetterComponent implements OnInit {
   tableOfCurrentWords = this.uwds.tableOfWords;
   tableOfDatabaseWords = [];
   popOverDialogRef: MatDialogRef<PopOverRBComponent>;
+  tempWordsStatus = false;
+  savedWordsStatus = false;
+  urlStatus = false;
 
   constructor(private uwds: UserWordDatabaseService
     , private us: UserService
@@ -25,6 +28,16 @@ export class MyReadBetterComponent implements OnInit {
   }
 
   ngOnInit() {
+  }
+
+  toggleElementsTempWords() {
+    this.tempWordsStatus = !this.tempWordsStatus;
+  }
+  toggleElementsSavedWords() {
+    this.savedWordsStatus = !this.savedWordsStatus;
+  }
+  toggleElementsUrl() {
+    this.urlStatus = !this.urlStatus;
   }
 
   sendAllToBackend() {
@@ -37,17 +50,17 @@ export class MyReadBetterComponent implements OnInit {
 
   getAllEntries() {
     this.tableOfDatabaseWords = [];
-          this.tableOfDatabaseWords = this.us.getEntriesFromDatabase();
-      }
+    this.tableOfDatabaseWords = this.us.getEntriesFromDatabase();
+  }
 
   removeWordFromLocalDatabase(word, array) {
     this.uwds.removeWord(word, array);
   }
 
   removeWordFromBackendDatabase(word, e: string[]) {
-    this.us.removeEntryFromBackend(word).subscribe( );
+    this.us.removeEntryFromBackend(word).subscribe();
     this.tableOfDatabaseWords.splice(this.tableOfDatabaseWords.indexOf(e), 1);
-    }
+  }
 
   translate(word) {
     this.popOverDialogRef = this.dialog.open(PopOverRBComponent, {
@@ -58,6 +71,7 @@ export class MyReadBetterComponent implements OnInit {
       panelClass: 'wordBox'
     });
   }
+
   translatePl(word) {
     this.popOverDialogRef = this.dialog.open(PopOverRBComponent, {
       data: {
@@ -68,12 +82,14 @@ export class MyReadBetterComponent implements OnInit {
 
     });
   }
-  showSavedLinks () {
+
+  showSavedLinks() {
     this.savedLinks = [];
     this.savedLinks = this.us.getBrowsingHistoryFromDatabase();
   }
-  removeLinkFromBackend (link, table: string[]) {
+
+  removeLinkFromBackend(link, table: string[]) {
     this.us.removeUrlFromBackend(link).subscribe();
     this.savedLinks.splice(this.savedLinks.indexOf(table), 1);
   }
-  }
+}

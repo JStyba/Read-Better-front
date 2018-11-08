@@ -4,8 +4,8 @@
 <br>
 <br>
 <div class="table">
-  <h1 id="headerTemporary">Temporary Words </h1>
-  <div class="temporaryWords hide">
+  <h1 id="headerTemporary" (click)="toggleElementsTempWords()" >Temporary Words </h1>
+  <div  [ngClass]="tempWordsStatus ? 'temporaryWords hide' : 'danger'">
 
     <ol>
       <li *ngFor="let e of tableOfCurrentWords">
@@ -38,8 +38,8 @@
 
   <span class="line"></span>
 
-  <h1 id="headerSavedWords"> Saved Words </h1>
-  <div class="savedWords hide">
+  <h1 id="headerSavedWords" (click)="toggleElementsSavedWords()"> Saved Words </h1>
+  <div  [ngClass]="savedWordsStatus ? 'savedWords hide' : 'danger'">
 
     <button class="getSavedWords" type="button" (click)="getAllEntries()">Get saved words</button>
 
@@ -71,8 +71,8 @@
   </div>
   <span class="line"></span>
 
-  <h1 id="headerSavedWeb"> Saved webpages </h1>
-  <div class="savedLinks hide">
+  <h1 id="headerSavedWeb" (click)="toggleElementsUrl()"> Saved webpages </h1>
+  <div  [ngClass]="urlStatus ? 'savedLinks hide' : 'danger'">
 
     <button class="getSavedWords" type="button" (click)="showSavedLinks()">Get saved webpages</button>
 
