@@ -57,6 +57,13 @@ span {
   margin: 20px auto 40px auto;
   line-height: 30px;
 }
+ul {
+  font-family: 'Exo 2', sans-serif;
+  color: #4d4d4d;
+  width: 81%;
+  margin: 20px auto 40px auto;
+  line-height: 30px;
+}
 
 
 @media (max-width: 500px) {
