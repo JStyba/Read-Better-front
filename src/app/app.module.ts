@@ -40,7 +40,7 @@ import { PopOverRBComponent } from './core/components/my-read-better/pop-over-rb
 import {NgcCookieConsentConfig, NgcCookieConsentModule} from 'ngx-cookieconsent';
 const cookieConfig: NgcCookieConsentConfig = {
   cookie: {
-    domain: 'localhost:4200'
+    domain: 'read-better.pl'
   },
   palette: {
     popup: {

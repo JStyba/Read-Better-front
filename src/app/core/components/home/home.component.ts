@@ -27,7 +27,7 @@ export class HomeComponent implements OnInit, ComponentCanDeactivate {
     , private wss: WebScrapeService
     , private dialog: MatDialog
     , private uwds: UserWordDatabaseService) {
-  }
+      }
 
   popOverDialogRef: MatDialogRef<PopOverComponent>;
   sideDrawerDialogRef: MatDialogRef<SideDrawerComponent>;
@@ -43,17 +43,17 @@ export class HomeComponent implements OnInit, ComponentCanDeactivate {
   ngOnInit() {
     this.one = document.getElementById('test');
     this.shadow = this.one.attachShadow({mode: 'closed'});
-    if (localStorage.getItem('url') !== '') {
+    if (localStorage.getItem('url') !== '' && localStorage.getItem('url') !== null) {
       this.wss.getStringedWeb(localStorage.getItem('url')).subscribe(data => {
         this.shadow.innerHTML = '<p>' + data + '</p>';
+        console.log(this.shadow.href);
       });
     }
-  }
+     }
   @HostListener('window:beforeunload')
   canDeactivate(): Observable<boolean> | boolean {
     return false;
   }
-
 
   showMeTheToken() {
     alert(localStorage.getItem('token'));

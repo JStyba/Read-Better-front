@@ -3,7 +3,6 @@ import {WordTranslationService} from './services/word-translation-service';
 import {WebScrapeService} from './services/web-scrape-service';
 import {SelectWordService} from './services/select-word-service';
 import {Router} from '@angular/router';
-import {StartComponent} from './core/components/start/start.component';
 import {NgcCookieConsentService, NgcInitializeEvent, NgcNoCookieLawEvent, NgcStatusChangeEvent} from 'ngx-cookieconsent';
 import {Subscription} from 'rxjs';
 

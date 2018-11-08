@@ -1,6 +1,7 @@
 import {Component, ElementRef, HostListener, OnInit, ViewChild, AfterViewInit} from '@angular/core';
 import {Router} from '@angular/router';
 import {AuthenticationService} from '../../../services/authentication-service';
+import {UserService} from '../../../services/user-service';
 
 @Component({
   selector: 'app-header',
@@ -12,7 +13,7 @@ export class HeaderComponent implements AfterViewInit, OnInit {
   topNav = false;
   elementPosition: any;
   loggedIn: boolean;
-    constructor(private router: Router, private auth: AuthenticationService) {
+    constructor(private router: Router, private auth: AuthenticationService, private us: UserService) {
   }
   ngAfterViewInit() {
     this.elementPosition = this.menuElement.nativeElement.offsetTop;
@@ -48,6 +49,7 @@ ngOnInit () {
     this.router.navigateByUrl('myreadbetter');
   }
   logout() {
+    this.us.recordLogin();
     localStorage.clear();
     this.router.navigateByUrl('start');
   }

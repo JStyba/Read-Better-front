@@ -45,8 +45,8 @@ export class UserService {
     const headers = new HttpHeaders()
       .set('Content-Type', 'application/x-www-form-urlencoded');
     return this.http.post(this.ds.urlToBackend + `/entry/def?access_token=`
-      + localStorage.getItem('token') + '&username=' + username, table).subscribe( res => {
-        console.log(res);
+      + localStorage.getItem('token') + '&username=' + username, table).subscribe(res => {
+      console.log(res);
     });
   }
 
@@ -69,11 +69,12 @@ export class UserService {
       for (const prop in res) {
         if (res !== null) {
           this.newEntryArray.push(Object.values(res[prop]));
-          }
+        }
       }
     });
     return (this.newEntryArray);
   }
+
   getBrowsingHistoryFromDatabase() {
     this.newBrowsingHistoryArray = [];
     const params = new HttpParams().set('username', localStorage.getItem('username'));
@@ -87,24 +88,38 @@ export class UserService {
     });
     return (this.newBrowsingHistoryArray);
   }
+
   sendUrlToBackend(url) {
     const params = new HttpParams().set('url', url);
     const username = localStorage.getItem('username');
     const headers = new HttpHeaders()
       .set('Content-Type', 'application/x-www-form-urlencoded');
     return this.http.get(this.ds.urlToBackend + `/users/save-url?access_token=`
-      + localStorage.getItem('token') + '&username=' + username, {params: params}).subscribe( res => {
+      + localStorage.getItem('token') + '&username=' + username, {params: params}).subscribe(res => {
       console.log(res);
     });
   }
+
   removeUrlFromBackend(url) {
     const params = new HttpParams().set('username', localStorage.getItem('username'));
     return this.http.delete(this.ds.urlToBackend + '/users/remove-link?access_token='
       + localStorage.getItem('token') + '&url=' + url, {params: params});
   }
+
   removeEntryFromBackend(word) {
     const params = new HttpParams().set('username', localStorage.getItem('username'));
     return this.http.delete(this.ds.urlToBackend + '/entry/remove-entry?access_token='
       + localStorage.getItem('token') + '&word=' + word, {params: params});
+  }
+
+  recordLogin() {
+    const loggedIn = localStorage.getItem('loggedInAt').replace('T', ' ').split('\.')[0];
+    const loggedOut = new Date().toISOString().replace('T', ' ').split('\.')[0];
+    const username = localStorage.getItem('username');
+    const headers = new HttpHeaders()
+      .set('Content-Type', 'application/x-www-form-urlencoded');
+    return this.http.get(this.ds.urlToBackend + `/users/record-session?access_token=`
+      + localStorage.getItem('token') + '&loggedIn=' + loggedIn + '&loggedOut=' + loggedOut + '&username=' + username).subscribe(res => {
+    });
   }
 }
