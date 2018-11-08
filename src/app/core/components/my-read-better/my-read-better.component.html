@@ -4,8 +4,9 @@
 <br>
 <br>
 <div class="table">
-  <div class="temporaryWords">
-    <p>Temporary Words </p>
+  <h1 id="headerTemporary">Temporary Words </h1>
+  <div class="temporaryWords hide">
+
     <ol>
       <li *ngFor="let e of tableOfCurrentWords">
         <ul>
@@ -33,11 +34,13 @@
     </ol>
     <button class="sendAll" type="button" (click)="sendAllToBackend()">Save all words</button>
     <button class="clearAll">Clear</button>
-
-
   </div>
+
+  <span class="line"></span>
+
+  <h1 id="headerSavedWords"> Saved Words </h1>
   <div class="savedWords">
-    <p> Saved Words </p>
+
     <button class="getSavedWords" type="button" (click)="getAllEntries()">Get saved words</button>
 
 
@@ -66,9 +69,11 @@
       </li>
     </ol>
   </div>
+  <span class="line"></span>
 
-  <div class="savedLinks">
-    <p> Saved webpages </p>
+  <h1 id="headerSavedWeb"> Saved webpages </h1>
+  <div class="savedLinks hide">
+
     <button class="getSavedWords" type="button" (click)="showSavedLinks()">Get saved webpages</button>
 
 
@@ -78,7 +83,7 @@
           <li><span class="word">{{l[0] }} </span>
             <button class="removeWord" type="submit" (click)="removeLinkFromBackend(l[0], l)">remove
             </button>
-            </li>
+          </li>
         </ul>
         <!--<ol>-->
         <!--<li *ngFor="let def of entry.definitions">{{def}}</li>-->
@@ -95,4 +100,7 @@
       </li>
     </ol>
   </div>
+  <span class="line"></span>
+
+
 </div>

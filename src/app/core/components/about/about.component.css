@@ -58,30 +58,6 @@ span {
   line-height: 30px;
 }
 
-.section a {
-  outline: 0;
-  display: inline-block;
-  padding: 20px;
-  margin-bottom: 40px;
-  width: 440px;
-  max-width: 80%;
-  background-color: #333;
-  color: #fff;
-  font-size: 22px;
-  letter-spacing: 3px;
-  transition: all 0.3s ease 0s;
-  -moz-transition: all 0.3s ease 0s;
-  -webkit-transition: all 0.3s ease 0s;
-}
-
-.section a:hover {
-  background-color: #1D222D;
-}
-
-.section a:link, .section a:visited, .section a:link:hover, .section a:visited:hover {
-  text-decoration: none;
-  color: #fff;
-}
 
 @media (max-width: 500px) {
   .top-border {
