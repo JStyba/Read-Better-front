@@ -47,11 +47,11 @@
     <ol>
       <li *ngFor="let e of tableOfDatabaseWords">
         <ul>
-          <li><span class="word">{{e[0] }} </span>
-            <button class="removeWord" type="submit" (click)="removeWordFromBackendDatabase(e[0], e)">remove
+          <li><span class="word">{{e.word }} </span>
+            <button class="removeWord" type="submit" (click)="removeWordFromBackendDatabase(e.word, e)">remove
             </button>
-            <button class="translateWord" type="submit" (click)="translatePl(e[0])">tłumacz</button>
-            <button class="translateWord" type="submit" (click)="translate(e[0])">translate</button>
+            <button class="translateWord" type="submit" (click)="translatePl(e.word)">tłumacz</button>
+            <button class="translateWord" type="submit" (click)="translate(e.word)">translate</button>
           </li>
         </ul>
         <!--<ol>-->
@@ -62,7 +62,7 @@
         <!--</ul>-->
         <ul class="urlAdress">
           <li>
-            {{e[2]}}
+            {{e.entryUrl}}
           </li>
         </ul>
 

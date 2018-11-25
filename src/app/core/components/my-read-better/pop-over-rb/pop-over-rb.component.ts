@@ -32,8 +32,8 @@ export class PopOverRBComponent implements OnInit {
     if (this.data['language'] === 'en') {
       this.translate();
     }
-    if (this.data['language'] === 'pl'){
-      this.translatePl()
+    if (this.data['language'] === 'pl') {
+      this.translatePl();
     }
   }
 

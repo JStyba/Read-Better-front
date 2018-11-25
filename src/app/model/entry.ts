@@ -10,15 +10,19 @@ interface EntryInterface {
 export class Entry implements EntryInterface {
 
   word: string;
-  definitions: string [];
+  private _definitions: string [];
   timestamp: any;
   entryUrl: string;
 
 
   constructor(word: string, timestamp: any, entryUrl: string, definitions?: string[]) {
     this.word = word;
-    this.definitions = definitions;
+    this._definitions = definitions;
     this.timestamp = timestamp;
     this.entryUrl = entryUrl;
+  }
+
+  set definitions(value: string[]) {
+    this._definitions = value;
   }
 }

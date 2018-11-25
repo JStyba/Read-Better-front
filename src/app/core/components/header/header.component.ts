@@ -13,6 +13,7 @@ export class HeaderComponent implements AfterViewInit, OnInit {
   topNav = false;
   elementPosition: any;
   loggedIn: boolean;
+  isAdmin = false;
     constructor(private router: Router, private auth: AuthenticationService, private us: UserService) {
   }
   ngAfterViewInit() {
@@ -23,6 +24,11 @@ ngOnInit () {
       this.loggedIn = true;
     } else {
       this.loggedIn = false;
+    }
+    if (localStorage.getItem('username') === 'admin') {
+      this.isAdmin = true;
+    } else {
+      this.isAdmin = false;
     }
 }
   @HostListener('window:scroll', ['$event'])
@@ -57,5 +63,9 @@ ngOnInit () {
   goToStartPage() {
     this.router.navigateByUrl('start');
   }
-}
+
+  goToAdminPage() {
+    this.router.navigateByUrl('admin');
+  }
+ }
 

@@ -38,6 +38,10 @@ import {DataService} from './services/data-service';
 import {CanDeactivateGuard} from './services/can-deactivate-guard';
 import { PopOverRBComponent } from './core/components/my-read-better/pop-over-rb/pop-over-rb.component';
 import {NgcCookieConsentConfig, NgcCookieConsentModule} from 'ngx-cookieconsent';
+import {AdminPanelComponent} from './core/components/admin-panel/admin-panel.component';
+import {AdminService} from './services/admin-service';
+
+
 const cookieConfig: NgcCookieConsentConfig = {
   cookie: {
     domain: 'read-better.pl'
@@ -87,6 +91,10 @@ const appRoutes: Routes = [
   {
     path: 'start',
     component: StartComponent
+  },
+  {
+    path: 'admin',
+    component: AdminPanelComponent
   }
   ];
 export const MaterialModules = [
@@ -114,6 +122,7 @@ export const MaterialModules = [
     SideDrawerComponent,
     MyReadBetterComponent,
     PopOverRBComponent,
+    AdminPanelComponent,
                     ],
   imports: [
     BrowserModule,
@@ -130,8 +139,10 @@ export const MaterialModules = [
   entryComponents: [
     PopOverComponent, SideDrawerComponent, PopOverRBComponent
   ],
-  providers: [AuthenticationService
-    , AuthGuard, UserService
+  providers: [
+    AuthenticationService
+    , AuthGuard
+    , UserService
     , AlertService
     , PopOverComponent
     , WordTranslationService
@@ -140,6 +151,7 @@ export const MaterialModules = [
     , UserService
     , DataService
     , CanDeactivateGuard,
+    , AdminService,
     { provide: HTTP_INTERCEPTORS, multi: true, useClass: TokenInterceptor},
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true}
     ],

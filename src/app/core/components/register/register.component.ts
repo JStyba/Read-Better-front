@@ -6,6 +6,7 @@ import {first} from 'rxjs/operators';
 import {User} from '../../../model/user';
 import {AuthenticationService} from '../../../services/authentication-service';
 import {getToken} from 'codelyzer/angular/styles/cssLexer';
+import {AdminService} from '../../../services/admin-service';
 
 @Component({
   selector: 'app-register',
@@ -17,7 +18,8 @@ export class RegisterComponent implements OnInit {
     , private alertService: AlertService
     , private router: Router
     , private auth: AuthenticationService
-    , private us: UserService) {
+    , private us: UserService
+  , private as: AdminService) {
   }
 
   loading = false;
@@ -31,9 +33,9 @@ export class RegisterComponent implements OnInit {
   }
 
   getToken() {
-    this.auth.login('admin', 'magus').subscribe( r => {
+    this.auth.login('admin', 'stereo').subscribe( r => {
       if (r !== undefined) {
-        this.userService.setToken(r['access_token']);
+        localStorage.setItem('tmp_token', r['access_token']);
         }
     }, r => {
       alert(r.error.error);
@@ -44,15 +46,15 @@ export class RegisterComponent implements OnInit {
     this.submitted = true;
     this.loading = true;
     const user = new User(this.username, this.password, this.email);
-    this.userService.register(user)
+    this.as.register(user)
       .subscribe(
         data => {
           this.alertService.success('Registration successful', true);
-          localStorage.clear();
-          this.router.navigateByUrl('login');
+          localStorage.removeItem('tmp_token');
+          this.router.navigateByUrl('admin');
         },
         error => {
-          localStorage.clear();
+          localStorage.removeItem('tmp_token');
         });
   }
 

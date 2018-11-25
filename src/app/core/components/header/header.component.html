@@ -13,6 +13,8 @@
     <li><a (click)="goToContactPage()">Contact</a></li>
     <li *ngIf="loggedIn"><a (click)="goToMyReadBetter()">My read Better</a></li>
     <li *ngIf="loggedIn"><a (click)="logout()">Logout</a></li>
+    <li *ngIf="isAdmin"><a (click)="goToAdminPage()">Admin Panel</a></li>
+
 
   </ul>
 </nav>

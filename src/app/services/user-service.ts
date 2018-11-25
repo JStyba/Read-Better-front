@@ -6,6 +6,7 @@ import {DataService} from './data-service';
 import {split} from 'ts-node';
 import {stringify} from 'querystring';
 import {map} from 'rxjs/operators';
+import {Entry} from '../model/entry';
 
 const TOKEN = 'token';
 const USERNAME = 'username';
@@ -20,6 +21,7 @@ export class UserService {
   }
 
   newEntryArray = [];
+  newStringEntryArray: Entry[] = [];
   newBrowsingHistoryArray = [];
 
   setToken(token: string): void {
@@ -34,10 +36,7 @@ export class UserService {
     return localStorage.getItem(TOKEN) !== null;
   }
 
-  register(user: User) {
-    return this.http.post(this.ds.urlToBackend + `/users/register?access_token=`
-      + localStorage.getItem('token'), user);
-  }
+
 
   sendToBackend(table) {
     const params = new HttpParams();
@@ -60,8 +59,8 @@ export class UserService {
     const year = entryDate.getFullYear();
     return day + '-' + month + '-' + year + ' at ' + hours + ':' + minutes.substr(-2) + ':' + seconds.substr(-2);
   }
-
   getEntriesFromDatabase() {
+    this.newStringEntryArray = [];
     this.newEntryArray = [];
     const params = new HttpParams().set('username', localStorage.getItem('username'));
     this.http.get(this.ds.urlToBackend + '/entry/get-entries/?access_token='
@@ -71,11 +70,37 @@ export class UserService {
           this.newEntryArray.push(Object.values(res[prop]));
         }
       }
+      for (let i = 0; i < this.newEntryArray.length; i++) {
+        this.newStringEntryArray.push(new Entry(
+          this.newEntryArray[i][0]
+          , this.newEntryArray[i][1]
+          , this.newEntryArray[i][2]));
+      }
     });
-    return (this.newEntryArray);
+    return (this.newStringEntryArray);
   }
-
-  getBrowsingHistoryFromDatabase() {
+  getEntriesFromDatabaseDef() {
+    this.newStringEntryArray = [];
+    this.newEntryArray = [];
+    const params = new HttpParams().set('username', localStorage.getItem('username'));
+    this.http.get(this.ds.urlToBackend + '/entry/get-entries-with-def/?access_token='
+      + localStorage.getItem('token'), {params: params}).subscribe(res => {
+      for (const prop in res) {
+        if (res !== null) {
+          this.newEntryArray.push(Object.values(res[prop]));
+        }
+      }
+      for (let i = 0; i < this.newEntryArray.length; i++) {
+        this.newStringEntryArray.push(new Entry(
+          this.newEntryArray[i][0]
+          , this.newEntryArray[i][1]
+          , this.newEntryArray[i][2]
+        , this.newEntryArray[i][3]));
+      }
+    });
+    return (this.newStringEntryArray);
+  }
+    getBrowsingHistoryFromDatabase() {
     this.newBrowsingHistoryArray = [];
     const params = new HttpParams().set('username', localStorage.getItem('username'));
     this.http.get(this.ds.urlToBackend + '/users/get-browsing-history/?access_token='
