@@ -1,0 +1,52 @@
+<app-header></app-header>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<div>
+  <button type="button" (click)="register()">Register new User</button>
+</div>
+<div>
+</div>
+<h1 > Users </h1>
+<div>
+
+  <button type="button" (click)="listAllUsers()">List All Users</button>
+
+<div>
+  <input type="text" [(ngModel)]="search"/>
+  <button type="button" (click)="getDict(search)"> get local dict</button>
+</div>
+  <ol>
+    <li *ngFor="let u of tableOfUsers">
+      <ul>
+        <li>Username: {{u[2]}} <br>
+       Email: {{u[3]}} <br>
+        Login count: {{u[1]}}</li>
+      </ul>
+      <!--<ol>-->
+      <!--<li *ngFor="let def of entry.definitions">{{def}}</li>-->
+      <!--</ol>-->
+      <!--<ul>-->
+      <!--<li>{{entry.timestamp}}</li>-->
+      <!--</ul>-->
+      <!--<ul class="urlAdress">-->
+        <!--<li>-->
+          <!--{{l[1]}}-->
+        <!--</li>-->
+      <!--</ul>-->
+
+    </li>
+  </ol>
+</div>
+<div style="text-align:center">
+  <h1>
+    Export by clicking button below</h1>
+  <button (click)="saveFile()">Export</button></div>
+<ol *ngFor="let e of tableOfDatabaseWords">
+  <li> {{e.word}}</li>
+  <li> {{e.entryUrl}}</li>
+  <li> {{e.timestamp}}</li>
+</ol>

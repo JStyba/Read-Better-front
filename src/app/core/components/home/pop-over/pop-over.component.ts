@@ -7,6 +7,7 @@ import {Entry} from '../../../../model/entry';
 import {serialize} from '@angular/compiler/src/i18n/serializers/xml_helper';
 import {UserService} from '../../../../services/user-service';
 import {stringify} from 'querystring';
+import {DemoService} from '../../../../services/demo-service';
 
 @Component({
   selector: 'app-pop-over',
@@ -21,6 +22,7 @@ export class PopOverComponent implements OnInit {
     , private wts: WordTranslationService
     , private uwds: UserWordDatabaseService
     , private us: UserService
+    , private ds: DemoService
   ) {
   }
 
@@ -32,7 +34,12 @@ export class PopOverComponent implements OnInit {
   }
 
   translate() {
-    this.definitions = this.wts.getResponse(this.word);
+    if (localStorage.getItem('username') !== 'demo') {
+      this.definitions = this.wts.getResponse(this.word);
+    }
+    if (localStorage.getItem('username') === 'demo') {
+      this.definitions = this.ds.getTranslation(this.word);
+    }
   }
   translatePl() {
     this.definitions = this.wts.getResponsePl(this.word);

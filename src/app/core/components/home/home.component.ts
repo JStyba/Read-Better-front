@@ -27,7 +27,7 @@ export class HomeComponent implements OnInit, ComponentCanDeactivate {
     , private wss: WebScrapeService
     , private dialog: MatDialog
     , private uwds: UserWordDatabaseService) {
-      }
+  }
 
   popOverDialogRef: MatDialogRef<PopOverComponent>;
   sideDrawerDialogRef: MatDialogRef<SideDrawerComponent>;
@@ -39,28 +39,30 @@ export class HomeComponent implements OnInit, ComponentCanDeactivate {
   tableOfWords: Entry[] = this.uwds.tableOfWords;
   url = '';
   word = null;
+  isDemo = false;
 
   ngOnInit() {
     this.one = document.getElementById('test');
     this.shadow = this.one.attachShadow({mode: 'closed'});
-    if (localStorage.getItem('url') !== '' && localStorage.getItem('url') !== null) {
-      this.wss.getStringedWeb(localStorage.getItem('url')).subscribe(data => {
+    if (localStorage.getItem('username') !== 'demo') {
+      this.isDemo = false;
+      if (localStorage.getItem('url') !== '' && localStorage.getItem('url') !== null) {
+        this.wss.getStringedWeb(localStorage.getItem('url')).subscribe(data => {
+          this.shadow.innerHTML = '<p>' + data + '</p>';
+          });
+      }
+    }
+    if (localStorage.getItem('username') === 'demo') {
+      this.isDemo = true;
+      this.wss.getStringedWeb('https://short-edition.com/en/story/1-min/exile-7').subscribe(data => {
         this.shadow.innerHTML = '<p>' + data + '</p>';
-        console.log(this.shadow.href);
       });
     }
-     }
+  }
+
   @HostListener('window:beforeunload')
   canDeactivate(): Observable<boolean> | boolean {
     return false;
-  }
-
-  showMeTheToken() {
-    alert(localStorage.getItem('token'));
-  }
-
-  deleteToken() {
-    localStorage.clear();
   }
 
   wordSelection() {
@@ -99,10 +101,12 @@ export class HomeComponent implements OnInit, ComponentCanDeactivate {
       array.splice(index, 1);
     }
   }
+
   fireEvent(e) {
     e.preventDefault();
   }
-  saveUrl (url) {
+
+  saveUrl(url) {
     this.userService.sendUrlToBackend(url);
-    }
+  }
 }

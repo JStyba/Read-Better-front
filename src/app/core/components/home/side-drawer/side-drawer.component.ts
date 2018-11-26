@@ -3,6 +3,8 @@ import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material';
 import {UserWordDatabaseService} from '../../../../services/user-word-database-service';
 import {WordTranslationService} from '../../../../services/word-translation-service';
 import {Entry} from '../../../../model/entry';
+import {DemoService} from '../../../../services/demo-service';
+import {Definition} from '../../../../model/definition';
 
 @Component({
   selector: 'app-side-drawer',
@@ -11,7 +13,7 @@ import {Entry} from '../../../../model/entry';
 })
 export class SideDrawerComponent implements AfterViewInit {
 
-  constructor(private wts: WordTranslationService, private uwds: UserWordDatabaseService) {
+  constructor(private wts: WordTranslationService, private uwds: UserWordDatabaseService, private ds: DemoService) {
   }
 
   tableOfWords = this.uwds.tableOfWords;
@@ -36,9 +38,15 @@ export class SideDrawerComponent implements AfterViewInit {
   }
 
   translate(word) {
-    this.translatedWord = word;
-    this.definitions = this.wts.getResponse(word);
-  }
+    if (localStorage.getItem('username') !== 'demo') {
+      this.translatedWord = word;
+      this.definitions = this.wts.getResponse(word);
+    } else {
+        this.translatedWord = word;
+        this.definitions = this.ds.getTranslation(word);
+      }
+      }
+
   translatePl(word) {
     this.translatedWord = word;
     this.definitions = this.wts.getResponsePl(word);

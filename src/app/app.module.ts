@@ -40,6 +40,7 @@ import { PopOverRBComponent } from './core/components/my-read-better/pop-over-rb
 import {NgcCookieConsentConfig, NgcCookieConsentModule} from 'ngx-cookieconsent';
 import {AdminPanelComponent} from './core/components/admin-panel/admin-panel.component';
 import {AdminService} from './services/admin-service';
+import {DemoService} from './services/demo-service';
 
 
 const cookieConfig: NgcCookieConsentConfig = {
@@ -150,8 +151,9 @@ export const MaterialModules = [
     , SideDrawerComponent
     , UserService
     , DataService
-    , CanDeactivateGuard,
-    , AdminService,
+    , CanDeactivateGuard
+    , AdminService
+    , DemoService,
     { provide: HTTP_INTERCEPTORS, multi: true, useClass: TokenInterceptor},
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true}
     ],

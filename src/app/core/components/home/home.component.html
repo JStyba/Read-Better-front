@@ -11,13 +11,13 @@
     <form>
       <div class="control">
         <!--<label for="url">ENTER URL: </label>-->
-        <input type="url" id="url"
+        <input *ngIf="!isDemo" type="url" id="url"
                [(ngModel)]="url"
                [ngModelOptions]="{standalone: true}"
                placeholder="ENTER WEBPAGE ADRESS"
                pattern="https://.*" size="20" required/>
-        <input class="url" type="submit" value="GO!" (click)="getDom(url)">
-        <input class="url" type="submit" value="SAVE" (click)="saveUrl(url)">
+        <input *ngIf="!isDemo" class="url" type="submit" value="GO!" (click)="getDom(url)">
+        <input *ngIf="!isDemo" class="url" type="submit" value="SAVE" (click)="saveUrl(url)">
       </div>
     </form>
     <div class="container">
