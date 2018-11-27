@@ -63,9 +63,9 @@ button {
   border-radius: 3px;
   color: darkslategray;
   cursor: pointer;
-
-
 }
+
+
 button:hover {
   opacity: 1;
   font-weight: bolder;

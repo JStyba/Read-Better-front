@@ -39,7 +39,7 @@ main {
   font-size: 16px;
   line-height: 33px;
   opacity: 0.5;
-  width: 320px;
+  width: 450px;
   height: 33px;
   padding-left: 7px;
   border: none;
@@ -51,7 +51,7 @@ main {
 }
 
 .url {
-
+  text-align: center;
   display: inline-block;
   float: none;
   width: 150px;

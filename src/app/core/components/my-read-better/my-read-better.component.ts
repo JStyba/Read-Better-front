@@ -17,9 +17,9 @@ export class MyReadBetterComponent implements OnInit {
   tableOfCurrentWords = this.uwds.tableOfWords;
   tableOfDatabaseWords = [];
   popOverDialogRef: MatDialogRef<PopOverRBComponent>;
-  tempWordsStatus = false;
-  savedWordsStatus = false;
-  urlStatus = false;
+  tempWordsStatus = true;
+  savedWordsStatus = true;
+  urlStatus = true;
 
   constructor(private uwds: UserWordDatabaseService
     , private us: UserService
