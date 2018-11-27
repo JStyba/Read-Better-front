@@ -18,13 +18,7 @@
             <button class="translateWord" type="submit" (click)="translate(e.word)">translate</button>
           </li>
         </ul>
-        <!--<ol>-->
-        <!--<li *ngFor="let def of entry.definitions">{{def}}</li>-->
-        <!--</ol>-->
-        <!--<ul>-->
-        <!--<li>{{entry.timestamp}}</li>-->
-        <!--</ul>-->
-        <ul class="urlAdress">
+           <ul class="urlAdress">
           <li>
             {{e.entryUrl}}
           </li>
@@ -32,16 +26,18 @@
 
       </li>
     </ol>
-    <button class="sendAll" type="button" (click)="sendAllToBackend()">Save all words</button>
-    <button class="clearAll">Clear</button>
-  </div>
+    <button *ngIf="!isDemo" class="sendAll" type="button" (click)="sendAllToBackend()">Save all words</button>
+    <button *ngIf="!isDemo" class="clearAll">Clear</button>
+    <button *ngIf="isDemo" class="sendAll" type="button" (click)="demoMsq()">Save all words</button>
+    </div>
 
   <span class="line"></span>
 
   <h1 id="headerSavedWords" (click)="toggleElementsSavedWords()"> Saved Words </h1>
   <div [ngClass]="savedWordsStatus ? 'savedWords hide' : 'danger'">
 
-    <button class="getSavedWords" type="button" (click)="getAllEntries()">Get saved words</button>
+    <button *ngIf="!isDemo" class="getSavedWords" type="button" (click)="getAllEntries()">Get saved words</button>
+    <button *ngIf="isDemo" class="getSavedWords" type="button" (click)="demoMsq()">Get saved words</button>
 
 
     <ol>
@@ -74,7 +70,8 @@
   <h1 id="headerSavedWeb" (click)="toggleElementsUrl()"> Saved webpages </h1>
   <div [ngClass]="urlStatus ? 'savedLinks hide' : 'danger'">
 
-    <button class="getSavedWords" type="button" (click)="showSavedLinks()">Get saved webpages</button>
+    <button *ngIf="!isDemo"class="getSavedWords" type="button" (click)="showSavedLinks()">Get saved webpages</button>
+    <button *ngIf="isDemo"class="getSavedWords" type="button" (click)="demoMsq()">Get saved webpages</button>
 
 
     <ol>

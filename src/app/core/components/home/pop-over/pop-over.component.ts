@@ -28,9 +28,13 @@ export class PopOverComponent implements OnInit {
 
   word;
   definitions;
+  isDemo = false;
 
   ngOnInit() {
     this.word = this.data['word'];
+    if (localStorage.getItem('username') === 'demo') {
+      this.isDemo = true;
+    }
   }
 
   translate() {
@@ -46,14 +50,27 @@ export class PopOverComponent implements OnInit {
   }
 
   AddToDb() {
-    const def = this.wts.getResponse(this.word);
+    if (!this.isDemo) {
+      const def = this.wts.getResponse(this.word);
       const newEntry = <Entry>({
-      word: this.word,
-      definitions: def,
-      // timestamp: Math.floor((new Date).getTime() / 1000),
-      timestamp: this.us.timestampToDate(new Date()),
-      entryUrl: localStorage.getItem('url')
-    });
-    this.uwds.addWordToDatabase(newEntry);
-   }
+        word: this.word,
+        definitions: def,
+        // timestamp: Math.floor((new Date).getTime() / 1000),
+        timestamp: this.us.timestampToDate(new Date()),
+        entryUrl: localStorage.getItem('url')
+      });
+      this.uwds.addWordToDatabase(newEntry);
+    }
+    if (this.isDemo) {
+      const def = this.ds.getTranslation(this.word);
+      const newEntry = <Entry>({
+        word: this.word,
+        definitions: def,
+        // timestamp: Math.floor((new Date).getTime() / 1000),
+        timestamp: this.us.timestampToDate(new Date()),
+        entryUrl: 'https://short-edition.com/en/story/1-min/exile-7'
+      });
+      this.uwds.addWordToDatabase(newEntry);
+    }
+  }
 }

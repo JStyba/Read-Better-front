@@ -35,7 +35,6 @@ export class DemoService {
         this.newArr.push(sth[i]['definition']);
       }
     });
-    console.log(this.newArr);
     return this.newArr;
   }
 }

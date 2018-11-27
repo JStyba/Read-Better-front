@@ -13,9 +13,9 @@ export class StartComponent implements OnInit {
   ngOnInit() {
   }
 goToRegisterPage () {
-    this.router.navigateByUrl('register');
-  // alert('I am sorry but registering new users is currently disabled. ' +
-  //   'If you would like to gain access, please contact me at contact@read-better.pl');
+    // this.router.navigateByUrl('register');
+  alert('I am sorry but registering new users is currently disabled. ' +
+    'If you would like to gain access, please contact me at contact@read-better.pl');
 }
 goToLoginPage () {
     this.router.navigateByUrl('login');

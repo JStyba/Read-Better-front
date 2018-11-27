@@ -20,6 +20,7 @@ export class MyReadBetterComponent implements OnInit {
   tempWordsStatus = true;
   savedWordsStatus = true;
   urlStatus = true;
+  isDemo;
 
   constructor(private uwds: UserWordDatabaseService
     , private us: UserService
@@ -28,6 +29,12 @@ export class MyReadBetterComponent implements OnInit {
   }
 
   ngOnInit() {
+    if (localStorage.getItem('username') === 'demo') {
+      this.isDemo = true;
+    }
+    if (localStorage.getItem('username') !== 'demo') {
+      this.isDemo = false;
+    }
   }
 
   toggleElementsTempWords() {
@@ -91,5 +98,9 @@ export class MyReadBetterComponent implements OnInit {
   removeLinkFromBackend(link, table: string[]) {
     this.us.removeUrlFromBackend(link).subscribe();
     this.savedLinks.splice(this.savedLinks.indexOf(table), 1);
+  }
+
+  demoMsq() {
+    alert('Option not available in demo mode');
   }
 }
