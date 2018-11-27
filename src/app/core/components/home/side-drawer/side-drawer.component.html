@@ -7,10 +7,6 @@
     <div id="content">
       <div>
         <p>{{translatedWord}}</p>
-        <ol>
-          <li *ngFor="let d of definitions">{{d}}</li>
-        </ol>
-        <button *ngIf="definitions.length > 0" type="button" (click)="hideDef()">hide</button>
       </div>
       <div id="def"></div>
       <ol>
@@ -21,6 +17,12 @@
             <button class="translateWord" type="submit" (click)="translatePl(n.word)">tłumacz</button>
             <button class="removeWord" type="submit" (click)="remove(n, tableOfWords)">remove
             </button>
+          </div>
+          <div *ngIf="n.word === translatedWord">
+            <ol>
+              <li *ngFor="let d of definitions">{{d}}</li>
+            </ol>
+            <button *ngIf="definitions.length > 0" type="button" (click)="hideDef()">hide</button>
           </div>
         </li>
       </ol>
