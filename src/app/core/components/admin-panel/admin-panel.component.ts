@@ -1,7 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
 import {AdminService} from '../../../services/admin-service';
-import saveAs from 'file-saver';
 import {UserService} from '../../../services/user-service';
 import {Entry} from '../../../model/entry';
 import {WordTranslationService} from '../../../services/word-translation-service';
@@ -18,6 +17,7 @@ export class AdminPanelComponent implements OnInit {
   definitions: string[];
   localDictEntry: Dict[];
   search: string;
+  pdfSrc = 'test.pdf';
   constructor(private router: Router, private as: AdminService, private us: UserService, private wts: WordTranslationService) {
   }
 
@@ -34,15 +34,15 @@ export class AdminPanelComponent implements OnInit {
   }
 
 
-  saveFile() {
-    this.tableOfDatabaseWords = [];
-    this.tableOfDatabaseWords = this.us.getEntriesFromDatabaseDef();
-    const filename = 'test';
-    setTimeout(() => {
-      const blob = new Blob([JSON.stringify(this.tableOfDatabaseWords)], {type: 'text/plain'});
-      saveAs(blob, filename);
-    }, 30000);
-  }
+  // saveFile() {
+  //   this.tableOfDatabaseWords = [];
+  //   this.tableOfDatabaseWords = this.us.getEntriesFromDatabaseDef();
+  //   const filename = 'test';
+  //   setTimeout(() => {
+  //     const blob = new Blob([JSON.stringify(this.tableOfDatabaseWords)], {type: 'text/plain'});
+  //     saveAs(blob, filename);
+  //   }, 30000);
+  // }
 
   getDict(search) {
     this.as.getLocalDict().subscribe( res => {

@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {Router} from '@angular/router';
+import {UserService} from '../../../services/user-service';
+import {AuthenticationService} from '../../../services/authentication-service';
 
 @Component({
   selector: 'app-start',
@@ -8,14 +10,22 @@ import {Router} from '@angular/router';
 })
 export class StartComponent implements OnInit {
 
-  constructor(private router: Router) { }
+  constructor(private router: Router, private userService: UserService, private auth: AuthenticationService) { }
 
   ngOnInit() {
   }
 goToRegisterPage () {
-    // this.router.navigateByUrl('register');
-  alert('I am sorry but registering new users is currently disabled. ' +
-    'If you would like to gain access, please contact me at contact@read-better.pl');
+    this.auth.login('demo', 'demo').subscribe( r => {
+    if (r !== undefined) {
+      localStorage.setItem('loggedIn', 'true');
+      localStorage.setItem('username', 'demo');
+      localStorage.setItem('loggedInAt', new Date().toISOString());
+      this.userService.setToken(r['access_token']);
+      this.router.navigateByUrl('home');
+    }
+  }, r => {
+    alert(r.error.error);
+  });
 }
 goToLoginPage () {
     this.router.navigateByUrl('login');

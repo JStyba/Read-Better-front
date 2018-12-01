@@ -41,6 +41,13 @@ import {NgcCookieConsentConfig, NgcCookieConsentModule} from 'ngx-cookieconsent'
 import {AdminPanelComponent} from './core/components/admin-panel/admin-panel.component';
 import {AdminService} from './services/admin-service';
 import {DemoService} from './services/demo-service';
+import {DialogService} from './services/dialog-service';
+import {PdfViewerModule} from 'ng2-pdf-viewer';
+import {platformBrowserDynamic} from '@angular/platform-browser-dynamic';
+import {FileUploadService} from './services/file-upload-service';
+import { WebpageComponent } from './core/components/home/webpage/webpage.component';
+import { DocumentComponent } from './core/components/home/document/document.component';
+import { ConfirmationDialogComponent } from './services/confirmation-dialog/confirmation-dialog.component';
 
 
 const cookieConfig: NgcCookieConsentConfig = {
@@ -96,6 +103,14 @@ const appRoutes: Routes = [
   {
     path: 'admin',
     component: AdminPanelComponent
+  },
+  {
+    path: 'document',
+    component: DocumentComponent
+  },
+  {
+    path: 'webpage',
+    component: WebpageComponent
   }
   ];
 export const MaterialModules = [
@@ -124,6 +139,9 @@ export const MaterialModules = [
     MyReadBetterComponent,
     PopOverRBComponent,
     AdminPanelComponent,
+    WebpageComponent,
+    DocumentComponent,
+    ConfirmationDialogComponent,
                     ],
   imports: [
     BrowserModule,
@@ -134,11 +152,12 @@ export const MaterialModules = [
     MaterialModules,
     MdePopoverModule,
     MatDialogModule,
+    PdfViewerModule,
     RouterModule.forRoot(appRoutes),
     NgcCookieConsentModule.forRoot(cookieConfig)
      ],
   entryComponents: [
-    PopOverComponent, SideDrawerComponent, PopOverRBComponent
+    PopOverComponent, SideDrawerComponent, PopOverRBComponent, ConfirmationDialogComponent
   ],
   providers: [
     AuthenticationService
@@ -153,11 +172,13 @@ export const MaterialModules = [
     , DataService
     , CanDeactivateGuard
     , AdminService
-    , DemoService,
+    , DemoService
+    , DialogService
+    , FileUploadService,
     { provide: HTTP_INTERCEPTORS, multi: true, useClass: TokenInterceptor},
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true}
     ],
   bootstrap: [AppComponent],
   })
-export class AppModule {
-}
+export class AppModule {}
+platformBrowserDynamic().bootstrapModule(AppModule);

@@ -1,73 +1,15 @@
 <app-header></app-header>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<button type="button" (click)="goToWebpage()">I want to read the web</button>
+<button type="button" (click)="goToDocument()">I want to read a document</button>
 
-<div id="wrapper">
-
-
-  <div style="padding: 20px;">
-  </div>
-
-
-  <main>
-    <form>
-
-      <div class="control">
-        <input type="url" id="url" placeholder="https://short-edition.com/en/story/1-min/exile-7"/>
-        <input class="url" type="click" value="GO!">
-        <input class="url" type="click" value="SAVE">
-      </div>
-      <div class="control">
-        <!--<label for="url">ENTER URL: </label>-->
-        <input *ngIf="!isDemo" type="url" id="url"
-               [(ngModel)]="url"
-               [ngModelOptions]="{standalone: true}"
-               placeholder="ENTER WEBPAGE ADRESS"
-               pattern="https://.*" size="20" required/>
-        <input *ngIf="!isDemo" class="url" type="submit" value="GO!" (click)="getDom(url)">
-        <input *ngIf="!isDemo" class="url" type="submit" value="SAVE" (click)="saveUrl(url)">
-      </div>
-    </form>
-    <div class="container">
-      <app-side-drawer></app-side-drawer>
-    </div>
-
-
-    <div class="main">
-
-      <div id="test" (mousemove)="fireEvent($event)" (dblclick)="wordSelection()">
-
-      </div>
-
-      <div></div>
-      <div></div>
-      <p> DEFINITIONS </p>
-      <div></div>
-      <div></div>
-      <div>
-        <ol>
-          <li *ngFor="let d of definitions">{{d}}</li>
-        </ol>
-      </div>
-    </div>
-    <div class="right">
-<span>
-YOUR WORDS
-</span>
-    </div>
-    <div>
-
-    </div>
-
-  </main>
-</div>
-
-<div class="jumbotron">
-  <div class="container">
-    <div class="row">
-      <div class="col-sm-6 offset-sm-3">
-        <div>
-
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
