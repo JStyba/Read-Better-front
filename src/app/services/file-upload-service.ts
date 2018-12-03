@@ -1,30 +1,32 @@
 import {Injectable} from '@angular/core';
-import {HttpClient, HttpHeaders} from '@angular/common/http';
 
 @Injectable()
 export class FileUploadService {
-  constructor(private httpClient: HttpClient) {
+  constructor() {
   }
 
   private _dropboxLink;
+  totalSize;
 
   get dropboxLink() {
     return this._dropboxLink;
   }
 
   postFile(fileToUpload: File) {
-    const fetch = require('isomorphic-fetch');
-    const Drop = require('dropbox').Dropbox;
-    const dbx = new Drop({accessToken: 'h216sf1_EPIAAAAAAAAK4-MzqpA3y_W7Hc_EyHLcImvhf6kAKmku9MtENvbj9zBG', fetch: fetch});
-    // dbx.filesListFolder({path: ''});
-    return dbx.filesUpload({path: '/' + localStorage.getItem('username') + '/' + fileToUpload.name, contents: fileToUpload})
-      .then(function (response) {
-      return response;
-            });
+    if (fileToUpload.size < 1048576) {
+      const fetch = require('isomorphic-fetch');
+      const Drop = require('dropbox').Dropbox;
+      const dbx = new Drop({accessToken: 'h216sf1_EPIAAAAAAAAK4-MzqpA3y_W7Hc_EyHLcImvhf6kAKmku9MtENvbj9zBG', fetch: fetch});
+      // dbx.filesListFolder({path: ''});
+      return dbx.filesUpload({path: '/' + localStorage.getItem('username') + '/' + fileToUpload.name, contents: fileToUpload})
+        .then(function (response) {
+          return response;
+        });
+    } else { alert('file is too big'); }
   }
 
   private handleError(error: any): Promise<any> {
-    console.error('An error occurred', error); // for demo purposes only
+    console.error('An error occurred', error);
     return Promise.reject(error.message || error);
   }
 
@@ -45,15 +47,19 @@ export class FileUploadService {
   }
 
   listPdfFiles() {
+    let total = 0;
     const ACCESS_TOKEN = 'h216sf1_EPIAAAAAAAAK4-MzqpA3y_W7Hc_EyHLcImvhf6kAKmku9MtENvbj9zBG';
     const fetch = require('isomorphic-fetch');
     const Drop = require('dropbox').Dropbox;
     const dbx = new Drop({accessToken: ACCESS_TOKEN, fetch: fetch});
     return dbx.filesListFolder({path: '/' + localStorage.getItem('username') + '/'}).then(response => {
-      const newArray = [];
+      const newArray = [[], []];
+      console.log(response);
       for (let i = 0; i < response.entries.length; i++) {
-        newArray.push(response.entries[i].name);
-      }
+        newArray[0].push(response.entries[i].name);
+        total += (response.entries[i].size);
+        }
+        newArray[1].push(total);
       return newArray;
     }).catch(function (error) {
       // handle error
@@ -72,7 +78,7 @@ export class FileUploadService {
 
         if (response.entries[i]['.tag'] === 'folder') {
           newArray.push(response.entries[i].name);
-        }
+                  }
       }
       return newArray;
     }).catch(function (error) {
@@ -94,5 +100,13 @@ export class FileUploadService {
     const Drop = require('dropbox').Dropbox;
     const dbx = new Drop({accessToken: ACCESS_TOKEN, fetch: fetch});
     dbx.filesDelete({path: '/' + localStorage.getItem('username') + '/' + fileName});
+  }
+  convertBytes(bytes, decimals) {
+    if (bytes === 0) { return '0 Bytes'; }
+    const k = 1024,
+      dm = decimals <= 0 ? 0 : decimals || 2,
+      sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'],
+      i = Math.floor(Math.log(bytes) / Math.log(k));
+    return parseFloat((bytes / Math.pow(k, i)).toFixed(dm)) + ' ' + sizes[i];
   }
 }

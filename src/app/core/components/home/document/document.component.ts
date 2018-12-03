@@ -20,6 +20,7 @@ import {ConfirmationDialogComponent} from '../../../../services/confirmation-dia
 })
 export class DocumentComponent implements OnInit {
 
+
   constructor(private http: HttpClient
     , private userService: UserService
     , private sws: SelectWordService
@@ -45,6 +46,7 @@ export class DocumentComponent implements OnInit {
   pdfFile;
   listOfFilesInDropbox: any[];
   listOfFoldersInDropbox: any[];
+  totalFileSize;
   ngOnInit() {
     // this.one = document.getElementById('test');
     // this.shadow = this.one.attachShadow({mode: 'closed'});
@@ -52,11 +54,19 @@ export class DocumentComponent implements OnInit {
       this.listOfFoldersInDropbox = data;
     });
   }
-  uploadFileToActivity() {
+  async uploadFileToActivity() {
+
+    let size = 0;
     if (!this.listOfFoldersInDropbox.includes(localStorage.getItem('username'))) {
       this.fus.createFolder(localStorage.getItem('username'));
     }
-    this.fus.postFile(this.fileToUpload);
+    await this.fus.listPdfFiles().then( data => {
+      size = data[1];
+    });
+    console.log('size' + size);
+    if (size <= 5242880) {
+      this.fus.postFile(this.fileToUpload);
+    } else { alert('You exceeded 50Mb of storage, delete some other files'); }
   }
 
   downloadFileFromDropbox(fileName: string) {
@@ -69,10 +79,10 @@ export class DocumentComponent implements OnInit {
   listPdfFilesInDropbox() {
     this.listOfFoldersInDropbox = [];
     this.fus.listPdfFiles().then(data => {
-      this.listOfFilesInDropbox = data;
-    });
+      this.listOfFilesInDropbox = data[0];
+      this.totalFileSize = this.fus.convertBytes(data[1], 2);
+             });
   }
-
   listFoldersInDropbox() {
     this.fus.listFolders().then(data => {
       this.listOfFoldersInDropbox = data;
