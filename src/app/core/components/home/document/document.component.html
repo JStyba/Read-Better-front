@@ -30,15 +30,15 @@
                id="file"
                (change)="handleFileInput($event.target.files)">
       </div>
-      <button type="button" (click)="uploadFileToActivity()"> send to dropbox </button>
+      <button type="button" (click)="uploadFileToActivity()"> send to dropbox</button>
 
       <div>
         <div>
-          <button type="button" (click)="downloadFileFromDropbox()">download</button>
           <button type="button" (click)="listPdfFilesInDropbox()">list files in folder</button>
           <button type="button" (click)="listFoldersInDropbox()">list folders</button>
           <div>
             <ol>
+              <p *ngIf="listOfFilesInDropbox === undefined"> No files to display</p>
               <li *ngFor="let l of listOfFilesInDropbox">
                 <ul>
                   <li><span class="word">{{l}} </span>
@@ -47,7 +47,7 @@
                   </li>
                 </ul>
             </ol>
-            {{totalFileSize}} / 50MB
+            <p *ngIf="totalFileSize !== undefined"> Storage: {{totalFileSize}} of 50MB </p>
           </div>
           <div>
             <ol>
@@ -56,11 +56,17 @@
           </div>
         </div>
         <label>PDF src</label>
-        <input type="text" placeholder="PDF src" [(ngModel)]="pdfFile">
+        <input type="text" placeholder="PDF: " [(ngModel)]="pdfFile">
       </div>
-      <pdf-viewer (mousemove)="fireEvent($event)" (dblclick)="wordSelection()" [src]="pdfFile"
-                  [render-text]="true"
-                  style="display: block;"
+      <button *ngIf="pdfFile" type="button" (click)="pageBack()"> <-- </button>
+      <button *ngIf="pdfFile" type="button" (click)="pageForward()"> --> </button>
+      <pdf-viewer (mousemove)="fireEvent($event)" (dblclick)="wordSelection()"
+                  [src]="pdfFile"
+                  [render-text]="2"
+                  [show-all]="false"
+                  [(page)]="pageNumber"
+                   style="display: block;"
+
       ></pdf-viewer>
       <div></div>
       <p> DEFINITIONS </p>

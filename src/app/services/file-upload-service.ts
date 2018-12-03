@@ -1,8 +1,11 @@
 import {Injectable} from '@angular/core';
+import {DataService} from './data-service';
+import {isNullOrUndefined} from 'util';
+import {catchError} from 'rxjs/operators';
 
 @Injectable()
 export class FileUploadService {
-  constructor() {
+  constructor(private ds: DataService) {
   }
 
   private _dropboxLink;
@@ -16,7 +19,7 @@ export class FileUploadService {
     if (fileToUpload.size < 1048576) {
       const fetch = require('isomorphic-fetch');
       const Drop = require('dropbox').Dropbox;
-      const dbx = new Drop({accessToken: 'h216sf1_EPIAAAAAAAAK4-MzqpA3y_W7Hc_EyHLcImvhf6kAKmku9MtENvbj9zBG', fetch: fetch});
+      const dbx = new Drop({accessToken: this.ds.dropboxToken, fetch: fetch});
       // dbx.filesListFolder({path: ''});
       return dbx.filesUpload({path: '/' + localStorage.getItem('username') + '/' + fileToUpload.name, contents: fileToUpload})
         .then(function (response) {
@@ -31,10 +34,9 @@ export class FileUploadService {
   }
 
   downloadFile(fileName: string) {
-    const ACCESS_TOKEN = 'h216sf1_EPIAAAAAAAAK4-MzqpA3y_W7Hc_EyHLcImvhf6kAKmku9MtENvbj9zBG';
     const fetch = require('isomorphic-fetch');
     const Drop = require('dropbox').Dropbox;
-    const dbx = new Drop({accessToken: ACCESS_TOKEN, fetch: fetch});
+    const dbx = new Drop({accessToken: this.ds.dropboxToken, fetch: fetch});
     return dbx.filesGetTemporaryLink({path: '/' + localStorage.getItem('username') + '/' + fileName}).then(response => {
       const link = document.createElement('a');
       link.href = response.link;
@@ -48,19 +50,20 @@ export class FileUploadService {
 
   listPdfFiles() {
     let total = 0;
-    const ACCESS_TOKEN = 'h216sf1_EPIAAAAAAAAK4-MzqpA3y_W7Hc_EyHLcImvhf6kAKmku9MtENvbj9zBG';
     const fetch = require('isomorphic-fetch');
     const Drop = require('dropbox').Dropbox;
-    const dbx = new Drop({accessToken: ACCESS_TOKEN, fetch: fetch});
+    const dbx = new Drop({accessToken: this.ds.dropboxToken, fetch: fetch});
     return dbx.filesListFolder({path: '/' + localStorage.getItem('username') + '/'}).then(response => {
       const newArray = [[], []];
       console.log(response);
-      for (let i = 0; i < response.entries.length; i++) {
-        newArray[0].push(response.entries[i].name);
-        total += (response.entries[i].size);
+      if (response.entries.length !== 0) {
+        for (let i = 0; i < response.entries.length; i++) {
+          newArray[0].push(response.entries[i].name);
+          total += (response.entries[i].size);
         }
         newArray[1].push(total);
-      return newArray;
+        return newArray;
+      } else { return null; }
     }).catch(function (error) {
       // handle error
       console.log(error);
@@ -68,10 +71,9 @@ export class FileUploadService {
   }
 
   listFolders() {
-    const ACCESS_TOKEN = 'h216sf1_EPIAAAAAAAAK4-MzqpA3y_W7Hc_EyHLcImvhf6kAKmku9MtENvbj9zBG';
     const fetch = require('isomorphic-fetch');
     const Drop = require('dropbox').Dropbox;
-    const dbx = new Drop({accessToken: ACCESS_TOKEN, fetch: fetch});
+    const dbx = new Drop({accessToken: this.ds.dropboxToken, fetch: fetch});
     return dbx.filesListFolder({path: ''}).then(response => {
       const newArray = [];
       for (let i = 0; i < response.entries.length; i++) {
@@ -86,23 +88,22 @@ export class FileUploadService {
       console.log(error);
     });
   }
-
   createFolder(folderName: string) {
-    const ACCESS_TOKEN = 'h216sf1_EPIAAAAAAAAK4-MzqpA3y_W7Hc_EyHLcImvhf6kAKmku9MtENvbj9zBG';
     const fetch = require('isomorphic-fetch');
     const Drop = require('dropbox').Dropbox;
-    const dbx = new Drop({accessToken: ACCESS_TOKEN, fetch: fetch});
-    dbx.filesListFolder({path: '/' + folderName});
+    const dbx = new Drop({accessToken: this.ds.dropboxToken, fetch: fetch});
+    return dbx.filesCreateFolderV2({path: '/' + folderName}).then( response => {
+              return 'folder created';
+          });
   }
   deleteFile (fileName: string) {
-    const ACCESS_TOKEN = 'h216sf1_EPIAAAAAAAAK4-MzqpA3y_W7Hc_EyHLcImvhf6kAKmku9MtENvbj9zBG';
     const fetch = require('isomorphic-fetch');
     const Drop = require('dropbox').Dropbox;
-    const dbx = new Drop({accessToken: ACCESS_TOKEN, fetch: fetch});
-    dbx.filesDelete({path: '/' + localStorage.getItem('username') + '/' + fileName});
+    const dbx = new Drop({accessToken: this.ds.dropboxToken, fetch: fetch});
+    return dbx.filesDelete({path: '/' + localStorage.getItem('username') + '/' + fileName});
   }
   convertBytes(bytes, decimals) {
-    if (bytes === 0) { return '0 Bytes'; }
+    if (bytes === 0 || isNullOrUndefined(bytes)) { return 0; }
     const k = 1024,
       dm = decimals <= 0 ? 0 : decimals || 2,
       sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'],
