@@ -165,4 +165,8 @@ export class DocumentComponent implements OnInit {
   pageForward() {
     this.pageNumber++;
   }
+
+  setPageNumber(number) {
+    this.pageNumber = number;
+  }
 }

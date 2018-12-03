@@ -60,6 +60,10 @@
       </div>
       <button *ngIf="pdfFile" type="button" (click)="pageBack()"> <-- </button>
       <button *ngIf="pdfFile" type="button" (click)="pageForward()"> --> </button>
+      <form *ngIf="pdfFile">
+        <input [(ngModel)]="pageNumber"  [ngModelOptions]="{standalone: true}" type="number" placeholder="page number"/>
+        <!--<button   type="submit" (click)="setPageNumber(pageNumber)"> go to </button>-->
+      </form>
       <pdf-viewer (mousemove)="fireEvent($event)" (dblclick)="wordSelection()"
                   [src]="pdfFile"
                   [render-text]="2"
