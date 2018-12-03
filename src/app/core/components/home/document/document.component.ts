@@ -55,7 +55,10 @@ export class DocumentComponent implements OnInit {
     });
   }
   async uploadFileToActivity() {
-
+    if (!this.fileToUpload.name.endsWith('pdf')) {
+      alert('you can only upload PDF files');
+      return;
+    }
     let size = 0;
     if (!this.listOfFoldersInDropbox.includes(localStorage.getItem('username'))) {
       this.fus.createFolder(localStorage.getItem('username'));
