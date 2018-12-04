@@ -25,10 +25,11 @@
       <div id="test" (mousemove)="fireEvent($event)" (dblclick)="wordSelection()"></div>
 
       <div class="form-group">
-        <label for="file">Choose File</label>
-        <input type="file"
+        <!--<label for="file">Choose File</label>-->
+        <button class="loadPdf" type="file"
                id="file"
-               (change)="handleFileInput($event.target.files)">
+               (change)="handleFileInput($event.target.files)">Choose file
+        </button>
       </div>
       <button type="button" (click)="uploadFileToActivity()"> send to dropbox</button>
 
@@ -43,7 +44,7 @@
                 <ul>
                   <li><span class="word">{{l}} </span>
                     <button class="removeWord" type="submit" (click)="openModal(l)">remove</button>
-                    <button type="button" (click)="downloadFileFromDropbox(l)">read</button>
+                    <button class="read" type="button" (click)="downloadFileFromDropbox(l)">read</button>
                   </li>
                 </ul>
             </ol>
@@ -58,10 +59,10 @@
         <label>PDF src</label>
         <input type="text" placeholder="PDF: " [(ngModel)]="pdfFile">
       </div>
-      <button *ngIf="pdfFile" type="button" (click)="pageBack()"> <-- </button>
-      <button *ngIf="pdfFile" type="button" (click)="pageForward()"> --> </button>
+      <button *ngIf="pdfFile" type="button" (click)="pageBack()"> <--</button>
+      <button *ngIf="pdfFile" type="button" (click)="pageForward()"> --></button>
       <form *ngIf="pdfFile">
-        <input [(ngModel)]="pageNumber"  [ngModelOptions]="{standalone: true}" type="number" placeholder="page number"/>
+        <input [(ngModel)]="pageNumber" [ngModelOptions]="{standalone: true}" type="number" placeholder="page number"/>
         <!--<button   type="submit" (click)="setPageNumber(pageNumber)"> go to </button>-->
       </form>
       <pdf-viewer (mousemove)="fireEvent($event)" (dblclick)="wordSelection()"
@@ -69,7 +70,7 @@
                   [render-text]="2"
                   [show-all]="false"
                   [(page)]="pageNumber"
-                   style="display: block;"
+                  style="display: block;"
 
       ></pdf-viewer>
       <div></div>
