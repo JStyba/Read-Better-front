@@ -28,7 +28,7 @@ export class WebpageComponent implements OnInit {
     , private wss: WebScrapeService
     , private dialog: MatDialog
     , private uwds: UserWordDatabaseService
-    , private fus: FileUploadService, private spinner: NgxSpinnerService) {
+    , private fus: FileUploadService) {
   }
 
   popOverDialogRef: MatDialogRef<PopOverComponent>;
@@ -88,17 +88,14 @@ export class WebpageComponent implements OnInit {
   }
 
   getDom() {
-    this.spinner.show();
     if (this.urlRegEx.test(this.url)) {
       localStorage.setItem('url', this.url);
       this.wss.getStringedWeb(this.url).subscribe(data => {
         this.shadow.innerHTML = '<p>' + data + '</p>';
-        this.spinner.hide();
-      });
+              });
     } else {
       alert('Put the correct URL');
-      this.spinner.hide();
-    }
+          }
   }
 
   getJsonResponse(word): void {

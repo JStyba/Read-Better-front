@@ -49,6 +49,7 @@ import { WebpageComponent } from './core/components/home/webpage/webpage.compone
 import { DocumentComponent } from './core/components/home/document/document.component';
 import { ConfirmationDialogComponent } from './services/confirmation-dialog/confirmation-dialog.component';
 import { NgxSpinnerModule } from 'ngx-spinner';
+import { LoadingBarHttpClientModule } from '@ngx-loading-bar/http-client';
 
 const cookieConfig: NgcCookieConsentConfig = {
   cookie: {
@@ -154,6 +155,7 @@ export const MaterialModules = [
     MatDialogModule,
     PdfViewerModule,
     NgxSpinnerModule,
+    LoadingBarHttpClientModule,
     RouterModule.forRoot(appRoutes),
     NgcCookieConsentModule.forRoot(cookieConfig)
      ],
