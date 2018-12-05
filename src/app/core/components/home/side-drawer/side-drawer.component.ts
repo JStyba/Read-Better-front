@@ -40,7 +40,7 @@ export class SideDrawerComponent implements AfterViewInit {
   translate(word) {
     if (localStorage.getItem('username') !== 'demo') {
       this.translatedWord = word;
-      this.definitions = this.wts.getResponse(word);
+      this.definitions = this.wts.getResponseWithSub(word);
     } else {
         this.translatedWord = word;
         this.definitions = this.ds.getTranslation(word);

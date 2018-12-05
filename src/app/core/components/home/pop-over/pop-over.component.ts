@@ -8,6 +8,7 @@ import {serialize} from '@angular/compiler/src/i18n/serializers/xml_helper';
 import {UserService} from '../../../../services/user-service';
 import {stringify} from 'querystring';
 import {DemoService} from '../../../../services/demo-service';
+import {NgxSpinnerService} from 'ngx-spinner';
 
 @Component({
   selector: 'app-pop-over',
@@ -22,12 +23,12 @@ export class PopOverComponent implements OnInit {
     , private wts: WordTranslationService
     , private uwds: UserWordDatabaseService
     , private us: UserService
-    , private ds: DemoService
+    , private ds: DemoService, private spinner: NgxSpinnerService
   ) {
   }
 
   word;
-  definitions;
+  definitions = [];
   isDemo = false;
 
   ngOnInit() {
@@ -38,9 +39,18 @@ export class PopOverComponent implements OnInit {
   }
 
   translate() {
+    this.spinner.show();
     if (localStorage.getItem('username') !== 'demo') {
-      this.definitions = this.wts.getResponse(this.word);
-    }
+      this.wts.getResponse(this.word).subscribe(res => {
+        const evilResp = Object.values(res['definitions']);
+        for (const prop in evilResp) {
+          if (evilResp !== null) {
+            this.definitions.push(Object.values(evilResp[prop]).toString());
+          }
+        }
+        this.spinner.hide();
+      });
+               }
     if (localStorage.getItem('username') === 'demo') {
       this.definitions = this.ds.getTranslation(this.word);
     }
@@ -51,7 +61,7 @@ export class PopOverComponent implements OnInit {
 
   AddToDb() {
     if (!this.isDemo) {
-      const def = this.wts.getResponse(this.word);
+      const def = this.wts.getResponseWithSub(this.word);
       const newEntry = <Entry>({
         word: this.word,
         definitions: def,

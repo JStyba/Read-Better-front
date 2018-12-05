@@ -6,13 +6,14 @@ import {FileUploadService} from '../../../../services/file-upload-service';
 import {HttpClient} from '@angular/common/http';
 import {UserService} from '../../../../services/user-service';
 import {SelectWordService} from '../../../../services/select-word-service';
-import {DialogService} from '../../../../services/dialog-service';
 import {MatDialog, MatDialogRef} from '@angular/material';
 import {Entry} from '../../../../model/entry';
 import {PopOverComponent} from '../pop-over/pop-over.component';
 import {Observable} from 'rxjs';
 import {SideDrawerComponent} from '../side-drawer/side-drawer.component';
-
+import {NgxSpinnerService} from 'ngx-spinner';
+import { NgxSpinnerModule } from 'ngx-spinner';
+import {catchError} from 'rxjs/operators';
 @Component({
   selector: 'app-webpage',
   templateUrl: './webpage.component.html',
@@ -26,7 +27,8 @@ export class WebpageComponent implements OnInit {
     , private wts: WordTranslationService
     , private wss: WebScrapeService
     , private dialog: MatDialog
-    , private uwds: UserWordDatabaseService, public dialogService: DialogService, private fus: FileUploadService) {
+    , private uwds: UserWordDatabaseService
+    , private fus: FileUploadService, private spinner: NgxSpinnerService) {
   }
 
   popOverDialogRef: MatDialogRef<PopOverComponent>;
@@ -65,7 +67,7 @@ export class WebpageComponent implements OnInit {
     this.fus.listFolders().then(data => {
       this.listOfFoldersInDropbox = data;
     });
-  }
+      }
 
   @HostListener('window:beforeunload')
   canDeactivate(): boolean | Observable<boolean> | Promise<boolean> {
@@ -86,13 +88,16 @@ export class WebpageComponent implements OnInit {
   }
 
   getDom() {
+    this.spinner.show();
     if (this.urlRegEx.test(this.url)) {
       localStorage.setItem('url', this.url);
       this.wss.getStringedWeb(this.url).subscribe(data => {
         this.shadow.innerHTML = '<p>' + data + '</p>';
+        this.spinner.hide();
       });
     } else {
       alert('Put the correct URL');
+      this.spinner.hide();
     }
   }
 

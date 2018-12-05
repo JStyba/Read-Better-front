@@ -48,7 +48,7 @@ import {FileUploadService} from './services/file-upload-service';
 import { WebpageComponent } from './core/components/home/webpage/webpage.component';
 import { DocumentComponent } from './core/components/home/document/document.component';
 import { ConfirmationDialogComponent } from './services/confirmation-dialog/confirmation-dialog.component';
-
+import { NgxSpinnerModule } from 'ngx-spinner';
 
 const cookieConfig: NgcCookieConsentConfig = {
   cookie: {
@@ -142,7 +142,7 @@ export const MaterialModules = [
     WebpageComponent,
     DocumentComponent,
     ConfirmationDialogComponent,
-                    ],
+                        ],
   imports: [
     BrowserModule,
     ReactiveFormsModule,
@@ -153,6 +153,7 @@ export const MaterialModules = [
     MdePopoverModule,
     MatDialogModule,
     PdfViewerModule,
+    NgxSpinnerModule,
     RouterModule.forRoot(appRoutes),
     NgcCookieConsentModule.forRoot(cookieConfig)
      ],
