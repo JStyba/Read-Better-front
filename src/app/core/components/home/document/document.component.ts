@@ -59,6 +59,10 @@ export class DocumentComponent implements OnInit {
         this.fus.createFolder(localStorage.getItem('username'));
       }
     });
+    if (localStorage.getItem('username') === 'demo') {
+      this.isDemo = true;
+      localStorage.setItem('count', '0');
+    }
   }
 
   async uploadFileToActivity() {
@@ -84,7 +88,6 @@ export class DocumentComponent implements OnInit {
 
   downloadFileFromDropbox(fileName: string) {
     this.fus.downloadFile(fileName).then(data => {
-      console.log(data);
       this.pdfFile = data;
     });
   }
@@ -109,12 +112,16 @@ export class DocumentComponent implements OnInit {
   }
 
   async removeFile(l: any) {
-    await this.fus.deleteFile(l).then(data => {
-      if (data) {
-        this.listOfFilesInDropbox.splice(this.listOfFilesInDropbox.indexOf(l), 1);
-        this.listPdfFilesInDropbox();
-      }
-    });
+    if (!this.isDemo) {
+      await this.fus.deleteFile(l).then(data => {
+        if (data) {
+          this.listOfFilesInDropbox.splice(this.listOfFilesInDropbox.indexOf(l), 1);
+          this.listPdfFilesInDropbox();
+        }
+      });
+    } else {
+      alert('Option not available in demo mode');
+    }
   }
 
   wordSelection() {
@@ -123,7 +130,8 @@ export class DocumentComponent implements OnInit {
       data: {
         word: this.tmpWord,
         url: this.url,
-      },
+        isDocument: true,
+       },
       panelClass: 'wordBox'
 
     });

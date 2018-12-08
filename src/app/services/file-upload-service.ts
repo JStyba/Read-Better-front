@@ -55,7 +55,6 @@ export class FileUploadService {
     const dbx = new Drop({accessToken: this.ds.dropboxToken, fetch: fetch});
     return dbx.filesListFolder({path: '/' + localStorage.getItem('username') + '/'}).then(response => {
       const newArray = [[], []];
-      console.log(response);
       if (response.entries.length !== 0) {
         for (let i = 0; i < response.entries.length; i++) {
           newArray[0].push(response.entries[i].name);
@@ -65,7 +64,6 @@ export class FileUploadService {
         return newArray;
       } else { return null; }
     }).catch(function (error) {
-      // handle error
       console.log(error);
     });
   }

@@ -30,31 +30,37 @@ export class PopOverComponent implements OnInit {
   word;
   definitions = [];
   isDemo = false;
+  transCount;
 
   ngOnInit() {
     this.word = this.data['word'];
     if (localStorage.getItem('username') === 'demo') {
       this.isDemo = true;
     }
+    this.transCount = parseInt(localStorage.getItem('count'), 10);
   }
 
   translate() {
-    this.spinner.show();
-    if (localStorage.getItem('username') !== 'demo') {
-      this.wts.getResponse(this.word).subscribe(res => {
-        const evilResp = Object.values(res['definitions']);
-        for (const prop in evilResp) {
-          if (evilResp !== null) {
-            this.definitions.push(Object.values(evilResp[prop]).toString());
+    if (!this.isDemo || (this.isDemo && this.data.isDocument)) {
+        if (this.transCount < 4) {
+        localStorage.setItem('count', (++this.transCount).toString());
+        this.wts.getResponse(this.word).subscribe(res => {
+          const evilResp = Object.values(res['definitions']);
+          for (const prop in evilResp) {
+            if (evilResp !== null) {
+              this.definitions.push(Object.values(evilResp[prop]).toString());
+            }
           }
-        }
-        this.spinner.hide();
-      });
-               }
-    if (localStorage.getItem('username') === 'demo') {
+        });
+      } else {
+        alert('You exceeded demo version number of translation');
+      }
+    }
+    if (this.isDemo && !this.data.isDocument) {
       this.definitions = this.ds.getTranslation(this.word);
     }
   }
+
   translatePl() {
     this.definitions = this.wts.getResponsePl(this.word);
   }
