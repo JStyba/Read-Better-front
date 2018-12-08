@@ -8,6 +8,8 @@ import {MyReadBetterComponent} from './core/components/my-read-better/my-read-be
 import {AdminPanelComponent} from './core/components/admin-panel/admin-panel.component';
 import {AboutComponent} from './core/components/about/about.component';
 import {ContactComponent} from './core/components/contact/contact.component';
+import {DocumentComponent} from './core/components/home/document/document.component';
+import {WebpageComponent} from './core/components/home/webpage/webpage.component';
 
 
 const appRoutes: Routes = [
@@ -18,6 +20,8 @@ const appRoutes: Routes = [
   { path: 'admin', component: AdminPanelComponent, canDeactivate: [CanDeactivateGuard]},
   { path: 'about', component: AboutComponent, canDeactivate: [CanDeactivateGuard]},
   { path: 'contact', component: ContactComponent, canDeactivate: [CanDeactivateGuard]},
+  { path: 'document', component: DocumentComponent, canDeactivate: [CanDeactivateGuard]},
+  { path: 'webpage', component: WebpageComponent, canDeactivate: [CanDeactivateGuard]},
 
   // otherwise redirect to start
   { path: '**', redirectTo: '' }
