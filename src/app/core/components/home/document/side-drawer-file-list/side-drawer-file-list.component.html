@@ -1,0 +1,27 @@
+<div class="drawer" #StickySideDrawer
+     [class.sideDrawerFiles]="sideDrawerFiles">
+  <div id="panel">
+    <div id="title">
+      My list file
+    </div>
+    <div id="content">
+      <button type="button"class="steps" (click)="listPdfFilesInDropbox()">list files in folder</button>
+
+      <div>
+        <ol>
+          <p *ngIf="listOfFilesInDropbox === undefined"> No files to display</p>
+          <li *ngFor="let l of listOfFilesInDropbox">
+            <ul>
+              <li><span class="word">{{l}} </span>
+                <br>
+                <button class="read" type="button" (click)="downloadFileFromDropbox(l)">read</button>
+                <button class="removeWord" type="submit" (click)="openModal(l)">remove</button>
+              </li>
+            </ul>
+        </ol>
+        <p *ngIf="totalFileSize !== undefined"> Storage: {{totalFileSize}} of 50MB </p>
+      </div>
+
+    </div>
+  </div>
+</div>
