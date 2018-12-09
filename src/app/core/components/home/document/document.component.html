@@ -1,4 +1,5 @@
 <app-header></app-header>
+<app-side-drower-file-list></app-side-drower-file-list>
 <br>
 <br>
 <br>
@@ -46,28 +47,17 @@
       <div>
         <div>
           <p>3. Choose a file from Read Better folder that you want to read now</p>
-          <button type="button"class="steps" (click)="listPdfFilesInDropbox()">list files in folder</button>
-          <div>
-            <ol>
-              <p *ngIf="listOfFilesInDropbox === undefined"> No files to display</p>
-              <li *ngFor="let l of listOfFilesInDropbox">
-                <ul>
-                  <li><span class="word">{{l}} </span>
-                    <button class="removeWord" type="submit" (click)="openModal(l)">remove</button>
-                    <button class="read" type="button" (click)="downloadFileFromDropbox(l)">read</button>
-                  </li>
-                </ul>
-            </ol>
-            <p *ngIf="totalFileSize !== undefined"> Storage: {{totalFileSize}} of 50MB </p>
-          </div>
+          <br>
+          <img src="/images/arrow-53-128.png" alt="right arrow">
+
           <div>
             <ol>
               <li *ngFor="let f of listOfFoldersInDropbox"> {{f}}</li>
             </ol>
           </div>
         </div>
-        <label>PDF src</label>
-        <input type="text" placeholder="PDF: " [(ngModel)]="pdfFile">
+        <!--<label>PDF src</label>-->
+        <!--<input type="text" placeholder="PDF: " [(ngModel)]="pdfFile">-->
       </div>
       <button *ngIf="pdfFile" type="button" (click)="pageBack()"> <--</button>
       <button *ngIf="pdfFile" type="button" (click)="pageForward()"> --></button>

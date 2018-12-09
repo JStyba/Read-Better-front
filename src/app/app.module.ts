@@ -50,6 +50,7 @@ import { DocumentComponent } from './core/components/home/document/document.comp
 import { ConfirmationDialogComponent } from './services/confirmation-dialog/confirmation-dialog.component';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { LoadingBarHttpClientModule } from '@ngx-loading-bar/http-client';
+import {SideDrawerFileListComponent} from './core/components/home/document/side-drawer-file-list/side-drawer-file-list.component';
 
 const cookieConfig: NgcCookieConsentConfig = {
   cookie: {
@@ -143,6 +144,7 @@ export const MaterialModules = [
     WebpageComponent,
     DocumentComponent,
     ConfirmationDialogComponent,
+    SideDrawerFileListComponent,
                         ],
   imports: [
     BrowserModule,
@@ -160,7 +162,7 @@ export const MaterialModules = [
     NgcCookieConsentModule.forRoot(cookieConfig)
      ],
   entryComponents: [
-    PopOverComponent, SideDrawerComponent, PopOverRBComponent, ConfirmationDialogComponent
+    PopOverComponent, SideDrawerComponent, PopOverRBComponent, ConfirmationDialogComponent, SideDrawerFileListComponent
   ],
   providers: [
     AuthenticationService

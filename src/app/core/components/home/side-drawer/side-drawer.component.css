@@ -1,7 +1,7 @@
 
 #panel {
   position: fixed;
-  top: 50px;
+  top: 25px;
   right: -272px;
   z-index: 99999;
   transition: right 0.6s ease-out 0.5s;
