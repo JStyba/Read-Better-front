@@ -6,6 +6,12 @@
 <br>
 <br>
 <br>
+<ngx-spinner
+  bdColor = "rgba(51, 51, 51, 0.8)"
+  size = "medium"
+  color = "#fff"
+  type = "ball-atom"
+></ngx-spinner>
 <div id="wrapper">
 
 
@@ -69,7 +75,10 @@
                   [render-text]="2"
                   [show-all]="false"
                   [(page)]="pageNumber"
+                  [external-link-target]="'none'"
                   style="display: block;"
+                  (after-load-complete)="afterLoadComplete($event)"
+                  (on-progress)="onProgress($event)"
 
       ></pdf-viewer>
     </div>

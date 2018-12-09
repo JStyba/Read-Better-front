@@ -15,13 +15,13 @@ import {WebpageComponent} from './core/components/home/webpage/webpage.component
 const appRoutes: Routes = [
   { path: '', component: HomeComponent, canActivate: [AuthGuard], canDeactivate: [CanDeactivateGuard] },
   { path: 'login', component: LoginComponent },
-  { path: 'register', component: RegisterComponent },
-  { path: 'myreadbetter', component: MyReadBetterComponent, canDeactivate: [CanDeactivateGuard]},
-  { path: 'admin', component: AdminPanelComponent, canDeactivate: [CanDeactivateGuard]},
+  { path: 'register', component: RegisterComponent, canActivate: [AuthGuard]},
+  { path: 'myreadbetter', component: MyReadBetterComponent, canActivate: [AuthGuard], canDeactivate: [CanDeactivateGuard]},
+  { path: 'admin', component: AdminPanelComponent, canActivate: [AuthGuard], canDeactivate: [CanDeactivateGuard]},
   { path: 'about', component: AboutComponent, canDeactivate: [CanDeactivateGuard]},
   { path: 'contact', component: ContactComponent, canDeactivate: [CanDeactivateGuard]},
-  { path: 'document', component: DocumentComponent, canDeactivate: [CanDeactivateGuard]},
-  { path: 'webpage', component: WebpageComponent, canDeactivate: [CanDeactivateGuard]},
+  { path: 'document', component: DocumentComponent, canActivate: [AuthGuard], canDeactivate: [CanDeactivateGuard]},
+  { path: 'webpage', component: WebpageComponent, canActivate: [AuthGuard], canDeactivate: [CanDeactivateGuard]},
 
   // otherwise redirect to start
   { path: '**', redirectTo: '' }

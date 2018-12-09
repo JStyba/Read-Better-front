@@ -41,7 +41,7 @@ export class PopOverRBComponent implements OnInit {
 
   translate() {
     if (localStorage.getItem('username') !== 'demo') {
-      this.definitions = this.wts.getResponse(this.word);
+      this.definitions = this.wts.getResponseWithSub(this.word);
     }
     if (localStorage.getItem('username') === 'demo') {
       this.definitions = this.ds.getTranslation(this.word);

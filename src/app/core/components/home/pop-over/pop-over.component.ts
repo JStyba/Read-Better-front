@@ -30,7 +30,7 @@ export class PopOverComponent implements OnInit {
   word;
   definitions = [];
   isDemo = false;
-  transCount;
+  transCount = 0;
 
   ngOnInit() {
     this.word = this.data['word'];
@@ -41,20 +41,19 @@ export class PopOverComponent implements OnInit {
   }
 
   translate() {
-    if (!this.isDemo || (this.isDemo && this.data.isDocument)) {
-        if (this.transCount < 4) {
-        localStorage.setItem('count', (++this.transCount).toString());
-        this.wts.getResponse(this.word).subscribe(res => {
-          const evilResp = Object.values(res['definitions']);
-          for (const prop in evilResp) {
-            if (evilResp !== null) {
-              this.definitions.push(Object.values(evilResp[prop]).toString());
-            }
+    if (!this.isDemo || (this.isDemo && this.data.isDocument && this.transCount < 4)) {
+      localStorage.setItem('count', (++this.transCount).toString());
+      this.wts.getResponse(this.word).subscribe(res => {
+        const evilResp = Object.values(res['definitions']);
+        for (const prop in evilResp) {
+          if (evilResp !== null) {
+            this.definitions.push(Object.values(evilResp[prop]).toString());
           }
-        });
-      } else {
-        alert('You exceeded demo version number of translation');
-      }
+        }
+      });
+    }
+    if (this.transCount >= 4 && this.isDemo) {
+      alert('You exceeded demo version number of translation');
     }
     if (this.isDemo && !this.data.isDocument) {
       this.definitions = this.ds.getTranslation(this.word);
@@ -67,17 +66,30 @@ export class PopOverComponent implements OnInit {
 
   AddToDb() {
     if (!this.isDemo) {
-      const def = this.wts.getResponseWithSub(this.word);
-      const newEntry = <Entry>({
-        word: this.word,
-        definitions: def,
-        // timestamp: Math.floor((new Date).getTime() / 1000),
-        timestamp: this.us.timestampToDate(new Date()),
-        entryUrl: localStorage.getItem('url')
-      });
-      this.uwds.addWordToDatabase(newEntry);
+      if (this.data.isDocument) {
+        const def = this.wts.getResponseWithSub(this.word);
+        const newEntry = <Entry>({
+          word: this.word,
+          definitions: def,
+          // timestamp: Math.floor((new Date).getTime() / 1000),
+          timestamp: this.us.timestampToDate(new Date()),
+          file: localStorage.getItem('file')
+        });
+        this.uwds.addWordToDatabase(newEntry);
+      }
+      if (!this.data.isDocument) {
+        const def = this.wts.getResponseWithSub(this.word);
+        const newEntry = <Entry>({
+          word: this.word,
+          definitions: def,
+          // timestamp: Math.floor((new Date).getTime() / 1000),
+          timestamp: this.us.timestampToDate(new Date()),
+          entryUrl: localStorage.getItem('url'),
+         });
+        this.uwds.addWordToDatabase(newEntry);
+      }
     }
-    if (this.isDemo) {
+    if (this.isDemo && !this.data.isDocument) {
       const def = this.ds.getTranslation(this.word);
       const newEntry = <Entry>({
         word: this.word,

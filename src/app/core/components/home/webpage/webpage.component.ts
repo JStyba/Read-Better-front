@@ -80,6 +80,7 @@ export class WebpageComponent implements OnInit {
       data: {
         word: this.tmpWord,
         url: this.url,
+        isDocument: false
       },
       panelClass: 'wordBox'
 

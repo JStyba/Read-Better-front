@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {AfterViewInit, Component, ElementRef, HostListener, OnInit, ViewChild} from '@angular/core';
 import {WebScrapeService} from '../../../../services/web-scrape-service';
 import {UserWordDatabaseService} from '../../../../services/user-word-database-service';
 import {WordTranslationService} from '../../../../services/word-translation-service';
@@ -13,6 +13,8 @@ import {PopOverComponent} from '../pop-over/pop-over.component';
 import {SideDrawerComponent} from '../side-drawer/side-drawer.component';
 import {ConfirmationDialogComponent} from '../../../../services/confirmation-dialog/confirmation-dialog.component';
 import {isNullOrUndefined} from 'util';
+import {NgxSpinnerService} from 'ngx-spinner';
+import {PDFProgressData} from 'pdfjs-dist';
 
 @Component({
   selector: 'app-document',
@@ -30,9 +32,8 @@ export class DocumentComponent implements OnInit {
     , private dialog: MatDialog
     , private uwds: UserWordDatabaseService
     , public dialogService: DialogService
-    , private fus: FileUploadService) {
+    , private fus: FileUploadService, private spinner: NgxSpinnerService) {
   }
-
   popOverDialogRef: MatDialogRef<PopOverComponent>;
   sideDrawerDialogRef: MatDialogRef<SideDrawerComponent>;
   tmpWord: String = '';
@@ -64,7 +65,6 @@ export class DocumentComponent implements OnInit {
       localStorage.setItem('count', '0');
     }
   }
-
   async uploadFileToActivity() {
     if (!this.fileToUpload.name.endsWith('pdf')) {
       alert('you can only upload PDF files');
@@ -87,11 +87,21 @@ export class DocumentComponent implements OnInit {
   }
 
   downloadFileFromDropbox(fileName: string) {
-    this.fus.downloadFile(fileName).then(data => {
+        this.fus.downloadFile(fileName).then(data => {
       this.pdfFile = data;
-    });
+      localStorage.setItem('file', fileName);
+      this.spinner.show();
+          });
   }
-
+  onProgress(progressData: PDFProgressData) {
+                }
+  afterLoadComplete(pdfData: any) {
+     if (pdfData.numPages > 0) {
+       console.log(pdfData.numPages);
+      this.spinner.hide();
+    }
+    // console.log(pdfData);
+          }
   listPdfFilesInDropbox() {
     this.totalFileSize = 0;
     this.listOfFoldersInDropbox = [];

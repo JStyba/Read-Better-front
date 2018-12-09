@@ -20,9 +20,10 @@
           </li>
         </ul>
            <ul class="urlAdress">
-          <li>
+          <li *ngIf="e.entryUrl">
             {{e.entryUrl}}
           </li>
+<li *ngIf="e.file"> {{e.file}}</li>
         </ul>
 
       </li>
