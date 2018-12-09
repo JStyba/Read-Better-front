@@ -7,10 +7,10 @@
 <br>
 <br>
 <ngx-spinner
-  bdColor = "rgba(51, 51, 51, 0.8)"
-  size = "medium"
-  color = "#fff"
-  type = "ball-atom"
+  bdColor="rgba(51, 51, 51, 0.8)"
+  size="medium"
+  color="#fff"
+  type="ball-atom"
 ></ngx-spinner>
 <div id="wrapper">
 
@@ -30,18 +30,23 @@
 
       <div id="test" (mousemove)="fireEvent($event)" (dblclick)="wordSelection()"></div>
 
-
-        <!--<label for="file">Choose File</label>-->
+      <p class="title">Read Better .pdf in 3 easy steps</p>
+      <!--<label for="file">Choose File</label>-->
 
       <div class="upload-btn-wrapper">
-        <button type="button">Upload a file</button>
+        <p> 1. Load a file you want to read </p>
+        <button type="button"class ="steps">Upload a file</button>
         <input type="file" name="myfile" (change)="handleFileInput($event.target.files)"/>
       </div>
-          <button type="button" (click)="uploadFileToActivity()"> send to dropbox</button>
+      <br>
+      <p> 2. Send it to Read Better Folder</p>
+      <button type="button"class="steps" (click)="uploadFileToActivity()"> send to RB folder</button>
+
 
       <div>
         <div>
-          <button type="button" (click)="listPdfFilesInDropbox()">list files in folder</button>
+          <p>3. Choose a file from Read Better folder that you want to read now</p>
+          <button type="button"class="steps" (click)="listPdfFilesInDropbox()">list files in folder</button>
           <div>
             <ol>
               <p *ngIf="listOfFilesInDropbox === undefined"> No files to display</p>
@@ -82,7 +87,7 @@
 
       ></pdf-viewer>
     </div>
-     </main>
+  </main>
 </div>
 
 <div class="jumbotron">

@@ -4,8 +4,21 @@
   box-sizing: border-box;
   font-family: 'Exo 2', sans-serif;
   text-align: center;
+  color: grey;
 }
-button {
+
+p {
+  font-size: 20px;
+  margin: 20px 0px 15px 0px;
+}
+
+.title {
+  font-size: 30px;
+  font-weight: bolder;
+  margin-bottom: 20px;
+}
+
+.removeWord .read {
   text-align: center;
   display: inline-block;
   float: none;
@@ -22,28 +35,19 @@ button {
   margin-top: 25px;
   margin-left: 15px;
   transition: all 0.5s ease;
-  cursor: pointer;
 }
-b
 
-.loadPdf {
-  text-align: center;
-  display: inline-block;
-  float: none;
-  width: 200px;
-  height: 40px;
-  font-family: 'Exo 2', sans-serif;
-  /*opacity: 0.8;*/
-  /*font-size: 20px;*/
-  /*background-color: #33336D;*/
-  /*line-height: 10px;*/
-  /*border: 1px solid white;*/
-  /*border-radius: 3px;*/
-  /*color: white;*/
-  /*margin-top: 25px;*/
-  /*margin-left: 15px;*/
-  /*transition: all 0.5s ease;*/
+.steps {
+  cursor: pointer;
+  border: 2px solid gray;
+  color: gray;
+  background-color: white;
+  padding: 8px 20px;
+  border-radius: 8px;
+  font-size: 20px;
+  font-weight: bold;
 }
+
 .removeWord {
   width: 80px;
   height: 25px;
@@ -52,19 +56,24 @@ b
   font-size: medium;
 
 }
+
 .read {
   width: 80px;
   height: 25px;
   line-height: 25px;
   font-size: medium;
 }
+
+.form-group {
+  position: relative;
+}
+
 .upload-btn-wrapper {
   position: relative;
   overflow: hidden;
   display: inline-block;
+  cursor: pointer;
 }
-
-
 
 .upload-btn-wrapper input[type=file] {
   font-size: 100px;
