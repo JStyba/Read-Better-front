@@ -89,7 +89,9 @@ export class DocumentComponent implements OnInit {
     });
   }
 
-
+pdfFileDownloadedHandler (file: any) {
+    this.pdfFile = file;
+}
 
   wordSelection() {
     this.tmpWord = this.sws.selectWord(this.tmpWord);
@@ -103,7 +105,15 @@ export class DocumentComponent implements OnInit {
 
     });
   }
-
+  onProgress(progressData: PDFProgressData) {
+  }
+  afterLoadComplete(pdfData: any) {
+    if (pdfData.numPages > 0) {
+      console.log(pdfData.numPages);
+      this.spinner.hide();
+    }
+    // console.log(pdfData);
+  }
   fireEvent(e) {
     e.preventDefault();
   }
@@ -125,6 +135,6 @@ export class DocumentComponent implements OnInit {
   }
 
   setPageNumber(number) {
-    this.pageNumber = number;
-  }
+   this.pageNumber = number;
+   }
 }

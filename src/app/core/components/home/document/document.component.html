@@ -1,5 +1,5 @@
 <app-header></app-header>
-<app-side-drower-file-list></app-side-drower-file-list>
+<app-side-drower-file-list [pdfFileDrawer]="pdfFile" (pdfFileDownloaded)="pdfFileDownloadedHandler($event)"></app-side-drower-file-list>
 <br>
 <br>
 <br>
@@ -62,7 +62,7 @@
       <button *ngIf="pdfFile" type="button" (click)="pageBack()"> <--</button>
       <button *ngIf="pdfFile" type="button" (click)="pageForward()"> --></button>
       <form *ngIf="pdfFile">
-        <input [(ngModel)]="pageNumber" [ngModelOptions]="{standalone: true}" type="number" placeholder="page number"/>
+        <input [(ngModel)]="pageNumber" [ngModelOptions]="{standalone: true}" type="number" placeholder="page number" />
         <!--<button   type="submit" (click)="setPageNumber(pageNumber)"> go to </button>-->
       </form>
       <pdf-viewer (mousemove)="fireEvent($event)" (dblclick)="wordSelection()"

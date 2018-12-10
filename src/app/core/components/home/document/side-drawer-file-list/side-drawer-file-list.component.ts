@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {FileUploadService} from '../../../../../services/file-upload-service';
 import {ConfirmationDialogComponent} from '../../../../../services/confirmation-dialog/confirmation-dialog.component';
 import {MatDialog, MatDialogConfig} from '@angular/material';
@@ -14,9 +14,10 @@ export class SideDrawerFileListComponent implements OnInit {
   sideDrawerFiles;
   listOfFilesInDropbox: any[];
   totalFileSize;
-  pdfFile;
+  @Input() pdfFileDrawer;
   listOfFoldersInDropbox = [];
   isDemo;
+  @Output() pdfFileDownloaded: EventEmitter<any> = new EventEmitter<any>();
   constructor(private fus: FileUploadService, private spinner: NgxSpinnerService, private dialog: MatDialog) { }
 
   ngOnInit() {
@@ -69,18 +70,11 @@ export class SideDrawerFileListComponent implements OnInit {
   }
   downloadFileFromDropbox(fileName: string) {
     this.fus.downloadFile(fileName).then(data => {
-      this.pdfFile = data;
+      this.pdfFileDrawer = data;
+      this.pdfFileDownloaded.emit(this.pdfFileDrawer);
       localStorage.setItem('file', fileName);
       this.spinner.show();
     });
   }
-  onProgress(progressData: PDFProgressData) {
-  }
-  afterLoadComplete(pdfData: any) {
-    if (pdfData.numPages > 0) {
-      console.log(pdfData.numPages);
-      this.spinner.hide();
-    }
-    // console.log(pdfData);
-  }
+
 }
