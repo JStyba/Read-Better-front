@@ -82,6 +82,45 @@ p {
   top: 0;
   opacity: 0;
 }
-
-
+.right {
+  position: relative;
+  right: -420px;
+  top: 500px;
+  cursor: pointer;
+  border: 2px solid gray;
+  color: gray;
+  background-color: white;
+  padding: 8px 20px;
+  border-radius: 8px;
+  font-size: 20px;
+  font-weight: bold;
+}
+.left {
+  position: relative;
+  right: 420px;
+  top: 500px;
+  cursor: pointer;
+  border: 2px solid gray;
+  color: gray;
+  background-color: white;
+  padding: 8px 20px;
+  border-radius: 8px;
+  font-size: 20px;
+  font-weight: bold;
+}
+.pageNumber {
+  border: 2px solid gray;
+  color: gray;
+  background-color: white;
+  padding: 8px 20px;
+  border-radius: 8px;
+  font-size: 20px;
+  font-weight: bold;
+}
+.pdfDisplay {
+  border: 2px solid gray;
+  color: gray;
+  border-radius: 8px;
+  margin: 10px 100px 10px 100px;
+}
 

@@ -16,12 +16,13 @@
         <input *ngIf="isDemo" class="url" type="click" value="SAVE">
       </div>
       <div class="control">
+        <span id="url">https://short-edition.com/en/story/1-min/exile-7</span>
         <!--<label for="url">ENTER URL: </label>-->
-        <input *ngIf="!isDemo" type="url" id="url"
-               [(ngModel)]="url"
-               [ngModelOptions]="{standalone: true}"
-               placeholder="ENTER WEBPAGE ADRESS"
-               pattern="https://.*" size="20" required/>
+        <!--<input *ngIf="!isDemo" type="url" id="url"-->
+               <!--[(ngModel)]="url"-->
+               <!--[ngModelOptions]="{standalone: true}"-->
+               <!--placeholder="ENTER WEBPAGE ADRESS"-->
+               <!--pattern="https://.*" size="20" required/>-->
         <input *ngIf="!isDemo" class="url" type="submit" value="GO!" (click)="getDom(url)">
         <input *ngIf="!isDemo" class="url" type="submit" value="SAVE" (click)="saveUrl(url)">
       </div>

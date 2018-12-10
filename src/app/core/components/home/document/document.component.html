@@ -59,10 +59,10 @@
         <!--<label>PDF src</label>-->
         <!--<input type="text" placeholder="PDF: " [(ngModel)]="pdfFile">-->
       </div>
-      <button *ngIf="pdfFile" type="button" (click)="pageBack()"> <--</button>
-      <button *ngIf="pdfFile" type="button" (click)="pageForward()"> --></button>
+      <button *ngIf="pdfFile" type="button" class="left" (click)="pageBack()"> <<<</button>
+      <button *ngIf="pdfFile" type="button" class="right" (click)="pageForward()"> >>></button>
       <form *ngIf="pdfFile">
-        <input [(ngModel)]="pageNumber" [ngModelOptions]="{standalone: true}" type="number" placeholder="page number" />
+        <input [(ngModel)]="pageNumber" [ngModelOptions]="{standalone: true}" type="number" class="pageNumber" placeholder="page number" />
         <!--<button   type="submit" (click)="setPageNumber(pageNumber)"> go to </button>-->
       </form>
       <pdf-viewer (mousemove)="fireEvent($event)" (dblclick)="wordSelection()"
@@ -77,6 +77,7 @@
 
       ></pdf-viewer>
     </div>
+
   </main>
 </div>
 
