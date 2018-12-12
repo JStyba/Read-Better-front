@@ -15,6 +15,7 @@ import {ConfirmationDialogComponent} from '../../../../services/confirmation-dia
 import {isNullOrUndefined} from 'util';
 import {NgxSpinnerService} from 'ngx-spinner';
 import {PDFProgressData} from 'pdfjs-dist';
+import {ScrollToService} from 'ng2-scroll-to-el';
 
 @Component({
   selector: 'app-document',
@@ -32,7 +33,7 @@ export class DocumentComponent implements OnInit {
     , private dialog: MatDialog
     , private uwds: UserWordDatabaseService
     , public dialogService: DialogService
-    , private fus: FileUploadService, private spinner: NgxSpinnerService) {
+    , private fus: FileUploadService, private spinner: NgxSpinnerService, private scrollService: ScrollToService) {
   }
   popOverDialogRef: MatDialogRef<PopOverComponent>;
   sideDrawerDialogRef: MatDialogRef<SideDrawerComponent>;
@@ -49,7 +50,6 @@ export class DocumentComponent implements OnInit {
   pdfFile;
   listOfFoldersInDropbox: any[];
   pageNumber = 0;
-
   ngOnInit() {
     // this.one = document.getElementById('test');
     // this.shadow = this.one.attachShadow({mode: 'closed'});
@@ -99,10 +99,10 @@ pdfFileDownloadedHandler (file: any) {
       data: {
         word: this.tmpWord,
         url: this.url,
+        file: localStorage.getItem('file'),
         isDocument: true,
        },
       panelClass: 'wordBox'
-
     });
   }
   onProgress(progressData: PDFProgressData) {
@@ -111,8 +111,13 @@ pdfFileDownloadedHandler (file: any) {
     if (pdfData.numPages > 0) {
       console.log(pdfData.numPages);
       this.spinner.hide();
-    }
+      this.scroll();
+     }
     // console.log(pdfData);
+  }
+  scroll() {
+    const sth = document.getElementById('prop');
+    sth.scrollIntoView();
   }
   fireEvent(e) {
     e.preventDefault();
@@ -137,4 +142,8 @@ pdfFileDownloadedHandler (file: any) {
   setPageNumber(number) {
    this.pageNumber = number;
    }
+
+  demoMsg() {
+    alert('Option not available in demo mode');
+  }
 }

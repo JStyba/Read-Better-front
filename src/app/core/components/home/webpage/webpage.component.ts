@@ -14,6 +14,7 @@ import {SideDrawerComponent} from '../side-drawer/side-drawer.component';
 import {NgxSpinnerService} from 'ngx-spinner';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import {catchError} from 'rxjs/operators';
+import {Router} from '@angular/router';
 @Component({
   selector: 'app-webpage',
   templateUrl: './webpage.component.html',
@@ -28,7 +29,7 @@ export class WebpageComponent implements OnInit {
     , private wss: WebScrapeService
     , private dialog: MatDialog
     , private uwds: UserWordDatabaseService
-    , private fus: FileUploadService) {
+    , private fus: FileUploadService, private router: Router) {
   }
 
   popOverDialogRef: MatDialogRef<PopOverComponent>;
@@ -73,7 +74,13 @@ export class WebpageComponent implements OnInit {
   canDeactivate(): boolean | Observable<boolean> | Promise<boolean> {
     return false;
   }
-
+  @HostListener('window:beforeunload')
+  move() {
+    Object.defineProperty(this.one, 'shadowRoot', {
+      get: function() { return null; },
+      set: function(value) { }
+    });
+  }
   wordSelection() {
     this.tmpWord = this.sws.selectWord(this.tmpWord);
     this.popOverDialogRef = this.dialog.open(PopOverComponent, {

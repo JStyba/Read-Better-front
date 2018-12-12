@@ -123,4 +123,8 @@ p {
   border-radius: 8px;
   margin: 10px 100px 10px 100px;
 }
+.instructionDemo {
+  text-decoration: underline;
+  font-weight: bolder;
+}
 

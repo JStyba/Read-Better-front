@@ -29,7 +29,7 @@
       </li>
     </ol>
     <button *ngIf="!isDemo" class="sendAll" type="button" (click)="sendAllToBackend()">Save all words</button>
-    <button *ngIf="!isDemo" class="clearAll">Clear</button>
+    <button *ngIf="!isDemo" class="clearAll" (click)="clearList()">Clear</button>
     <button *ngIf="isDemo" class="sendAll" type="button" (click)="demoMsq()">Save all words</button>
     </div>
 

@@ -103,4 +103,8 @@ export class MyReadBetterComponent implements OnInit {
   demoMsq() {
     alert('Option not available in demo mode');
   }
+
+  clearList() {
+    this.tableOfCurrentWords = [];
+  }
 }

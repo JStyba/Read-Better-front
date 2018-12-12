@@ -57,7 +57,7 @@ export class SideDrawerFileListComponent implements OnInit {
     dialogConfig.autoFocus = true;
     dialogConfig.data = {
       id: 1,
-      title: 'Angular For Beginners'
+      title: 'Do you really want to delete the file?'
     };
 
     const dialogRef = this.dialog.open(ConfirmationDialogComponent, dialogConfig);

@@ -11,18 +11,18 @@
     <form>
 
       <div *ngIf="isDemo" class="control">
-        <input type="url" placeholder="https://short-edition.com/en/story/1-min/exile-7"/>
+        <!--<input *ngIf="isDemo" type="url" placeholder="https://short-edition.com/en/story/1-min/exile-7"/>-->
+        <span *ngIf="isDemo" id="aurl">https://short-edition.com/en/story/1-min/exile-7</span>
         <input *ngIf="isDemo" class="url" type="click" value="GO!">
         <input *ngIf="isDemo" class="url" type="click" value="SAVE">
       </div>
-      <div class="control">
-        <span id="url">https://short-edition.com/en/story/1-min/exile-7</span>
-        <!--<label for="url">ENTER URL: </label>-->
-        <!--<input *ngIf="!isDemo" type="url" id="url"-->
-               <!--[(ngModel)]="url"-->
-               <!--[ngModelOptions]="{standalone: true}"-->
-               <!--placeholder="ENTER WEBPAGE ADRESS"-->
-               <!--pattern="https://.*" size="20" required/>-->
+      <div *ngIf="!isDemo" class="control">
+        <label *ngIf="!isDemo" for="url">ENTER URL: </label>
+        <input *ngIf="!isDemo" type="url" id="aurl"
+               [(ngModel)]="url"
+               [ngModelOptions]="{standalone: true}"
+               placeholder="ENTER WEBPAGE ADRESS"
+               pattern="https://.*" size="20" required/>
         <input *ngIf="!isDemo" class="url" type="submit" value="GO!" (click)="getDom(url)">
         <input *ngIf="!isDemo" class="url" type="submit" value="SAVE" (click)="saveUrl(url)">
       </div>

@@ -41,7 +41,7 @@ export class PopOverComponent implements OnInit {
   }
 
   translate() {
-    if (!this.isDemo || (this.isDemo && this.data.isDocument && this.transCount < 4)) {
+    if (!this.isDemo || (this.isDemo && this.data.isDocument && this.transCount <= 4)) {
       localStorage.setItem('count', (++this.transCount).toString());
       this.wts.getResponse(this.word).subscribe(res => {
         const evilResp = Object.values(res['definitions']);
@@ -65,19 +65,20 @@ export class PopOverComponent implements OnInit {
   }
 
   AddToDb() {
-    if (!this.isDemo) {
-      if (this.data.isDocument) {
+    if (this.isDemo) {
+      if (this.data.isDocument === true) {
         const def = this.wts.getResponseWithSub(this.word);
         const newEntry = <Entry>({
           word: this.word,
           definitions: def,
           // timestamp: Math.floor((new Date).getTime() / 1000),
           timestamp: this.us.timestampToDate(new Date()),
-          file: localStorage.getItem('file')
+          file: this.data.file
         });
         this.uwds.addWordToDatabase(newEntry);
       }
-      if (!this.data.isDocument) {
+    }
+      if (!this.isDemo && this.data.isDocument === false) {
         const def = this.wts.getResponseWithSub(this.word);
         const newEntry = <Entry>({
           word: this.word,
@@ -88,8 +89,7 @@ export class PopOverComponent implements OnInit {
          });
         this.uwds.addWordToDatabase(newEntry);
       }
-    }
-    if (this.isDemo && !this.data.isDocument) {
+      if (this.isDemo && !this.data.isDocument) {
       const def = this.ds.getTranslation(this.word);
       const newEntry = <Entry>({
         word: this.word,

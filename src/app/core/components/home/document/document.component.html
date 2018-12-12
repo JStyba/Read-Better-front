@@ -1,5 +1,6 @@
 <app-header></app-header>
-<app-side-drower-file-list [pdfFileDrawer]="pdfFile" (pdfFileDownloaded)="pdfFileDownloadedHandler($event)"></app-side-drower-file-list>
+<app-side-drower-file-list [pdfFileDrawer]="pdfFile"
+                           (pdfFileDownloaded)="pdfFileDownloadedHandler($event)"></app-side-drower-file-list>
 <br>
 <br>
 <br>
@@ -14,8 +15,6 @@
   type="ball-atom"
 ></ngx-spinner>
 <div id="wrapper">
-
-
   <div style="padding: 20px;">
   </div>
 
@@ -33,15 +32,22 @@
 
       <p class="title">Read Better .pdf in 3 easy steps</p>
       <!--<label for="file">Choose File</label>-->
+      <br>
+      <p class="instructionDemo"> IN DEMO MODE GO STRAIGHT TO STEP 3 --> My File List for pre-loaded books</p>
+      <div *ngIf="isDemo" class="upload-btn-wrapper">
+        <p *ngIf="isDemo"> 1. Load a file you want to read </p>
+        <button *ngIf="isDemo" type="button" class="steps" (click)="demoMsg()">Upload a file</button>
 
-      <div class="upload-btn-wrapper">
-        <p> 1. Load a file you want to read </p>
-        <button type="button"class ="steps">Upload a file</button>
-        <input type="file" name="myfile" (change)="handleFileInput($event.target.files)"/>
+      </div>
+      <div *ngIf="!isDemo" class="upload-btn-wrapper">
+        <p *ngIf="!isDemo"> 1. Load a file you want to read </p>
+        <button *ngIf="!isDemo" type="button" class="steps">Upload a file</button>
+        <input *ngIf="!isDemo" type="file" name="myfile" (change)="handleFileInput($event.target.files)"/>
       </div>
       <br>
       <p> 2. Send it to Read Better Folder</p>
-      <button type="button"class="steps" (click)="uploadFileToActivity()"> send to RB folder</button>
+      <button *ngIf="!isDemo" type="button" class="steps" (click)="uploadFileToActivity()"> send to RB folder</button>
+      <button *ngIf="isDemo" type="button" class="steps" (click)="demoMsg()"> send to RB folder</button>
 
 
       <div>
@@ -62,9 +68,11 @@
       <button *ngIf="pdfFile" type="button" class="left" (click)="pageBack()"> <<<</button>
       <button *ngIf="pdfFile" type="button" class="right" (click)="pageForward()"> >>></button>
       <form *ngIf="pdfFile">
-        <input [(ngModel)]="pageNumber" [ngModelOptions]="{standalone: true}" type="number" class="pageNumber" placeholder="page number" />
+        <input [(ngModel)]="pageNumber" [ngModelOptions]="{standalone: true}" type="number" class="pageNumber"
+               placeholder="page number"/>
         <!--<button   type="submit" (click)="setPageNumber(pageNumber)"> go to </button>-->
       </form>
+
       <pdf-viewer (mousemove)="fireEvent($event)" (dblclick)="wordSelection()"
                   [src]="pdfFile"
                   [render-text]="2"
@@ -76,22 +84,13 @@
                   (on-progress)="onProgress($event)"
 
       ></pdf-viewer>
+
     </div>
 
   </main>
 </div>
+<span id="prop"></span>
 
-<div class="jumbotron">
-  <div class="container">
-    <div class="row">
-      <div class="col-sm-6 offset-sm-3">
-        <div>
-
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
 <br>
 <br>
 <br>

@@ -52,6 +52,7 @@ import {NgxSpinnerModule} from 'ngx-spinner';
 import {LoadingBarHttpClientModule} from '@ngx-loading-bar/http-client';
 import {environment} from '../environments/environment';
 import {SideDrawerFileListComponent} from './core/components/home/document/side-drawer-file-list/side-drawer-file-list.component';
+import {ScrollToService} from 'ng2-scroll-to-el';
 
 const appRoutes: Routes = [
   {
@@ -193,7 +194,7 @@ export const MaterialModules = [
     , AdminService
     , DemoService
     , DialogService
-    , FileUploadService,
+    , FileUploadService, ScrollToService,
     {provide: HTTP_INTERCEPTORS, multi: true, useClass: TokenInterceptor},
     {provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true}
   ],
