@@ -33,7 +33,7 @@ export class LoginComponent  implements OnInit {
             this.router.navigateByUrl('home');
                       }
         }, r => {
-          alert(r.error.error);
+          this.router.navigateByUrl('start');
         });
   }
 

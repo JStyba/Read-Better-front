@@ -33,7 +33,7 @@
       <p class="title">Read Better .pdf in 3 easy steps</p>
       <!--<label for="file">Choose File</label>-->
       <br>
-      <p class="instructionDemo"> IN DEMO MODE GO STRAIGHT TO STEP 3 --> My File List for pre-loaded books</p>
+      <p *ngIf="isDemo" class="instructionDemo"> IN DEMO MODE GO STRAIGHT TO STEP 3 --> My File List for pre-loaded books</p>
       <div *ngIf="isDemo" class="upload-btn-wrapper">
         <p *ngIf="isDemo"> 1. Load a file you want to read </p>
         <button *ngIf="isDemo" type="button" class="steps" (click)="demoMsg()">Upload a file</button>
@@ -43,6 +43,9 @@
         <p *ngIf="!isDemo"> 1. Load a file you want to read </p>
         <button *ngIf="!isDemo" type="button" class="steps">Upload a file</button>
         <input *ngIf="!isDemo" type="file" name="myfile" (change)="handleFileInput($event.target.files)"/>
+        <br>
+        <br>
+        <span *ngIf="!isDemo && fileToUpload"> The file you want to upload is: {{fileToUpload.name}}</span>
       </div>
       <br>
       <p> 2. Send it to Read Better Folder</p>

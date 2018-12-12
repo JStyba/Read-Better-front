@@ -65,6 +65,7 @@ export class PopOverComponent implements OnInit {
   }
 
   AddToDb() {
+    /*-------------- IS DEMO ----------------*/
     if (this.isDemo) {
       if (this.data.isDocument === true) {
         const def = this.wts.getResponseWithSub(this.word);
@@ -76,27 +77,40 @@ export class PopOverComponent implements OnInit {
           file: this.data.file
         });
         this.uwds.addWordToDatabase(newEntry);
+      } else {
+        const def = this.ds.getTranslation(this.word);
+        const newEntry = <Entry>({
+          word: this.word,
+          definitions: def,
+          // timestamp: Math.floor((new Date).getTime() / 1000),
+          timestamp: this.us.timestampToDate(new Date()),
+          entryUrl: 'https://short-edition.com/en/story/1-min/exile-7'
+        });
+        this.uwds.addWordToDatabase(newEntry);
       }
     }
-      if (!this.isDemo && this.data.isDocument === false) {
+    /*-------------- NOT DEMO ----------------*/
+    if (!this.isDemo) {
+      if (this.data.isDocument === true) {
         const def = this.wts.getResponseWithSub(this.word);
         const newEntry = <Entry>({
           word: this.word,
           definitions: def,
           // timestamp: Math.floor((new Date).getTime() / 1000),
           timestamp: this.us.timestampToDate(new Date()),
-          entryUrl: localStorage.getItem('url'),
-         });
+          file: this.data.file
+        });
         this.uwds.addWordToDatabase(newEntry);
       }
-      if (this.isDemo && !this.data.isDocument) {
-      const def = this.ds.getTranslation(this.word);
+    } else {
+      console.log('here');
+      const def = this.wts.getResponseWithSub(this.word);
       const newEntry = <Entry>({
         word: this.word,
         definitions: def,
         // timestamp: Math.floor((new Date).getTime() / 1000),
         timestamp: this.us.timestampToDate(new Date()),
-        entryUrl: 'https://short-edition.com/en/story/1-min/exile-7'
+        entryUrl: localStorage.getItem('url'),
       });
       this.uwds.addWordToDatabase(newEntry);
     }

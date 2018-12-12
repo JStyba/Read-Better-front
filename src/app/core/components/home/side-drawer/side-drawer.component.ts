@@ -1,10 +1,7 @@
-import {AfterViewInit, Component, ElementRef, HostListener, Inject, OnInit, ViewChild} from '@angular/core';
-import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material';
+import {AfterViewInit, Component, ElementRef, HostListener, OnInit, ViewChild} from '@angular/core';
 import {UserWordDatabaseService} from '../../../../services/user-word-database-service';
 import {WordTranslationService} from '../../../../services/word-translation-service';
-import {Entry} from '../../../../model/entry';
 import {DemoService} from '../../../../services/demo-service';
-import {Definition} from '../../../../model/definition';
 
 @Component({
   selector: 'app-side-drawer',
@@ -24,12 +21,14 @@ export class SideDrawerComponent implements AfterViewInit, OnInit {
   translatedWord = '';
   isDemo = false;
   transCount;
-ngOnInit () {
-  if (localStorage.getItem('username') === 'demo') {
-    this.isDemo = true;
+
+  ngOnInit() {
+    if (localStorage.getItem('username') === 'demo') {
+      this.isDemo = true;
+    }
+    this.transCount = parseInt(localStorage.getItem('count'), 10);
   }
-  this.transCount = parseInt(localStorage.getItem('count'), 10);
-}
+
   ngAfterViewInit() {
     this.elementPosition = this.menuElement.nativeElement.offsetTop;
   }
@@ -47,21 +46,23 @@ ngOnInit () {
   translate(word) {
     this.transCount = parseInt(localStorage.getItem('count'), 10);
     if (!this.isDemo || (this.isDemo && localStorage.getItem('file'))) {
-      if ( this.transCount <= 4) {
-        console.log(this.transCount);
+      if (this.transCount > 4) {
+        alert('You exceeded the number of English translations');
+      } else {
         this.translatedWord = word;
         this.definitions = this.wts.getResponseWithSub(word);
-      } else { alert('You exceeded the number of English translations'); }
+      }
     } else {
-        this.translatedWord = word;
-        this.definitions = this.ds.getTranslation(word);
-      }
-      }
+      this.translatedWord = word;
+      this.definitions = this.ds.getTranslation(word);
+    }
+  }
 
   translatePl(word) {
     this.translatedWord = word;
     this.definitions = this.wts.getResponsePl(word);
   }
+
   remove(element, array) {
     this.uwds.removeWord(element, array);
   }
