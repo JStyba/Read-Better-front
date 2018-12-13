@@ -9,6 +9,7 @@ import {map} from 'rxjs/operators';
 import {Entry} from '../model/entry';
 
 const TOKEN = 'token';
+const REFRESH_TOKEN = 'refresh_token';
 const USERNAME = 'username';
 
 @Injectable({
@@ -27,7 +28,9 @@ export class UserService {
   setToken(token: string): void {
     localStorage.setItem(TOKEN, token);
   }
-
+  setRefreshToken(refreshToken: string): void {
+    localStorage.setItem(REFRESH_TOKEN, refreshToken);
+  }
   setUsername(username: string): void {
     localStorage.setItem(USERNAME, username);
   }
@@ -145,6 +148,12 @@ export class UserService {
       .set('Content-Type', 'application/x-www-form-urlencoded');
     return this.http.get(this.ds.urlToBackend + `/users/record-session?access_token=`
       + localStorage.getItem('token') + '&loggedIn=' + loggedIn + '&loggedOut=' + loggedOut + '&username=' + username).subscribe(res => {
+    });
+  }
+  recordLoginCount () {
+    const username = localStorage.getItem('username');
+    return this.http.get(this.ds.urlToBackend + `/users/record-login-count?access_token=`
+      + localStorage.getItem('token') + '&username=' + username).subscribe(res => {
     });
   }
 }

@@ -65,7 +65,10 @@ export class DocumentComponent implements OnInit {
   }
   async uploadFileToActivity() {
     if (!this.fileToUpload.name.endsWith('pdf')) {
-      alert('you can only upload PDF files');
+      alert('You can only upload PDF files');
+      return;
+    } else if (this.fileToUpload.size >= 5242880) {
+      alert('Maximum file size is 5MB');
       return;
     }
     let size = 0;
@@ -76,8 +79,7 @@ export class DocumentComponent implements OnInit {
         size = 0;
       }
     });
-    console.log('size' + size);
-    if (size <= 5242880) {
+    if (size <= 52428800) {
       this.fus.postFile(this.fileToUpload);
     } else {
       alert('You exceeded 50Mb of storage, delete some other files');

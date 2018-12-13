@@ -51,4 +51,7 @@ export class AdminPanelComponent implements OnInit {
       console.log(sth);
           });
   }
+  show() {
+    console.log(localStorage.getItem('resp'));
+  }
 }

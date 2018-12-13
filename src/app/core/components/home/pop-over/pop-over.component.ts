@@ -102,7 +102,7 @@ export class PopOverComponent implements OnInit {
         });
         this.uwds.addWordToDatabase(newEntry);
       }
-    } else {
+    } if (this.data.isDocument === false) {
       console.log('here');
       const def = this.wts.getResponseWithSub(this.word);
       const newEntry = <Entry>({
