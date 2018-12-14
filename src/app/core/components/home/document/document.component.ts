@@ -35,6 +35,7 @@ export class DocumentComponent implements OnInit {
     , public dialogService: DialogService
     , private fus: FileUploadService, private spinner: NgxSpinnerService, private scrollService: ScrollToService) {
   }
+
   popOverDialogRef: MatDialogRef<PopOverComponent>;
   sideDrawerDialogRef: MatDialogRef<SideDrawerComponent>;
   tmpWord: String = '';
@@ -50,6 +51,7 @@ export class DocumentComponent implements OnInit {
   pdfFile;
   listOfFoldersInDropbox: any[];
   pageNumber = 0;
+
   ngOnInit() {
     // this.one = document.getElementById('test');
     // this.shadow = this.one.attachShadow({mode: 'closed'});
@@ -63,12 +65,17 @@ export class DocumentComponent implements OnInit {
       localStorage.setItem('count', '0');
     }
   }
+
   async uploadFileToActivity() {
-    if (!this.fileToUpload.name.endsWith('pdf')) {
-      alert('You can only upload PDF files');
+    if (this.fileToUpload === null) {
+      alert('No file to send');
       return;
-    } else if (this.fileToUpload.size >= 5242880) {
+    }
+    if (this.fileToUpload.size >= 5242880) {
       alert('Maximum file size is 5MB');
+      return;
+    } else if (!this.fileToUpload.name.endsWith('pdf')) {
+      alert('You can only upload PDF files');
       return;
     }
     let size = 0;
@@ -79,21 +86,22 @@ export class DocumentComponent implements OnInit {
         size = 0;
       }
     });
-    if (size <= 52428800) {
-      this.fus.postFile(this.fileToUpload);
-    } else {
+    if (size >= 52428800 && (localStorage.getItem('username') !== 'admin')) {
       alert('You exceeded 50Mb of storage, delete some other files');
+    } else {
+      this.fus.postFile(this.fileToUpload);
     }
   }
- listFoldersInDropbox() {
+
+  listFoldersInDropbox() {
     this.fus.listFolders().then(data => {
       this.listOfFoldersInDropbox = data;
     });
   }
 
-pdfFileDownloadedHandler (file: any) {
+  pdfFileDownloadedHandler(file: any) {
     this.pdfFile = file;
-}
+  }
 
   wordSelection() {
     this.tmpWord = this.sws.selectWord(this.tmpWord);
@@ -103,24 +111,28 @@ pdfFileDownloadedHandler (file: any) {
         url: this.url,
         file: localStorage.getItem('file'),
         isDocument: true,
-       },
+      },
       panelClass: 'wordBox'
     });
   }
+
   onProgress(progressData: PDFProgressData) {
   }
+
   afterLoadComplete(pdfData: any) {
     if (pdfData.numPages > 0) {
       console.log(pdfData.numPages);
       this.spinner.hide();
       this.scroll();
-     }
+    }
     // console.log(pdfData);
   }
+
   scroll() {
     const sth = document.getElementById('prop');
     sth.scrollIntoView();
   }
+
   fireEvent(e) {
     e.preventDefault();
   }
@@ -128,7 +140,6 @@ pdfFileDownloadedHandler (file: any) {
   handleFileInput(files: FileList) {
     this.fileToUpload = files.item(0);
   }
-
 
 
   pageBack() {
@@ -142,8 +153,8 @@ pdfFileDownloadedHandler (file: any) {
   }
 
   setPageNumber(number) {
-   this.pageNumber = number;
-   }
+    this.pageNumber = number;
+  }
 
   demoMsg() {
     alert('Option not available in demo mode');
