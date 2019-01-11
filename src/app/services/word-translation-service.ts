@@ -23,7 +23,7 @@ export class WordTranslationService {
     this.http.get(this.ds.urlToBackend + '/entry/translate/?access_token='
       + localStorage.getItem('token')
       , {params, headers}).subscribe(res => {
-      const evilResp = Object.values(res['definitions']);
+              const evilResp = Object.values(res['definitions']);
       for (const prop in evilResp) {
         if (evilResp !== null) {
           this._newArray.push(Object.values(evilResp[prop]).toString());

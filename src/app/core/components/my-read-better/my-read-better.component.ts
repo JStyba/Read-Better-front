@@ -58,6 +58,7 @@ export class MyReadBetterComponent implements OnInit {
   getAllEntries() {
     this.tableOfDatabaseWords = [];
     this.tableOfDatabaseWords = this.us.getEntriesFromDatabase();
+    console.log(this.tableOfDatabaseWords);
   }
 
   removeWordFromLocalDatabase(word, array) {

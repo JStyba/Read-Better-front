@@ -10,6 +10,7 @@ import {AboutComponent} from './core/components/about/about.component';
 import {ContactComponent} from './core/components/contact/contact.component';
 import {DocumentComponent} from './core/components/home/document/document.component';
 import {WebpageComponent} from './core/components/home/webpage/webpage.component';
+import {RememberBetterComponent} from './core/components/remember-better/remember-better.component';
 
 
 const appRoutes: Routes = [
@@ -22,6 +23,7 @@ const appRoutes: Routes = [
   { path: 'contact', component: ContactComponent, canDeactivate: [CanDeactivateGuard]},
   { path: 'document', component: DocumentComponent, canActivate: [AuthGuard], canDeactivate: [CanDeactivateGuard]},
   { path: 'webpage', component: WebpageComponent, canActivate: [AuthGuard], canDeactivate: [CanDeactivateGuard]},
+  { path: 'remember', component: RememberBetterComponent, canActivate: [AuthGuard], canDeactivate: [CanDeactivateGuard]},
 
   // otherwise redirect to start
   { path: '**', redirectTo: '' }

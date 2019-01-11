@@ -67,5 +67,9 @@ ngOnInit () {
   goToAdminPage() {
     this.router.navigateByUrl('admin');
   }
- }
+
+  goToRememberBetter() {
+    this.router.navigateByUrl('remember');
+  }
+}
 

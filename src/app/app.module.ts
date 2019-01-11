@@ -53,6 +53,7 @@ import {LoadingBarHttpClientModule} from '@ngx-loading-bar/http-client';
 import {environment} from '../environments/environment';
 import {SideDrawerFileListComponent} from './core/components/home/document/side-drawer-file-list/side-drawer-file-list.component';
 import {ScrollToService} from 'ng2-scroll-to-el';
+import { RememberBetterComponent } from './core/components/remember-better/remember-better.component';
 
 const appRoutes: Routes = [
   {
@@ -100,6 +101,10 @@ const appRoutes: Routes = [
   {
     path: 'webpage',
     component: WebpageComponent
+  },
+  {
+    path: 'remember',
+    component: RememberBetterComponent
   }
 ];
 const cookieConfig: NgcCookieConsentConfig = {
@@ -160,6 +165,7 @@ export const MaterialModules = [
     DocumentComponent,
     ConfirmationDialogComponent,
     SideDrawerFileListComponent,
+    RememberBetterComponent,
   ],
   imports: [
     NgcCookieConsentModule.forRoot(cookieConfig),

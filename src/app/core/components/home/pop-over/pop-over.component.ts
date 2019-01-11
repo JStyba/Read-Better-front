@@ -9,6 +9,7 @@ import {UserService} from '../../../../services/user-service';
 import {stringify} from 'querystring';
 import {DemoService} from '../../../../services/demo-service';
 import {NgxSpinnerService} from 'ngx-spinner';
+import {Repetition} from '../../../../model/repetition.enum';
 
 @Component({
   selector: 'app-pop-over',
@@ -103,13 +104,14 @@ export class PopOverComponent implements OnInit {
         this.uwds.addWordToDatabase(newEntry);
       }
     } if (this.data.isDocument === false) {
-      console.log('here');
       const def = this.wts.getResponseWithSub(this.word);
       const newEntry = <Entry>({
         word: this.word,
         definitions: def,
         // timestamp: Math.floor((new Date).getTime() / 1000),
         timestamp: this.us.timestampToDate(new Date()),
+        language: 'english',
+        repetition: JSON.stringify(Repetition.EVERY_DAY),
         entryUrl: localStorage.getItem('url'),
       });
       this.uwds.addWordToDatabase(newEntry);
