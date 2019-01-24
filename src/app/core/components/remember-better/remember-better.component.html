@@ -10,12 +10,31 @@
 <div>
   <button class="getSavedWords" type="button" (click)="getAllEntriesToLearn()">Get saved words</button>
 
-  <!--<button type="button" (click)=down()>fail</button>-->
-  <!--<button type="button" (click)=up()>success</button>-->
+</div>
+<div>
+  <div>
+    <button type="button" (click)="previousWord()">PREVIOUS</button>
+    <br>
+
+    <button *ngIf="!hide" class="translateWord" type="submit" (click)="down(currentWord)">fail</button>
+    <p>{{ currentWord }}</p>
+    <div>
+      <ol>
+        <li *ngFor="let d of definitions">{{d}}</li>
+      </ol>
+    </div>
+    <button *ngIf="!hide" class="translateWord" type="submit" (click)="up(currentWord)">pass</button>
+    <br>
+    <button *ngIf="hide" type="button" (click)="showDefinitions(currentWord)"> Show definitions</button>
+    <button type="button" (click)="nextWord()">NEXT</button>
+
+
+  </div>
+  <span> <button type="button" (click)="showCurrentWord()"> show </button></span>
 </div>
 <!--<div>-->
 <!--<ol>-->
-<!--<li *ngFor="let e of tableOfDatabaseWords">-->
+<!--<li *ngFor="let e of tableOfWordsToLearn">-->
 <!--<ul>-->
 <!--<li><span class="word">{{e._word }} </span>-->
 
@@ -24,33 +43,6 @@
 <!--<button class="translateWord" type="submit" (click)="up(e._word)">pass</button>-->
 <!--</li>-->
 <!--</ul>-->
-<!--&lt;!&ndash;<ol>&ndash;&gt;-->
-<!--&lt;!&ndash;<li *ngFor="let def of entry.definitions">{{def}}</li>&ndash;&gt;-->
-<!--&lt;!&ndash;</ol>&ndash;&gt;-->
-<!--&lt;!&ndash;<ul>&ndash;&gt;-->
-<!--&lt;!&ndash;<li>{{entry.timestamp}}</li>&ndash;&gt;-->
-<!--&lt;!&ndash;</ul>&ndash;&gt;-->
-<!--<ul class="urlAdress">-->
-<!--<li><span class="word">{{e._repetition }} </span>-->
-<!--<li><span class="word">{{e._entryUrl }} </span>-->
-<!--<li><span class="word">{{e._language }} </span>-->
-<!--<li><span class="word">{{e._timestamp }} </span>-->
-<!--</ul>-->
-
 <!--</li>-->
 <!--</ol>-->
 <!--</div>-->
-<div>
-  <ol>
-    <li *ngFor="let e of tableOfWordsToLearn">
-      <ul>
-        <li><span class="word">{{e._word }} </span>
-
-
-          <button class="translateWord" type="submit" (click)="down(e._word)">fail</button>
-          <button class="translateWord" type="submit" (click)="up(e._word)">pass</button>
-        </li>
-      </ul>
-    </li>
-  </ol>
-</div>

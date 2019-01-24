@@ -1,5 +1,6 @@
-import {Component, OnInit} from '@angular/core';
+import {AfterViewInit, Component, OnInit} from '@angular/core';
 import {UserService} from '../../../services/user-service';
+import {WordTranslationService} from '../../../services/word-translation-service';
 
 @Component({
   selector: 'app-remember-better',
@@ -9,11 +10,25 @@ import {UserService} from '../../../services/user-service';
 export class RememberBetterComponent implements OnInit {
   tableOfDatabaseWords;
   tableOfWordsToLearn;
+  i = 0;
+  currentWord: string;
+  definitions;
+  hide = true;
 
-  constructor(private us: UserService) {
+  constructor(private us: UserService, private wts: WordTranslationService) {
   }
 
   ngOnInit() {
+    this.getAllEntriesToLearn();
+  }
+
+  showCurrentWord() {
+    this.currentWord = this.tableOfWordsToLearn[this.i]._word;
+  }
+
+  showDefinitions(w: string) {
+    this.definitions = this.wts.getResponseWithSub(w);
+    this.hide = false;
   }
 
   getAllEntries() {
@@ -26,16 +41,40 @@ export class RememberBetterComponent implements OnInit {
     }
     console.log(this.tableOfDatabaseWords);
   }
-  getAllEntriesToLearn () {
+
+  getAllEntriesToLearn() {
     this.tableOfWordsToLearn = [];
     this.tableOfWordsToLearn = this.us.getEntriesFromDatabaseToLearn();
   }
 
   down(w: string) {
-this.us.recordLearning(w, false);
+    this.us.recordLearning(w, false);
+    this.tableOfWordsToLearn.splice(this.tableOfWordsToLearn.indexOf(w), 1);
+    this.nextWord();
   }
 
   up(w: string) {
     this.us.recordLearning(w, true);
+    this.tableOfWordsToLearn.splice(this.tableOfWordsToLearn.indexOf(w), 1);
+    this.nextWord();
+  }
+
+  nextWord() {
+    if (this.i < this.tableOfWordsToLearn.length - 1) {
+      this.i++;
+      this.currentWord = this.tableOfWordsToLearn[this.i]._word;
+      this.hide = true;
+      this.definitions = [];
+    } else {
+      this.currentWord = ' There are no more words to learn';
+      this.definitions = [];
+    }
+  }
+
+  previousWord() {
+    if (this.i > 0) {
+      this.i--;
+      this.currentWord = this.tableOfWordsToLearn[this.i]._word;
+    }
   }
 }
