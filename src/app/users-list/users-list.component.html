@@ -1,0 +1,56 @@
+<app-header></app-header>
+<div class="uk-container uk-margin-top">
+<div class="uk-margin-large-top uk-margin-bottom">
+  <div class="uk-child-width-1-1 uk-grid-small" uk-grid>
+    <div>
+      <div class="uk-overflow-auto">
+        <table class="uk-table uk-table-striped uk-table-small uk-table-middle">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>ID</th>
+              <th>Username</th>
+              <th>Email</th>
+              <th>Login Count</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let user of tableOfUsers; let index = index">
+              <th>{{ index + 1 }}</th>
+              <td>
+                <span> {{ user[0] }}</span>
+              </td>
+              <td>
+                <span> {{user[2]}}</span>
+              </td>
+              <td>
+                <span>{{user[3]}}</span>
+              </td>
+              <td>
+                <span>{{user[1]}}</span>
+              </td>
+              <td>
+                <div class="uk-flex uk-flex-center">
+                  <div class="uk-grid-small" uk-grid>
+                    <div>
+                    <a  uk-tooltip="title: Edit">
+                      <span class="uk-text-primary uk-icon-link" uk-icon="icon: file-edit"></span>
+                    </a>
+                  </div>
+                  <div>
+                    <a  uk-tooltip="title: Delete">
+                      <span class="uk-text-danger uk-icon-link" uk-icon="icon: trash"></span>
+                    </a>
+                  </div>
+                  </div>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+</div>

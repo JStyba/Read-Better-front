@@ -20,26 +20,5 @@
   <input type="text" [(ngModel)]="search"/>
   <button type="button" (click)="getDict(search)"> get local dict</button>
 </div>
-  <ol>
-    <li *ngFor="let u of tableOfUsers">
-      <ul>
-        <li>Username: {{u[2]}} <br>
-       Email: {{u[3]}} <br>
-        Login count: {{u[1]}}</li>
-      </ul>
-      <!--<ol>-->
-      <!--<li *ngFor="let def of entry.definitions">{{def}}</li>-->
-      <!--</ol>-->
-      <!--<ul>-->
-      <!--<li>{{entry.timestamp}}</li>-->
-      <!--</ul>-->
-      <!--<ul class="urlAdress">-->
-        <!--<li>-->
-          <!--{{l[1]}}-->
-        <!--</li>-->
-      <!--</ul>-->
-
-    </li>
-  </ol>
 </div>
 <button type="button" (click)="show()" > press me </button>

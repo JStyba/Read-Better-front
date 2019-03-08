@@ -25,8 +25,7 @@ export class AdminPanelComponent implements OnInit {
   }
 
   listAllUsers() {
-    this.tableOfUsers = [];
-    this.tableOfUsers = this.as.getAllUsers();
+    this.router.navigateByUrl('users-list');
   }
 
 

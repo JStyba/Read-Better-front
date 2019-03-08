@@ -54,6 +54,7 @@ import {environment} from '../environments/environment';
 import {SideDrawerFileListComponent} from './core/components/home/document/side-drawer-file-list/side-drawer-file-list.component';
 import {ScrollToService} from 'ng2-scroll-to-el';
 import { RememberBetterComponent } from './core/components/remember-better/remember-better.component';
+import { UsersListComponent } from './users-list/users-list.component';
 
 const appRoutes: Routes = [
   {
@@ -105,6 +106,10 @@ const appRoutes: Routes = [
   {
     path: 'remember',
     component: RememberBetterComponent
+  },
+  {
+    path: 'users-list',
+    component: UsersListComponent
   }
 ];
 const cookieConfig: NgcCookieConsentConfig = {
@@ -166,6 +171,7 @@ export const MaterialModules = [
     ConfirmationDialogComponent,
     SideDrawerFileListComponent,
     RememberBetterComponent,
+    UsersListComponent,
   ],
   imports: [
     NgcCookieConsentModule.forRoot(cookieConfig),
