@@ -1,5 +1,5 @@
 <app-header></app-header>
-
+<!-- 
 <h2>Register</h2>
 <div class="card mt-5" style="margin:auto;width: 600px;">
   <div class="card-body">
@@ -18,5 +18,38 @@
     </div>
     <button type="submit" class="btn btn-primary" (click)="onSubmit()">Register</button>
   </div>
-</div>
-
+</div> -->
+<div class="uk-container uk-margin-top uk-margin-bottom">
+    <div class="uk-margin-large-top uk-margin-bottom">
+      <div class="uk-child-width-1-1 uk-grid-small" uk-grid>
+        <form class="uk-form-horizontal uk-margin-small " [formGroup]="form">
+  <fieldset class="uk-fieldset">
+    <legend class="uk-legend text--light">Nowy użytkownik</legend>
+    <div class="uk-margin">
+      <label class="uk-form-label" for="username">Username:</label>
+      <div class="uk-form-controls">
+        <input type="text" class="uk-input" formControlName="username">
+      </div>
+  <div class="uk-margin">
+    <label for="password" class="uk-form-label">Password:</label>
+    <div class="uk-form-controls">
+      <input type="text" class="uk-input" formControlName="password">
+    </div>
+  </div>
+  <div class="uk-margin">
+    <label for="email" class="uk-form-label">Email:</label>
+    <div class="uk-form-controls">
+      <input type="email" class="uk-input" formControlName="email">
+    </div>
+  </div>
+    </div>
+  </fieldset>
+  <div class="uk-margin uk-text-right">
+    <button class="uk-button uk-button-primary" (click)="onSubmit()">Submit</button>
+  </div>
+</form>
+      </div>
+  
+    </div>
+  
+  </div>

@@ -24,10 +24,6 @@ export class AdminPanelComponent implements OnInit {
   ngOnInit() {
   }
 
-  register() {
-    this.router.navigateByUrl('register');
-  }
-
   listAllUsers() {
     this.tableOfUsers = [];
     this.tableOfUsers = this.as.getAllUsers();
@@ -53,5 +49,8 @@ export class AdminPanelComponent implements OnInit {
   }
   show() {
     console.log(localStorage.getItem('resp'));
+  }
+  register() {
+this.router.navigateByUrl('register');
   }
 }

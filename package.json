@@ -44,6 +44,7 @@
     "require": "^2.4.20",
     "rxjs": "^6.0.0",
     "rxjs-compat": "^6.3.3",
+    "uikit": "^3.0.3",
     "zone.js": "~0.8.26"
   },
   "devDependencies": {
