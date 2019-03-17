@@ -184,7 +184,6 @@ export class UserService {
         }
       }
       for (let i = 0; i < this.newEntryArrayToLearn.length; i++) {
-        console.log(this.newEntryArrayToLearn[i]);
         this.newStringEntryArrayToLearn.push(new Entry(
           this.newEntryArrayToLearn[i][0]
           , this.newEntryArrayToLearn[i][1]

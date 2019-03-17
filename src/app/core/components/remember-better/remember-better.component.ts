@@ -12,6 +12,7 @@ export class RememberBetterComponent implements OnInit {
   tableOfWordsToLearn;
   i = 0;
   currentWord: string;
+  timestamp: string;
   definitions;
   hide = true;
 
@@ -21,9 +22,9 @@ export class RememberBetterComponent implements OnInit {
   ngOnInit() {
     this.getAllEntriesToLearn();
   }
-
   showCurrentWord() {
     this.currentWord = this.tableOfWordsToLearn[this.i]._word;
+    this.timestamp = this.tableOfWordsToLearn[this.i]._timestamp;
   }
 
   showDefinitions(w: string) {

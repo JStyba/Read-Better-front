@@ -4,45 +4,46 @@
 <br>
 <br>
 <br>
-<br>
-<br>
-<br>
-<div>
-  <button class="getSavedWords" type="button" (click)="getAllEntriesToLearn()">Get saved words</button>
 
+<div class="uk-container uk-margin-top uk-margin-bottom">
+  <div class="uk-flex uk-flex-center">
+<div class="uk-card uk-card-default uk-width-1-2@m">
+  <div class="uk-card-header">
+    <div class="uk-grid-small uk-flex-middle" uk-grid>
+      <div class="uk-width-auto">
+      </div>
+      <div class="uk-width-expand">
+        <h3 class="uk-card-title uk-margin-remove-bottom"> {{currentWord}} </h3>
+        <p class="uk-text-meta uk-margin-remove-top"><time datetime="2016-04-01T19:00"> {{timestamp}} </time></p>
+      </div>
+    </div>
+  </div>
+  <div class="uk-card-body">
+    <div *ngIf="!hide">
+     <ol>
+    <li *ngFor="let d of definitions">{{d}}</li>
+  </ol>
+    </div>
+    <button *ngIf="hide && currentWord" type="button" (click)="showDefinitions(currentWord)"> Show definitions</button>
+  </div>
+  <div class="uk-card-footer">
+    <button *ngIf="!hide" class="translateWord" type="submit" (click)="up(currentWord)">pass</button>
+    <button *ngIf="!hide" class="translateWord" type="submit" (click)="down(currentWord)">fail</button>
+
+  </div>
 </div>
+</div>
+</div>
+
 <div>
   <div>
     <button type="button" (click)="previousWord()">PREVIOUS</button>
-    <br>
 
-    <button *ngIf="!hide" class="translateWord" type="submit" (click)="down(currentWord)">fail</button>
-    <p>{{ currentWord }}</p>
-    <div>
-      <ol>
-        <li *ngFor="let d of definitions">{{d}}</li>
-      </ol>
-    </div>
-    <button *ngIf="!hide" class="translateWord" type="submit" (click)="up(currentWord)">pass</button>
-    <br>
-    <button *ngIf="hide" type="button" (click)="showDefinitions(currentWord)"> Show definitions</button>
+
     <button type="button" (click)="nextWord()">NEXT</button>
 
 
   </div>
   <span> <button type="button" (click)="showCurrentWord()"> show </button></span>
 </div>
-<!--<div>-->
-<!--<ol>-->
-<!--<li *ngFor="let e of tableOfWordsToLearn">-->
-<!--<ul>-->
-<!--<li><span class="word">{{e._word }} </span>-->
 
-
-<!--<button class="translateWord" type="submit" (click)="down(e._word)">fail</button>-->
-<!--<button class="translateWord" type="submit" (click)="up(e._word)">pass</button>-->
-<!--</li>-->
-<!--</ul>-->
-<!--</li>-->
-<!--</ol>-->
-<!--</div>-->

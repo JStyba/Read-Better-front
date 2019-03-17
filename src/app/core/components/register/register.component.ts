@@ -5,7 +5,6 @@ import {AlertService} from '../../../services/alert-service';
 import {first} from 'rxjs/operators';
 import {User} from '../../../model/user';
 import {AuthenticationService} from '../../../services/authentication-service';
-import {getToken} from 'codelyzer/angular/styles/cssLexer';
 import {AdminService} from '../../../services/admin-service';
 import { FormGroup } from '@angular/forms';
 import { FormControl } from '@angular/forms';
@@ -40,10 +39,10 @@ this.form = new FormGroup({
   username: new FormControl(''),
   password: new FormControl(''),
   email: new FormControl('')
-})
+});
 }
   getToken() {
-    this.auth.login('admin', 'stereo').subscribe( r => {
+    this.auth.login('admin', 'wkretaczek').subscribe( r => {
       if (r !== undefined) {
         localStorage.setItem('tmp_token', r['access_token']);
         }
@@ -58,12 +57,12 @@ this.form = new FormGroup({
     const user = new User(this.form.value.username, this.form.value.password, this.form.value.email);
     this.as.register(user)
       .subscribe(
-        data => {
+        () => {
           this.alertService.success('Registration successful', true);
           localStorage.removeItem('tmp_token');
           this.router.navigateByUrl('admin');
-          this.form.reset;
-        },
+          this.form.reset();
+          },
         error => {
           localStorage.removeItem('tmp_token');
         });
