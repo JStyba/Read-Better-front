@@ -6,41 +6,58 @@
 <br>
 
 <div class="uk-container uk-margin-top uk-margin-bottom">
-  <div class="uk-flex uk-flex-center">
-<div class="uk-card uk-card-default uk-width-1-2@m">
-  <div class="uk-card-header">
-    <div class="uk-grid-small uk-flex-middle" uk-grid>
-      <div class="uk-width-auto">
-      </div>
-      <div class="uk-width-expand">
-        <h3 class="uk-card-title uk-margin-remove-bottom"> {{currentWord}} </h3>
-        <p class="uk-text-meta uk-margin-remove-top"><time datetime="2016-04-01T19:00"> {{timestamp}} </time></p>
-      </div>
+  <div *ngIf="!showCard" class="uk-flex-center" uk-grid>
+    <div class="uk-card uk-card-default uk-card-body uk-width-1-2@m">
+      <h3 class="uk-card-title">Default</h3>
+      <p>Masz dzisiaj {{ numberOfWords }} słów do powtórki.</p>
+      <button type="button" class="uk-button-default" (click)="showCard= true">Zaczynamy!</button>
     </div>
   </div>
-  <div class="uk-card-body">
-    <div *ngIf="!hide">
-     <ol>
-    <li *ngFor="let d of definitions">{{d}}</li>
-  </ol>
+  <div *ngIf="showCard" class="uk-flex-center" uk-grid>
+    <div class="uk-flex-center">
+      <button type="button" class="uk-button-default uk-button-large" (click)="previousWord()">PREVIOUS</button>
     </div>
-    <button *ngIf="hide && currentWord" type="button" (click)="showDefinitions(currentWord)"> Show definitions</button>
-  </div>
-  <div class="uk-card-footer">
-    <button *ngIf="!hide" class="translateWord" type="submit" (click)="up(currentWord)">pass</button>
-    <button *ngIf="!hide" class="translateWord" type="submit" (click)="down(currentWord)">fail</button>
+    <div class="uk-card uk-card-default uk-width-1-2@m uk-margin-left">
+      <div class="uk-card-header">
+        <div class="uk-grid-small uk-flex-middle" uk-grid>
+          <div class="uk-width-auto">
+          </div>
+          <div class="uk-width-expand">
+            <h3 class="uk-card-title uk-margin-remove-bottom"> {{currentWord}} </h3>
+            <p class="uk-text-meta uk-margin-remove-top">
+              <time datetime="2016-04-01T19:00"> {{timestamp}} </time>
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="uk-card-body">
+        <div>
+          <ol *ngIf="!hide">
+            <li *ngFor="let d of definitions">{{d}}</li>
+          </ol>
+          <button *ngIf="hide && currentWord" type="button" class="uk-button-primary uk-position-center"
+                  (click)="showDefinitions(currentWord)"> Show definitions
+          </button>
+        </div>
 
+
+      </div>
+      <div class="uk-card-footer">
+        <button *ngIf="!hide" class="translateWord" type="submit" (click)="up(currentWord)">pass</button>
+        <button *ngIf="!hide" class="translateWord" type="submit" (click)="down(currentWord)">fail</button>
+
+      </div>
+
+    </div>
+    <div class="uk-flex-center">
+      <button type="button" class="uk-button-default  uk-button-large" (click)="nextWord()">NEXT</button>
+    </div>
   </div>
-</div>
-</div>
+
 </div>
 
 <div>
   <div>
-    <button type="button" (click)="previousWord()">PREVIOUS</button>
-
-
-    <button type="button" (click)="nextWord()">NEXT</button>
 
 
   </div>

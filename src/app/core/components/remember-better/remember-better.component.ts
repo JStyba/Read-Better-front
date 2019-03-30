@@ -1,6 +1,7 @@
 import {AfterViewInit, Component, OnInit} from '@angular/core';
 import {UserService} from '../../../services/user-service';
 import {WordTranslationService} from '../../../services/word-translation-service';
+import {Subscription} from 'rxjs';
 
 @Component({
   selector: 'app-remember-better',
@@ -13,11 +14,14 @@ export class RememberBetterComponent implements OnInit {
   i = 0;
   currentWord: string;
   timestamp: string;
+  numberOfWords = 0;
   definitions;
   hide = true;
-
+  showCard = false;
+  private subscription: Subscription;
+  private subscriptions = new Array<Subscription>();
   constructor(private us: UserService, private wts: WordTranslationService) {
-  }
+      }
 
   ngOnInit() {
     this.getAllEntriesToLearn();
@@ -25,6 +29,7 @@ export class RememberBetterComponent implements OnInit {
   showCurrentWord() {
     this.currentWord = this.tableOfWordsToLearn[this.i]._word;
     this.timestamp = this.tableOfWordsToLearn[this.i]._timestamp;
+    this.numberOfWords = this.tableOfWordsToLearn.length;
   }
 
   showDefinitions(w: string) {
@@ -45,7 +50,10 @@ export class RememberBetterComponent implements OnInit {
 
   getAllEntriesToLearn() {
     this.tableOfWordsToLearn = [];
-    this.tableOfWordsToLearn = this.us.getEntriesFromDatabaseToLearn();
+    this.subscription = this.us.getEntriesFromDatabaseToLearn().subscribe( data => {
+      this.tableOfWordsToLearn = data;
+      this.showCurrentWord();
+          });
   }
 
   down(w: string) {

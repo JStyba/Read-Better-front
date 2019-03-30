@@ -176,8 +176,8 @@ export class UserService {
     this.newStringEntryArrayToLearn = [];
     this.newEntryArrayToLearn = [];
     const params = new HttpParams().set('username', localStorage.getItem('username'));
-    this.http.get(this.ds.urlToBackend + '/entry/get-words-to-learn/?access_token='
-      + localStorage.getItem('token'), {params: params}).subscribe(res => {
+    return this.http.get(this.ds.urlToBackend + '/entry/get-words-to-learn/?access_token='
+      + localStorage.getItem('token'), {params: params}).pipe(map (res => {
       for (const prop in res) {
         if (res !== null) {
           this.newEntryArrayToLearn.push(Object.values(res[prop]));
@@ -191,7 +191,9 @@ export class UserService {
           , this.newEntryArrayToLearn[i][4]
           , this.newEntryArrayToLearn[i][2]));
       }
-    });
-    return (this.newStringEntryArrayToLearn);
+        return (this.newStringEntryArrayToLearn);
+      }
+    ));
+
   }
 }
